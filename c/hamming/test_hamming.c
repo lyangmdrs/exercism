@@ -26,7 +26,6 @@ static void test_single_letter_different_strands(void)
 
 static void test_long_identical_strands(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_EQUAL(0, compute("GGACTGAAATCTG", "GGACTGAAATCTG"));
 }
 
