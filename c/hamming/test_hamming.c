@@ -31,7 +31,6 @@ static void test_long_identical_strands(void)
 
 static void test_long_different_strands(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_EQUAL(9, compute("GGACGGATTCTG", "AGGACGGATTCT"));
 }
 
