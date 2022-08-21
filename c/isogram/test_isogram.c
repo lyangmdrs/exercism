@@ -32,7 +32,6 @@ static void test_word_with_one_duplicated_character(void)
 
 static void test_word_with_one_duplicated_character_from_end_of_alphabet(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_FALSE(is_isogram("zzyzx"));
 }
 
