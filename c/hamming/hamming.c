@@ -11,6 +11,7 @@ int compute(const char *lhs, const char *rhs)
         {
             errors++;
         }
+        position++;
     } while (lhs[position] != '\0');
     return errors;
 }
