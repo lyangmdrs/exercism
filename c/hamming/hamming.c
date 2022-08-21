@@ -9,6 +9,10 @@ int compute(const char *lhs, const char *rhs)
     {
         if  (lhs[position] != rhs[position])
         {
+            if ((lhs[position] == '\0') || (rhs[position] == '\0'))
+            {
+                return -1;
+            }
             errors++;
         }
         position++;

@@ -36,7 +36,6 @@ static void test_long_different_strands(void)
 
 static void test_disallow_first_strand_when_longer(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_EQUAL(-1, compute("AATG", "AAA"));
 }
 
