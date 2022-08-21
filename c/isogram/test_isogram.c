@@ -47,7 +47,6 @@ static void test_word_with_duplicated_letter_in_mixed_case(void)
 
 static void test_word_with_duplicated_letter_in_mixed_case_lowercase_first(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_FALSE(is_isogram("alphAbet"));
 }
 
