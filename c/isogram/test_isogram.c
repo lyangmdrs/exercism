@@ -37,7 +37,6 @@ static void test_word_with_one_duplicated_character_from_end_of_alphabet(void)
 
 static void test_longest_reported_english_isogram(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_TRUE(is_isogram("subdermatoglyphic"));
 }
 
