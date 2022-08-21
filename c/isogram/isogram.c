@@ -1,5 +1,6 @@
 #include "isogram.h"
 #include <stddef.h>
+#include <ctype.h>
 
 bool is_isogram(const char phrase[])
 {
@@ -13,7 +14,7 @@ bool is_isogram(const char phrase[])
     
     do
     {
-        c = phrase[i];
+        c = tolower(phrase[i]);
         
         if (check_char_repetition(phrase, c))
         {
@@ -34,7 +35,7 @@ bool check_char_repetition(const char phrase[], char c)
     int match = 0;
     do
     {
-        a = phrase[i];
+        a = tolower(phrase[i]);
         
         if (a == c)
         {
