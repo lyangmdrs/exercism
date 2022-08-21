@@ -27,7 +27,6 @@ static void test_isogram_with_only_lower_case_characters(void)
 
 static void test_word_with_one_duplicated_character(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_FALSE(is_isogram("eleven"));
 }
 
