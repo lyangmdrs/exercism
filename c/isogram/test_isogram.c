@@ -83,7 +83,6 @@ static void test_same_first_and_last_characters(void)
 
 static void test_word_with_duplicated_character_and_with_two_hyphens(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_FALSE(is_isogram("up-to-date"));
 }
 
