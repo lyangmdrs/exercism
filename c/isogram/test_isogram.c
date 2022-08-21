@@ -68,7 +68,6 @@ static void test_isogram_with_duplicated_hyphen(void)
 
 static void test_made_up_name_that_is_an_isogram(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_TRUE(is_isogram("Emily Jung Schwartzkopf"));
 }
 

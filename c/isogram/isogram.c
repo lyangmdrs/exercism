@@ -39,10 +39,11 @@ bool check_char_repetition(const char phrase[], char c)
         
         if (a == tolower(c))
         {
-            if (a != '-')
+            if ((a != '-') && (a != ' '))
             {
                 match++;
             }
+
             if (match > 1)
             {
                 return true;
