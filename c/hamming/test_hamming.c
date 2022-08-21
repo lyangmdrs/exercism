@@ -46,7 +46,6 @@ static void test_disallow_second_strand_when_longer(void)
 
 static void test_disallow_empty_first_strand(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_EQUAL(-1, compute("", "G"));
 }
 
