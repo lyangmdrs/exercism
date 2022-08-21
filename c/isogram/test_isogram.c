@@ -52,7 +52,6 @@ static void test_word_with_duplicated_letter_in_mixed_case_lowercase_first(void)
 
 static void test_hypothetical_isogrammic_word_with_hyphen(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_TRUE(is_isogram("thumbscrew-japingly"));
 }
 
