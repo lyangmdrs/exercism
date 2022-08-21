@@ -21,7 +21,6 @@ static void test_single_identical_strands(void)
 
 static void test_single_letter_different_strands(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_EQUAL(1, compute("G", "T"));
 }
 
