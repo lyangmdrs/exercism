@@ -14,8 +14,8 @@ bool is_isogram(const char phrase[])
     
     do
     {
-        c = tolower(phrase[i]);
-        
+        c = phrase[i];
+
         if (check_char_repetition(phrase, c))
         {
             return false;
@@ -37,9 +37,12 @@ bool check_char_repetition(const char phrase[], char c)
     {
         a = tolower(phrase[i]);
         
-        if (a == c)
+        if (a == tolower(c))
         {
-            match++;
+            if (a != '-')
+            {
+                match++;
+            }
             if (match > 1)
             {
                 return true;

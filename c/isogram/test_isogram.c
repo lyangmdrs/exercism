@@ -63,7 +63,6 @@ test_hypothetical_word_with_duplicated_character_following_hyphen(void)
 
 static void test_isogram_with_duplicated_hyphen(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_TRUE(is_isogram("six-year-old"));
 }
 
