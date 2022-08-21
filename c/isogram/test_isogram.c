@@ -73,7 +73,6 @@ static void test_made_up_name_that_is_an_isogram(void)
 
 static void test_duplicated_character_in_the_middle(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_FALSE(is_isogram("accentor"));
 }
 
