@@ -28,7 +28,6 @@ static void test_add_two_positive_rational_numbers(void)
 
 static void test_add_positive_and_negative_rational_numbers(void)
 {
-   TEST_IGNORE();   // delete this line to run test
    rational_t r1 = { 1, 2 };
    rational_t r2 = { -2, 3 };
    rational_t expected = { -1, 6 };
@@ -38,7 +37,6 @@ static void test_add_positive_and_negative_rational_numbers(void)
 
 static void test_add_two_negative_rational_numbers(void)
 {
-   TEST_IGNORE();
    rational_t r1 = { -1, 2 };
    rational_t r2 = { -2, 3 };
    rational_t expected = { -7, 6 };
@@ -48,7 +46,6 @@ static void test_add_two_negative_rational_numbers(void)
 
 static void test_add_rational_number_to_additive_inverse(void)
 {
-   TEST_IGNORE();
    rational_t r1 = { 1, 2 };
    rational_t r2 = { -1, 2 };
    rational_t expected = { 0, 1 };
@@ -58,7 +55,6 @@ static void test_add_rational_number_to_additive_inverse(void)
 
 static void test_subtract_two_positive_rational_numbers(void)
 {
-   TEST_IGNORE();
    rational_t r1 = { 1, 2 };
    rational_t r2 = { 2, 3 };
    rational_t expected = { -1, 6 };
