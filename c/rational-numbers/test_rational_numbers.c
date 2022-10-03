@@ -64,7 +64,6 @@ static void test_subtract_two_positive_rational_numbers(void)
 
 static void test_subtract_positive_and_negative_rational_numbers(void)
 {
-   TEST_IGNORE();
    rational_t r1 = { 1, 2 };
    rational_t r2 = { -2, 3 };
    rational_t expected = { 7, 6 };
@@ -74,7 +73,6 @@ static void test_subtract_positive_and_negative_rational_numbers(void)
 
 static void test_subtract_two_negative_rational_numbers(void)
 {
-   TEST_IGNORE();
    rational_t r1 = { -1, 2 };
    rational_t r2 = { -2, 3 };
    rational_t expected = { 1, 6 };
@@ -84,7 +82,6 @@ static void test_subtract_two_negative_rational_numbers(void)
 
 static void test_subtract_rational_number_from_itself(void)
 {
-   TEST_IGNORE();
    rational_t r1 = { 1, 2 };
    rational_t r2 = { 1, 2 };
    rational_t expected = { 0, 1 };
