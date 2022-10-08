@@ -10,55 +10,68 @@ int greatest_common_divisor(rational_t r)
         }
     }
 
-    return 20;
+    return 1;
+}
+
+rational_t reduce_to_lowest_terms(rational_t r)
+{
+    rational_t result = r;
+    int gdc = greatest_common_divisor(result);
+    
+    result.numerator /= gdc;
+    result.denominator /= gdc;
+
+    return result;
 }
 
 rational_t add(rational_t r1, rational_t r2)
 {
-    rational_t sum;
-    sum.numerator = r1.numerator * r2.denominator + r2.numerator * r1.denominator;
+    rational_t result;
+    result.numerator = r1.numerator * r2.denominator + r2.numerator * r1.denominator;
 
-    if (sum.numerator == 0)
+    if (result.numerator == 0)
     {
-        sum.denominator = 1;
+        result.denominator = 1;
     }
     else
     {
-        sum.denominator = r1.denominator * r2.denominator;
+        result.denominator = r1.denominator * r2.denominator;
     }
+    
+    result = reduce_to_lowest_terms(result);
 
-    return sum;
+    return result;
 }
 
 rational_t subtract(rational_t r1, rational_t r2)
 {
-    rational_t sub;
-    sub.numerator = r1.numerator * r2.denominator - r2.numerator * r1.denominator;
+    rational_t result;
+    result.numerator = r1.numerator * r2.denominator - r2.numerator * r1.denominator;
     
-    if (sub.numerator == 0)
+    if (result.numerator == 0)
     {
-        sub.denominator = 1;
+        result.denominator = 1;
     }
     else
     {
-        sub.denominator = r1.denominator * r2.denominator;
+        result.denominator = r1.denominator * r2.denominator;
     }
 
-    return sub;
+    result = reduce_to_lowest_terms(result);
+
+    return result;
 }
 
 rational_t multiply(rational_t r1, rational_t r2)
 {
-    rational_t product;
+    rational_t result;
     
-    product.numerator = (r1.numerator * r2.numerator);
-    product.denominator = r1.denominator * r2.denominator;
+    result.numerator = (r1.numerator * r2.numerator);
+    result.denominator = r1.denominator * r2.denominator;
 
-    int gcd = greatest_common_divisor(product);
-    product.numerator /= gcd;
-    product.denominator /= gcd;
+    result = reduce_to_lowest_terms(result);
     
-    return product;
+    return result;
 }
 
 rational_t divide(rational_t r1, rational_t r2)
@@ -75,9 +88,7 @@ rational_t divide(rational_t r1, rational_t r2)
     result.numerator = r1.numerator * r2.denominator;
     result.denominator = r2.numerator * r1.denominator;
     
-    int gcd = greatest_common_divisor(result);
-    result.numerator /= gcd;
-    result.denominator /= gcd;
+    result = reduce_to_lowest_terms(result);
 
     if ((result.denominator < 0))
     {
@@ -100,10 +111,7 @@ rational_t absolute(rational_t r)
 {
     rational_t result = r;
 
-    int gcd = greatest_common_divisor(result);
-
-    result.numerator /= gcd;
-    result.denominator /= gcd;
+    result = reduce_to_lowest_terms(result);
     
     if (result.numerator < 0)
     {
@@ -115,5 +123,13 @@ rational_t absolute(rational_t r)
         result.denominator *= -1;
     }
     
+    return result;
+}
+
+rational_t exp_rational(rational_t r, int16_t n)
+{
+    rational_t result = r;
+    result.numerator *= n;
+
     return result;
 }

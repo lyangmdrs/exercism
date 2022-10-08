@@ -20,5 +20,6 @@ float exp_real(uint16_t r1, rational_t r2);
 rational_t exp_rational(rational_t r, int16_t n);
 rational_t reduce(rational_t r);
 int greatest_common_divisor(rational_t r);
+rational_t reduce_to_lowest_terms(rational_t r);
 
 #endif
