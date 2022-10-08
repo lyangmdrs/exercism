@@ -91,7 +91,6 @@ static void test_subtract_rational_number_from_itself(void)
 
 static void test_multiply_two_positive_rational_numbers(void)
 {
-   TEST_IGNORE();
    rational_t r1 = { 1, 2 };
    rational_t r2 = { 2, 3 };
    rational_t expected = { 1, 3 };

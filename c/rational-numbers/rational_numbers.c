@@ -1,5 +1,18 @@
 #include "rational_numbers.h"
 
+int greatest_common_divisor(rational_t r)
+{
+    for (int i = MAX_GCD_VALUE; i > 0; i--)
+    {
+        if (((r.numerator % i) == 0) && ((r.denominator % i) == 0))
+        {
+            return i;
+        }
+    }
+
+    return 20;
+}
+
 rational_t add(rational_t r1, rational_t r2)
 {
     rational_t sum;
@@ -32,4 +45,18 @@ rational_t subtract(rational_t r1, rational_t r2)
     }
 
     return sub;
+}
+
+rational_t multiply(rational_t r1, rational_t r2)
+{
+    rational_t product;
+    
+    product.numerator = (r1.numerator * r2.numerator);
+    product.denominator = r1.denominator * r2.denominator;
+
+    int gcd = greatest_common_divisor(product);
+    product.numerator /= gcd;
+    product.denominator /= gcd;
+    
+    return product;
 }

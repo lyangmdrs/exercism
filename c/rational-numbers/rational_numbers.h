@@ -3,6 +3,8 @@
 
 #include <stdint.h>
 
+#define MAX_GCD_VALUE 100
+
 typedef struct 
 {
     int numerator;
@@ -17,5 +19,6 @@ rational_t absolute(rational_t r);
 float exp_real(uint16_t r1, rational_t r2);
 rational_t exp_rational(rational_t r, int16_t n);
 rational_t reduce(rational_t r);
+int greatest_common_divisor(rational_t r);
 
 #endif
