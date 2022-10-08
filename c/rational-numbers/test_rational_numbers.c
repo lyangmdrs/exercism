@@ -100,7 +100,6 @@ static void test_multiply_two_positive_rational_numbers(void)
 
 static void test_multiply_positive_and_negative_rational_numbers(void)
 {
-   TEST_IGNORE();
    rational_t r1 = { -1, 2 };
    rational_t r2 = { 2, 3 };
    rational_t expected = { -1, 3 };
@@ -110,7 +109,6 @@ static void test_multiply_positive_and_negative_rational_numbers(void)
 
 static void test_multiply_two_negative_rational_numbers(void)
 {
-   TEST_IGNORE();
    rational_t r1 = { -1, 2 };
    rational_t r2 = { -2, 3 };
    rational_t expected = { 1, 3 };
@@ -120,7 +118,6 @@ static void test_multiply_two_negative_rational_numbers(void)
 
 static void test_multiply_rational_number_by_reciprocal(void)
 {
-   TEST_IGNORE();
    rational_t r1 = { 1, 2 };
    rational_t r2 = { 2, 1 };
    rational_t expected = { 1, 1 };
@@ -130,7 +127,6 @@ static void test_multiply_rational_number_by_reciprocal(void)
 
 static void test_multiply_rational_number_by_one(void)
 {
-   TEST_IGNORE();
    rational_t r1 = { 1, 2 };
    rational_t r2 = { 1, 1 };
    rational_t expected = { 1, 2 };
@@ -140,7 +136,6 @@ static void test_multiply_rational_number_by_one(void)
 
 static void test_multiply_rational_number_by_zero(void)
 {
-   TEST_IGNORE();
    rational_t r1 = { 1, 2 };
    rational_t r2 = { 0, 1 };
    rational_t expected = { 0, 1 };
@@ -150,7 +145,6 @@ static void test_multiply_rational_number_by_zero(void)
 
 static void test_divide_two_positive_rational_numbers(void)
 {
-   TEST_IGNORE();
    rational_t r1 = { 1, 2 };
    rational_t r2 = { 2, 3 };
    rational_t expected = { 3, 4 };

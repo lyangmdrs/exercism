@@ -60,3 +60,24 @@ rational_t multiply(rational_t r1, rational_t r2)
     
     return product;
 }
+
+rational_t divide(rational_t r1, rational_t r2)
+{
+    rational_t result;
+    
+    if (r2.numerator == 0)
+    {
+        result.numerator = 0;
+        result.denominator = 0;
+        return result;
+    }
+
+    result.numerator = r1.numerator * r2.denominator;
+    result.denominator = r2.numerator * r1.denominator;
+    
+    int gcd = greatest_common_divisor(result);
+    result.numerator /= gcd;
+    result.denominator /= gcd;
+
+    return result;
+}
