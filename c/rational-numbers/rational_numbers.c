@@ -99,6 +99,11 @@ rational_t divide(rational_t r1, rational_t r2)
 rational_t absolute(rational_t r)
 {
     rational_t result = r;
+
+    int gcd = greatest_common_divisor(result);
+
+    result.numerator /= gcd;
+    result.denominator /= gcd;
     
     if (result.numerator < 0)
     {

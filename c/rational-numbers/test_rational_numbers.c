@@ -191,7 +191,6 @@ static void
 test_absolute_value_of_positive_rational_with_negative_numerator_and_denominator(
     void)
 {
-   TEST_IGNORE();
    rational_t r = { -1, -2 };
    rational_t expected = { 1, 2 };
    rational_t actual = absolute(r);
@@ -200,7 +199,6 @@ test_absolute_value_of_positive_rational_with_negative_numerator_and_denominator
 
 static void test_absolute_value_of_negative_rational_number(void)
 {
-   TEST_IGNORE();
    rational_t r = { -1, 2 };
    rational_t expected = { 1, 2 };
    rational_t actual = absolute(r);
@@ -210,7 +208,6 @@ static void test_absolute_value_of_negative_rational_number(void)
 static void
 test_absolute_value_of_negative_rational_number_with_negative_denominator(void)
 {
-   TEST_IGNORE();
    rational_t r = { 1, -2 };
    rational_t expected = { 1, 2 };
    rational_t actual = absolute(r);
@@ -219,7 +216,6 @@ test_absolute_value_of_negative_rational_number_with_negative_denominator(void)
 
 static void test_absolute_value_of_zero(void)
 {
-   TEST_IGNORE();
    rational_t r = { 0, 1 };
    rational_t expected = { 0, 1 };
    rational_t actual = absolute(r);
@@ -228,7 +224,6 @@ static void test_absolute_value_of_zero(void)
 
 static void test_absolute_value_of_rational_number_reduced_to_lowest_terms(void)
 {
-   TEST_IGNORE();
    rational_t r = { 2, 4 };
    rational_t expected = { 1, 2 };
    rational_t actual = absolute(r);
