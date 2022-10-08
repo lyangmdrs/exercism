@@ -154,7 +154,6 @@ static void test_divide_two_positive_rational_numbers(void)
 
 static void test_divide_positive_and_negative_rational_numbers(void)
 {
-   TEST_IGNORE();
    rational_t r1 = { 1, 2 };
    rational_t r2 = { -2, 3 };
    rational_t expected = { -3, 4 };
@@ -164,7 +163,6 @@ static void test_divide_positive_and_negative_rational_numbers(void)
 
 static void test_divide_two_negative_rational_numbers(void)
 {
-   TEST_IGNORE();
    rational_t r1 = { -1, 2 };
    rational_t r2 = { -2, 3 };
    rational_t expected = { 3, 4 };
@@ -174,7 +172,6 @@ static void test_divide_two_negative_rational_numbers(void)
 
 static void test_divide_rational_number_by_one(void)
 {
-   TEST_IGNORE();
    rational_t r1 = { 1, 2 };
    rational_t r2 = { 1, 1 };
    rational_t expected = { 1, 2 };
@@ -184,7 +181,6 @@ static void test_divide_rational_number_by_one(void)
 
 static void test_absolute_value_of_positive_rational_number(void)
 {
-   TEST_IGNORE();
    rational_t r = { 1, 2 };
    rational_t expected = { 1, 2 };
    rational_t actual = absolute(r);

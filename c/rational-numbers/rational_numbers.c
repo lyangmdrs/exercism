@@ -79,5 +79,36 @@ rational_t divide(rational_t r1, rational_t r2)
     result.numerator /= gcd;
     result.denominator /= gcd;
 
+    if ((result.denominator < 0))
+    {
+        result.denominator *= -1;
+        if (result.numerator > 0)
+        {
+            result.numerator *= -1;
+        }
+    }
+
+    if ((r1.numerator < 0) && (r2.numerator < 0) && (result.numerator < 0))
+    {
+        result.numerator *= -1;
+    }
+
+    return result;
+}
+
+rational_t absolute(rational_t r)
+{
+    rational_t result = r;
+    
+    if (result.numerator < 0)
+    {
+        result.numerator *= -1;
+    }
+
+    if (result.denominator < 0)
+    {
+        result.denominator *= -1;
+    }
+    
     return result;
 }
