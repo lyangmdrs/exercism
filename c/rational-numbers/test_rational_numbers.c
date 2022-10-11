@@ -325,7 +325,6 @@ static void test_raise_real_number_to_positive_rational_number(void)
 
 static void test_raise_real_number_to_negative_rational_number(void)
 {
-   TEST_IGNORE();
    uint16_t x = 9;
    rational_t r = { -1, 2 };
    float delta = 0.000005;
@@ -336,7 +335,6 @@ static void test_raise_real_number_to_negative_rational_number(void)
 
 static void test_raise_real_number_to_zero_rational_number(void)
 {
-   TEST_IGNORE();
    uint16_t x = 2;
    rational_t r = { 0, 1 };
    float delta = 0.000005;
@@ -347,7 +345,6 @@ static void test_raise_real_number_to_zero_rational_number(void)
 
 static void test_reduce_positive_rational_number_to_lowest_terms(void)
 {
-   TEST_IGNORE();
    rational_t r = { 2, 4 };
    rational_t expected = { 1, 2 };
    rational_t actual = reduce(r);
@@ -356,7 +353,6 @@ static void test_reduce_positive_rational_number_to_lowest_terms(void)
 
 static void test_reduce_places_minus_sign_on_numerator(void)
 {
-   TEST_IGNORE();
    rational_t r = { 3, -4 };
    rational_t expected = { -3, 4 };
    rational_t actual = reduce(r);
@@ -365,7 +361,6 @@ static void test_reduce_places_minus_sign_on_numerator(void)
 
 static void test_reduce_negative_rational_number_to_lowest_terms(void)
 {
-   TEST_IGNORE();
    rational_t r = { -4, 6 };
    rational_t expected = { -2, 3 };
    rational_t actual = reduce(r);
@@ -375,7 +370,6 @@ static void test_reduce_negative_rational_number_to_lowest_terms(void)
 static void
 test_reduce_rational_number_with_negative_denominator_to_lowest_terms(void)
 {
-   TEST_IGNORE();
    rational_t r = { 3, -9 };
    rational_t expected = { -1, 3 };
    rational_t actual = reduce(r);
@@ -384,7 +378,6 @@ test_reduce_rational_number_with_negative_denominator_to_lowest_terms(void)
 
 static void test_reduce_zero_to_lowest_terms(void)
 {
-   TEST_IGNORE();
    rational_t r = { 0, 6 };
    rational_t expected = { 0, 1 };
    rational_t actual = reduce(r);
@@ -393,7 +386,6 @@ static void test_reduce_zero_to_lowest_terms(void)
 
 static void test_reduce_integer_to_lowest_terms(void)
 {
-   TEST_IGNORE();
    rational_t r = { -14, 7 };
    rational_t expected = { -2, 1 };
    rational_t actual = reduce(r);
@@ -402,7 +394,6 @@ static void test_reduce_integer_to_lowest_terms(void)
 
 static void test_reduce_one_to_lowest_terms(void)
 {
-   TEST_IGNORE();
    rational_t r = { 13, 13 };
    rational_t expected = { 1, 1 };
    rational_t actual = reduce(r);
