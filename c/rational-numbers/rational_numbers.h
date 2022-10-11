@@ -17,7 +17,7 @@ rational_t subtract(rational_t r1, rational_t r2);
 rational_t multiply(rational_t r1, rational_t r2);
 rational_t divide(rational_t r1, rational_t r2);
 rational_t absolute(rational_t r);
-float exp_real(uint16_t r1, rational_t r2);
+float exp_real(uint16_t real, rational_t rational);
 rational_t exp_rational(rational_t r, int16_t n);
 rational_t reduce(rational_t r);
 int greatest_common_divisor(rational_t r);

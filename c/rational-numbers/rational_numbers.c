@@ -132,6 +132,12 @@ rational_t exp_rational(rational_t r, int16_t n)
 
     if (n < 0)
     {
+        if ((n % 2) != 0)
+        {
+            r.numerator *= -1;
+            r.denominator *= -1;
+        }
+
         int holder = r.denominator;
         r.denominator = r.numerator;
         r.numerator = holder;
@@ -143,5 +149,11 @@ rational_t exp_rational(rational_t r, int16_t n)
 
     result = reduce_to_lowest_terms(result);
 
+    return result;
+}
+
+float exp_real(uint16_t real, rational_t rational)
+{
+    float result = pow(pow(real, rational.numerator), 1./rational.denominator);
     return result;
 }
