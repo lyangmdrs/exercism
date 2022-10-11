@@ -232,7 +232,6 @@ static void test_absolute_value_of_rational_number_reduced_to_lowest_terms(void)
 
 static void test_raise_positive_rational_number_to_positive_integer_power(void)
 {
-   TEST_IGNORE();
    rational_t r = { 1, 2 };
    int16_t n = 3;
    rational_t expected = { 1, 8 };
@@ -242,7 +241,6 @@ static void test_raise_positive_rational_number_to_positive_integer_power(void)
 
 static void test_raise_negative_rational_number_to_positive_integer_power(void)
 {
-   TEST_IGNORE();
    rational_t r = { -1, 2 };
    int16_t n = 3;
    rational_t expected = { -1, 8 };
@@ -252,7 +250,6 @@ static void test_raise_negative_rational_number_to_positive_integer_power(void)
 
 static void test_raise_positive_rational_number_to_negative_integer_power(void)
 {
-   TEST_IGNORE();
    rational_t r = { 3, 5 };
    int16_t n = -2;
    rational_t expected = { 25, 9 };

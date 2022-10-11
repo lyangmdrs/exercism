@@ -2,6 +2,7 @@
 #define RATIONAL_NUMBERS_H
 
 #include <stdint.h>
+#include <math.h>
 
 #define MAX_GCD_VALUE 100
 

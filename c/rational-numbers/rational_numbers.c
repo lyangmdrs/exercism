@@ -128,8 +128,20 @@ rational_t absolute(rational_t r)
 
 rational_t exp_rational(rational_t r, int16_t n)
 {
-    rational_t result = r;
-    result.numerator *= n;
+    rational_t result;
+
+    if (n < 0)
+    {
+        int holder = r.denominator;
+        r.denominator = r.numerator;
+        r.numerator = holder;
+        n *= -1;
+    }
+
+    result.numerator = pow(r.numerator, n);
+    result.denominator = pow(r.denominator, n);
+
+    result = reduce_to_lowest_terms(result);
 
     return result;
 }
