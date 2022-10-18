@@ -54,3 +54,5 @@ dkms.conf
 .vscode/dryrun.log
 .vscode/settings.json
 .vscode/targets.log
+c/circular-buffer/.exercism/metadata.json
+c/circular-buffer/.exercism/config.json
