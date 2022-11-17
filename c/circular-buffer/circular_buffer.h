@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <stdint.h>
+#include <errno.h>
 
 typedef int16_t buffer_value_t;
 

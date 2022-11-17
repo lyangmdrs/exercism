@@ -9,6 +9,13 @@ int16_t overwrite(circular_buffer_t* buffer, buffer_value_t value)
     return status;
 }
 
+int16_t read(circular_buffer_t* buffer, buffer_value_t* value)
+{
+    *value = buffer->a;
+    errno = ENODATA;
+    return 1;
+}
+
 circular_buffer_t* new_circular_buffer(size_t capacity)
 {
     static circular_buffer_t a;
