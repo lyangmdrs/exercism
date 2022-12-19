@@ -10,7 +10,7 @@ typedef int16_t buffer_value_t;
 
 typedef struct
 {
-    int a;
+    buffer_value_t* values;
 }circular_buffer_t;
 
 int16_t write(circular_buffer_t* buffer, buffer_value_t value);
@@ -20,5 +20,6 @@ circular_buffer_t* new_circular_buffer(size_t capacity);
 void delete_buffer(circular_buffer_t* buffer);
 void clear_buffer(circular_buffer_t* buffer);
 
+void buffer_memmory_allocation(circular_buffer_t* buffer, size_t capacity);
 
 #endif

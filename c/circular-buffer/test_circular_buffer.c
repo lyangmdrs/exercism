@@ -67,7 +67,6 @@ static void test_reading_empty_buffer_fails(void)
 
 static void test_can_read_item_just_written(void)
 {
-   TEST_IGNORE();   // delete this line to run test
    size_t capacity = 1;
    buffer_value_t values[] = { 1 };
    size_t values_length = ARRAY_LENGTH(values);
