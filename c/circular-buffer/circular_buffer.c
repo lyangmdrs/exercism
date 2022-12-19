@@ -30,6 +30,7 @@ int16_t read(circular_buffer_t* buffer, buffer_value_t* value)
         return EXIT_FAILURE;
     }
     
+    buffer->values[0] = 0;
     errno = EXIT_SUCCESS;
     return EXIT_SUCCESS;
 }
