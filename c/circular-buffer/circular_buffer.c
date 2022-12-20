@@ -11,10 +11,7 @@ int16_t write(circular_buffer_t* buffer, buffer_value_t value)
 
     buffer->values[buffer->next_position] = value;
     
-    if (is_next_position_incrementable(buffer))
-        buffer->next_position++;
-    else
-        buffer->next_position = 0;
+    buffer->next_position = (buffer->next_position + 1) % buffer->capacity;
     
     errno = EXIT_SUCCESS;
     return EXIT_SUCCESS;
@@ -26,17 +23,11 @@ int16_t overwrite(circular_buffer_t* buffer, buffer_value_t value)
     
     if (next_position_reached_oldest_value(buffer))
     {
-        if (is_oldest_value_incrementable(buffer))
-            buffer->oldest_value++;
-        else
-            buffer->oldest_value = 0;
+        buffer->oldest_value = (buffer->oldest_value + 1) % buffer->capacity;
     }
     
-    if (is_next_position_incrementable(buffer))
-        buffer->next_position++;
-    else
-        buffer->next_position = 0;
-    
+    buffer->next_position = (buffer->next_position + 1) % buffer->capacity;
+
     errno = EXIT_SUCCESS;
     return EXIT_SUCCESS;
 }
@@ -53,10 +44,7 @@ int16_t read(circular_buffer_t* buffer, buffer_value_t* value)
     
     buffer->values[buffer->oldest_value] = 0;
     
-    if (is_oldest_value_incrementable(buffer))
-        buffer->oldest_value++;
-    else
-        buffer->oldest_value = 0;
+    buffer->oldest_value = (buffer->oldest_value + 1) % buffer->capacity;
 
     errno = EXIT_SUCCESS;
     return EXIT_SUCCESS;
@@ -123,25 +111,9 @@ bool is_next_position_writable(circular_buffer_t* buffer)
     return false;
 }
 
-bool is_next_position_incrementable(circular_buffer_t* buffer)
-{
-    if (buffer->capacity > (buffer->next_position + 1))
-        return true;
-
-    return false;
-}
-
 bool is_there_data_to_be_read(circular_buffer_t* buffer)
 {
     if (buffer->values[buffer->oldest_value] != 0)
-        return true;
-    
-    return false;
-}
-
-bool is_oldest_value_incrementable(circular_buffer_t* buffer)
-{
-    if (buffer->capacity > (buffer->oldest_value + 1))
         return true;
     
     return false;

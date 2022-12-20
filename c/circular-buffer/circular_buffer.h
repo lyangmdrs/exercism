@@ -28,9 +28,7 @@ void clear_buffer(circular_buffer_t* buffer);
 
 void buffer_memmory_allocation(circular_buffer_t* buffer);
 bool is_next_position_writable(circular_buffer_t* buffer);
-bool is_next_position_incrementable(circular_buffer_t* buffer);
 bool is_there_data_to_be_read(circular_buffer_t* buffer);
-bool is_oldest_value_incrementable(circular_buffer_t* buffer);
 bool next_position_reached_oldest_value(circular_buffer_t* buffer);
 
 #endif
