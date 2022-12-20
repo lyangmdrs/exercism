@@ -26,10 +26,4 @@ int16_t read(circular_buffer_t* buffer, buffer_value_t* value);
 circular_buffer_t* new_circular_buffer(size_t capacity);
 void delete_buffer(circular_buffer_t* buffer);
 void clear_buffer(circular_buffer_t* buffer);
-
-void buffer_memmory_allocation(circular_buffer_t* buffer);
-bool is_next_position_writable(circular_buffer_t* buffer);
-bool is_there_data_to_be_read(circular_buffer_t* buffer);
-bool next_position_reached_oldest_value(circular_buffer_t* buffer);
-
 #endif

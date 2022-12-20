@@ -1,5 +1,8 @@
 #include "circular_buffer.h"
 
+static void buffer_memmory_allocation(circular_buffer_t* buffer);
+static bool next_position_reached_oldest_value(circular_buffer_t* buffer);
+
 int16_t write(circular_buffer_t* buffer, buffer_value_t value)
 {
     
@@ -111,28 +114,12 @@ void clear_buffer(circular_buffer_t* buffer)
     buffer->usage = 0;
 }
 
-void buffer_memmory_allocation(circular_buffer_t* buffer)
+static void buffer_memmory_allocation(circular_buffer_t* buffer)
 {
     buffer->values = (buffer_value_t*) malloc(buffer->capacity * sizeof(buffer_value_t));
 }
 
-bool is_next_position_writable(circular_buffer_t* buffer)
-{
-    if (buffer->values[buffer->next_position] == 0)
-        return true;
-
-    return false;
-}
-
-bool is_there_data_to_be_read(circular_buffer_t* buffer)
-{
-    if (buffer->values[buffer->oldest_value] != 0)
-        return true;
-    
-    return false;
-}
-
-bool next_position_reached_oldest_value(circular_buffer_t* buffer)
+static bool next_position_reached_oldest_value(circular_buffer_t* buffer)
 {
     if (buffer->next_position == buffer->oldest_value)
         return true;
