@@ -3,7 +3,7 @@
 int16_t write(circular_buffer_t* buffer, buffer_value_t value)
 {
     
-    if (buffer->values[buffer->next_position] != 0)
+    if (buffer->usage >= buffer->capacity)
     {
         errno = ENOBUFS;
         return EXIT_FAILURE;
@@ -11,6 +11,11 @@ int16_t write(circular_buffer_t* buffer, buffer_value_t value)
 
     buffer->values[buffer->next_position] = value;
     
+    if (buffer->usage < buffer->capacity)
+    {
+        buffer->usage++;
+    }
+
     buffer->next_position = (buffer->next_position + 1) % buffer->capacity;
     
     errno = EXIT_SUCCESS;
@@ -43,6 +48,11 @@ int16_t read(circular_buffer_t* buffer, buffer_value_t* value)
     }
     
     buffer->values[buffer->oldest_value] = 0;
+
+    if (buffer->usage > 0)
+    {
+        buffer->usage--;
+    }
     
     buffer->oldest_value = (buffer->oldest_value + 1) % buffer->capacity;
 
@@ -61,6 +71,7 @@ circular_buffer_t* new_circular_buffer(size_t capacity)
     }
     
     buffer->capacity = capacity;
+    buffer->usage = 0;
     buffer->next_position = 0;
     buffer->oldest_value = 0;
 
@@ -68,6 +79,7 @@ circular_buffer_t* new_circular_buffer(size_t capacity)
 
     if (!buffer->values)
     {
+        delete_buffer(buffer);
         return NULL;
     }
 
@@ -96,6 +108,7 @@ void clear_buffer(circular_buffer_t* buffer)
     {
         buffer->values[i] = 0;
     }
+    buffer->usage = 0;
 }
 
 void buffer_memmory_allocation(circular_buffer_t* buffer)

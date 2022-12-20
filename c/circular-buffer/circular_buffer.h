@@ -13,6 +13,7 @@ typedef int16_t buffer_value_t;
 typedef struct
 {
     size_t capacity;
+    size_t usage;
     size_t oldest_value;
     size_t next_position;
     buffer_value_t* values;
