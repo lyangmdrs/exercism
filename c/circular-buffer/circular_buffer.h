@@ -16,6 +16,7 @@ typedef struct
     size_t capacity;
     size_t oldest_value;
     size_t next_position;
+    
 }circular_buffer_t;
 
 int16_t write(circular_buffer_t* buffer, buffer_value_t value);

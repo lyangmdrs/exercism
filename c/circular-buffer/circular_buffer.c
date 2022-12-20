@@ -2,7 +2,8 @@
 
 int16_t write(circular_buffer_t* buffer, buffer_value_t value)
 {
-    if (!is_next_position_writable(buffer))
+    
+    if (buffer->values[buffer->next_position] != 0)
     {
         errno = ENOBUFS;
         return EXIT_FAILURE;
@@ -44,7 +45,7 @@ int16_t read(circular_buffer_t* buffer, buffer_value_t* value)
 {
     *value = buffer->values[buffer->oldest_value];
     
-    if (!is_there_data_to_be_read(buffer))
+    if (buffer->values[buffer->oldest_value] == 0)
     {
         errno = ENODATA;
         return EXIT_FAILURE;
@@ -63,22 +64,42 @@ int16_t read(circular_buffer_t* buffer, buffer_value_t* value)
 
 circular_buffer_t* new_circular_buffer(size_t capacity)
 {
-    static circular_buffer_t new_buffer = {0};
-    new_buffer.capacity = capacity;
-    buffer_memmory_allocation(&new_buffer);
-    new_buffer.oldest_value = 0;
-    new_buffer.next_position = 0;
-    return &new_buffer;
+    circular_buffer_t* buffer;
+    buffer = (circular_buffer_t*)malloc(sizeof(circular_buffer_t));
+    
+
+    if (!buffer)
+    {
+        return NULL;
+    }
+    
+    buffer->capacity = capacity;
+    buffer->next_position = 0;
+    buffer->oldest_value = 0;
+
+    buffer_memmory_allocation(buffer);
+
+    if (!buffer->values)
+    {
+        return NULL;
+    }
+
+    clear_buffer(buffer);
+
+    return buffer;
 }
 
 void delete_buffer(circular_buffer_t* buffer)
 {
-    buffer->values = 0;
+    free(buffer->values);
 }
 
 void clear_buffer(circular_buffer_t* buffer)
 {
-    memset(buffer->values, 0, buffer->capacity);
+    for (size_t i = 0; i < buffer->capacity; i++)
+    {
+        buffer->values[i] = 0;
+    }
 }
 
 void buffer_memmory_allocation(circular_buffer_t* buffer)
