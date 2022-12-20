@@ -67,7 +67,6 @@ circular_buffer_t* new_circular_buffer(size_t capacity)
     circular_buffer_t* buffer;
     buffer = (circular_buffer_t*)malloc(sizeof(circular_buffer_t));
     
-
     if (!buffer)
     {
         return NULL;
@@ -91,7 +90,16 @@ circular_buffer_t* new_circular_buffer(size_t capacity)
 
 void delete_buffer(circular_buffer_t* buffer)
 {
-    free(buffer->values);
+    if (buffer->values != NULL)
+    {
+        free(buffer->values);
+    }
+
+    if (buffer != NULL)
+    {
+        free(buffer);
+    }
+    
 }
 
 void clear_buffer(circular_buffer_t* buffer)
