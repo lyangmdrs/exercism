@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 
 typedef int list_element_t;
 
