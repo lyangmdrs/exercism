@@ -27,14 +27,13 @@ int16_t write(circular_buffer_t* buffer, buffer_value_t value)
 
 int16_t overwrite(circular_buffer_t* buffer, buffer_value_t value)
 {
-    buffer->values[buffer->next_position] = value;
-    
     if (next_position_reached_oldest_value(buffer))
     {
-        buffer->oldest_value = (buffer->oldest_value + 1) % buffer->capacity;
+        buffer_value_t garbage;
+        read(buffer, &garbage);
     }
     
-    buffer->next_position = (buffer->next_position + 1) % buffer->capacity;
+    write(buffer, value);
 
     errno = EXIT_SUCCESS;
     return EXIT_SUCCESS;
@@ -42,14 +41,14 @@ int16_t overwrite(circular_buffer_t* buffer, buffer_value_t value)
 
 int16_t read(circular_buffer_t* buffer, buffer_value_t* value)
 {
-    *value = buffer->values[buffer->oldest_value];
-    
-    if (buffer->values[buffer->oldest_value] == 0)
+    if (buffer->usage <= 0)
     {
         errno = ENODATA;
         return EXIT_FAILURE;
     }
-    
+
+    *value = buffer->values[buffer->oldest_value];
+        
     buffer->values[buffer->oldest_value] = 0;
 
     if (buffer->usage > 0)
