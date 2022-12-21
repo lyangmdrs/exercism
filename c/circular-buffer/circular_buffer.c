@@ -48,8 +48,6 @@ int16_t read(circular_buffer_t* buffer, buffer_value_t* value)
     }
 
     *value = buffer->values[buffer->oldest_value];
-        
-    buffer->values[buffer->oldest_value] = 0;
 
     if (buffer->usage > 0)
     {
@@ -64,8 +62,8 @@ int16_t read(circular_buffer_t* buffer, buffer_value_t* value)
 
 circular_buffer_t* new_circular_buffer(size_t capacity)
 {
-    circular_buffer_t* buffer;
-    buffer = (circular_buffer_t*)malloc(sizeof(circular_buffer_t));
+    circular_buffer_t* buffer = NULL;
+    buffer = malloc(sizeof(circular_buffer_t));
     
     if (!buffer)
     {
@@ -84,8 +82,6 @@ circular_buffer_t* new_circular_buffer(size_t capacity)
         delete_buffer(buffer);
         return NULL;
     }
-
-    clear_buffer(buffer);
 
     return buffer;
 }
@@ -110,18 +106,21 @@ void clear_buffer(circular_buffer_t* buffer)
     {
         buffer->values[i] = 0;
     }
+
     buffer->usage = 0;
 }
 
 static void buffer_memmory_allocation(circular_buffer_t* buffer)
 {
-    buffer->values = (buffer_value_t*) malloc(buffer->capacity * sizeof(buffer_value_t));
+    buffer->values = malloc(buffer->capacity * sizeof(buffer_value_t));
 }
 
 static bool next_position_reached_oldest_value(circular_buffer_t* buffer)
 {
     if (buffer->next_position == buffer->oldest_value)
+    {
         return true;
+    }
     
     return false;
 }
