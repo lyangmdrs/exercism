@@ -9,7 +9,7 @@ typedef int list_element_t;
 
 typedef struct {
    size_t length;
-   list_element_t elements[];
+   list_element_t* elements;
 } list_t;
 
 // constructs a new list

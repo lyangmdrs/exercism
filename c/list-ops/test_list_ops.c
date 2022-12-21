@@ -136,7 +136,6 @@ static void test_append_empty_lists(void)
 
 static void test_append_list_to_empty_list(void)
 {
-   TEST_IGNORE();   // delete this line to run test
    list = new_list(0, NULL);
    list2 = new_list(3, (list_element_t[]){ 1, 3, 4 });
    size_t expected_length = 3;
@@ -152,7 +151,6 @@ static void test_append_list_to_empty_list(void)
 
 static void test_append_empty_list_to_list(void)
 {
-   TEST_IGNORE();
    list = new_list(4, (list_element_t[]){ 1, 2, 3, 4 });
    list2 = new_list(0, NULL);
    size_t expected_length = 4;
@@ -168,7 +166,6 @@ static void test_append_empty_list_to_list(void)
 
 static void test_append_non_empty_lists(void)
 {
-   TEST_IGNORE();
    list = new_list(2, (list_element_t[]){ 1, 2 });
    list2 = new_list(4, (list_element_t[]){ 2, 3, 4, 5 });
    size_t expected_length = 6;

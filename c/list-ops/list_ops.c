@@ -2,23 +2,25 @@
 
 list_t *new_list(size_t length, list_element_t elements[])
 {
-    list_t* list;
+    list_t* list = NULL;
+    list = malloc(sizeof(list_t));
     
-    list = (list_t*)malloc(sizeof(list_t) + sizeof(list_element_t) * length);
-
-    if(!list)
+    if (list == NULL)
     {
         return NULL;
     }
 
     list->length = length;
     
-    memcpy(list->elements, elements, length);
-    
-    for (size_t i = 0; i < list->length; i++)
+    list->elements = malloc(sizeof(list_element_t) * length);
+
+    if (list->elements == NULL)
     {
-        list->elements[i] = elements[i];
+        free(list);
+        return NULL;
     }
+
+    memcpy(list->elements, elements, sizeof(list_element_t) * length);
 
     return list;
 }
@@ -26,15 +28,25 @@ list_t *new_list(size_t length, list_element_t elements[])
 list_t* append_list(list_t* list1, list_t* list2)
 {
     list_t* list;
-    size_t output_list_length = list1->length + list2->length;
-    list = (list_t*)malloc(sizeof(list_t) + output_list_length * sizeof(list_element_t));
+    list = malloc(sizeof(list_t));
 
-    if (!list)
+    if (list == NULL)
     {
         return NULL;
     }
     
+    size_t output_list_length = list1->length + list2->length;
     list->length = output_list_length;
+    list->elements = malloc(sizeof(list_element_t) * output_list_length);
+
+    if (list->elements == NULL)
+    {
+        free(list);
+        return NULL;
+    }
+
+    memcpy(list->elements, list1->elements, list1->length * sizeof(*list->elements));
+    memcpy(&list->elements[list1->length], list2->elements, list2->length * sizeof(*list->elements));
 
     return list;
 }
@@ -66,5 +78,13 @@ list_t* append_list(list_t* list1, list_t* list2)
 // list will be a dangling pointer after calling this method on it
 void delete_list(list_t *list)
 {
-    free(list);
+    if (list->elements != NULL)
+    {
+        free(list->elements);
+    }
+
+    if (list != NULL)
+    {
+        free(list);
+    }
 }
