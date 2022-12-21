@@ -102,10 +102,7 @@ void delete_buffer(circular_buffer_t* buffer)
 
 void clear_buffer(circular_buffer_t* buffer)
 {
-    for (size_t i = 0; i < buffer->capacity; i++)
-    {
-        buffer->values[i] = 0;
-    }
+    memset(buffer->values, 0, buffer->capacity * sizeof(*buffer->values));
 
     buffer->usage = 0;
 }
