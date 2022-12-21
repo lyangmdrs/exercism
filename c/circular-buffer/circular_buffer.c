@@ -117,10 +117,5 @@ static void buffer_memmory_allocation(circular_buffer_t* buffer)
 
 static bool next_position_reached_oldest_value(circular_buffer_t* buffer)
 {
-    if (buffer->next_position == buffer->oldest_value)
-    {
-        return true;
-    }
-    
-    return false;
+    return buffer->next_position == buffer->oldest_value;
 }
