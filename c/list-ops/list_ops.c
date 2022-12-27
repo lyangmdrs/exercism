@@ -39,7 +39,6 @@ list_t* append_list(list_t* list1, list_t* list2)
     return list;
 }
 
-// filter list returning only values that satisfy the filter function
 list_t *filter_list(list_t *list, bool (*filter)(list_element_t))
 {
     list_t* filtered_list = new_list(0, NULL);
@@ -67,14 +66,11 @@ list_t *filter_list(list_t *list, bool (*filter)(list_element_t))
     return filtered_list;
 }
 
-// returns the length of the list
 size_t length_list(list_t *list)
 {
     return list->length;
 }
 
-// return a list of elements whose values equal the list value transformed by
-// the mapping function
 list_t *map_list(list_t *list, list_element_t (*map)(list_element_t))
 {
     list_t* mapped_list = new_list(0, NULL);
@@ -86,29 +82,73 @@ list_t *map_list(list_t *list, list_element_t (*map)(list_element_t))
     
     if (list->elements == NULL) return NULL;
 
-    mapped_list->elements[0] = map(list->elements[0]);
-    mapped_list->elements[1] = map(list->elements[1]);
-    mapped_list->elements[2] = map(list->elements[2]);
-    mapped_list->elements[3] = map(list->elements[3]);
+    for (size_t i = 0; i < list->length; i++)
+    {
+        mapped_list->elements[i] = map(list->elements[i]);
+    }
 
     return mapped_list;
 }
 
-// folds (reduces) the given list from the left with a function
-// list_element_t foldl_list(list_t *list, list_element_t initial,
-//                           list_element_t (*foldl)(list_element_t,
-//                                                   list_element_t));
+list_element_t foldl_list(list_t *list, list_element_t initial,
+                          list_element_t (*foldl)(list_element_t,
+                                                  list_element_t))
+{
+    if (list->length == 0)
+    {
+        return initial;
+    }
 
-// folds (reduces) the given list from the right with a function
-// list_element_t foldr_list(list_t *list, list_element_t initial,
-//                           list_element_t (*foldr)(list_element_t,
-//                                                   list_element_t));
+    list_element_t result = initial;
 
-// reverse the elements of the list
-// list_t *reverse_list(list_t *list);
+    for (size_t i = 0; i < list->length; i++)
+    {
+        result = foldl(list->elements[i], result);
+    }
 
-// destroy the entire list
-// list will be a dangling pointer after calling this method on it
+    return result;
+}
+
+list_element_t foldr_list(list_t *list, list_element_t initial,
+                          list_element_t (*foldr)(list_element_t,
+                                                  list_element_t))
+{
+    if (list->length == 0)
+    {
+        return initial;
+    }
+
+    list_element_t result = initial;
+
+    for (size_t i = list->length; i > 0; i--)
+    {
+        result = foldr(list->elements[i - 1], result);
+    }
+
+    return result;
+}
+
+list_t *reverse_list(list_t *list)
+{
+    list_t* reversed = new_list(0, NULL);
+
+    if (list == NULL) return NULL;
+
+    reversed->length = list->length;
+    reversed->elements = alloc_list_elements(reversed, reversed->length);
+    
+    if (list->elements == NULL) return NULL;
+
+    size_t maximum_index = list->length - 1;
+
+    for (size_t i = 0; i < list->length; i++)
+    {
+        reversed->elements[maximum_index - i] = list->elements[i];
+    }
+
+    return reversed;
+}
+
 void delete_list(list_t *list)
 {
     if (list != NULL)
