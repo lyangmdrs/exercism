@@ -181,7 +181,6 @@ static void test_append_non_empty_lists(void)
 
 static void test_filter_empty_list(void)
 {
-   TEST_IGNORE();
    list = new_list(0, NULL);
 
    actual = filter_list(list, filter_modulo);
@@ -193,7 +192,6 @@ static void test_filter_empty_list(void)
 
 static void test_filter_non_empty_list(void)
 {
-   TEST_IGNORE();
    list = new_list(5, (list_element_t[]){ 1, 2, 3, 4, 5 });
    size_t expected_length = 3;
    list_element_t expected_elements[] = { 1, 3, 5 };
@@ -207,7 +205,6 @@ static void test_filter_non_empty_list(void)
 
 static void test_length_empty_list(void)
 {
-   TEST_IGNORE();
    list = new_list(0, NULL);
    size_t expected = 0;
 
@@ -219,7 +216,6 @@ static void test_length_empty_list(void)
 
 static void test_length_non_empty_list(void)
 {
-   TEST_IGNORE();
    list = new_list(4, (list_element_t[]){ 1, 2, 3, 4 });
    size_t expected = 4;
 
@@ -231,7 +227,6 @@ static void test_length_non_empty_list(void)
 
 static void test_map_empty_list(void)
 {
-   TEST_IGNORE();
    list = new_list(0, NULL);
 
    actual = map_list(list, map_increment);
@@ -244,7 +239,6 @@ static void test_map_empty_list(void)
 static void test_map_non_empty_list(void)
 {
 
-   TEST_IGNORE();
    list = new_list(4, (list_element_t[]){ 1, 3, 5, 7 });
    size_t expected_length = 4;
    list_element_t expected_elements[] = { 2, 4, 6, 8 };
