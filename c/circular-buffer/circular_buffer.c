@@ -1,5 +1,15 @@
 #include "circular_buffer.h"
 
+struct circular_buffer
+{
+    size_t capacity;
+    size_t usage;
+    size_t oldest_value;
+    size_t next_position;
+    buffer_value_t* values;
+    
+};
+
 static void buffer_memmory_allocation(circular_buffer_t* buffer);
 static bool next_position_reached_oldest_value(circular_buffer_t* buffer);
 
