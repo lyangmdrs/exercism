@@ -105,6 +105,8 @@ void clear_buffer(circular_buffer_t* buffer)
     memset(buffer->values, 0, buffer->capacity * sizeof(*buffer->values));
 
     buffer->usage = 0;
+    buffer->next_position = 0;
+    buffer->oldest_value = 0;
 }
 
 static void buffer_memmory_allocation(circular_buffer_t* buffer)
