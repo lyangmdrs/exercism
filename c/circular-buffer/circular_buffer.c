@@ -23,10 +23,7 @@ int16_t write(circular_buffer_t* buffer, buffer_value_t value)
 
     buffer->values[buffer->write_position] = value;
     
-    if (buffer->usage < buffer->capacity)
-    {
-        buffer->usage++;
-    }
+    buffer->usage++;
 
     buffer->write_position = (buffer->write_position + 1) % buffer->capacity;
     
@@ -42,10 +39,7 @@ int16_t overwrite(circular_buffer_t* buffer, buffer_value_t value)
         read(buffer, &garbage);
     }
     
-    write(buffer, value);
-
-    errno = EXIT_SUCCESS;
-    return EXIT_SUCCESS;
+    return write(buffer, value);
 }
 
 int16_t read(circular_buffer_t* buffer, buffer_value_t* value)
@@ -58,10 +52,7 @@ int16_t read(circular_buffer_t* buffer, buffer_value_t* value)
 
     *value = buffer->values[buffer->read_position];
 
-    if (buffer->usage > 0)
-    {
-        buffer->usage--;
-    }
+    buffer->usage--;
     
     buffer->read_position = (buffer->read_position + 1) % buffer->capacity;
 
@@ -71,8 +62,7 @@ int16_t read(circular_buffer_t* buffer, buffer_value_t* value)
 
 circular_buffer_t* new_circular_buffer(size_t capacity)
 {
-    circular_buffer_t* buffer = NULL;
-    buffer = malloc(sizeof(circular_buffer_t) + capacity * sizeof(buffer_value_t));
+    circular_buffer_t* buffer = malloc(sizeof(circular_buffer_t) + capacity * sizeof(buffer_value_t));
     
     if (!buffer)
     {
@@ -92,13 +82,11 @@ void delete_buffer(circular_buffer_t* buffer)
     if (buffer != NULL)
     {
         free(buffer);
-    }    
+    }
 }
 
 void clear_buffer(circular_buffer_t* buffer)
 {
-    memset(buffer->values, 0, buffer->capacity * sizeof(*buffer->values));
-
     buffer->usage = 0;
     buffer->write_position = 0;
     buffer->read_position = 0;
