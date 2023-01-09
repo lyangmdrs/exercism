@@ -246,6 +246,17 @@ static void test_initial_clear_does_not_affect_wrapping(void)
    delete_buffer(buffer);
 }
 
+static void test_clear_resets_the_buffer(void)
+{
+   circular_buffer_t *buffer = new_circular_buffer(2);
+   write_values_to_buffer(1, (buffer_value_t[]){ 1 }, false, buffer);
+   clear_buffer(buffer);
+   write_values_to_buffer(2, (buffer_value_t[]){ 2, 3 }, false, buffer);
+   read_values_from_buffer(2, (buffer_value_t[]){ 2, 3 }, buffer);
+
+   delete_buffer(buffer);
+}
+
 int main(void)
 {
    UnityBegin("test_circular_buffer.c");
@@ -264,6 +275,7 @@ int main(void)
    RUN_TEST(test_overwrite_replaces_oldest_item_on_full_buffer);
    RUN_TEST(test_overwrite_replaces_oldest_item_remaining_following_read);
    RUN_TEST(test_initial_clear_does_not_affect_wrapping);
+   RUN_TEST(test_clear_resets_the_buffer);
 
    return UnityEnd();
 }

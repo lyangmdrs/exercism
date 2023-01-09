@@ -8,17 +8,7 @@
 #include <string.h>
 
 typedef int16_t buffer_value_t;
-
-
-typedef struct
-{
-    size_t capacity;
-    size_t usage;
-    size_t oldest_value;
-    size_t next_position;
-    buffer_value_t* values;
-    
-}circular_buffer_t;
+typedef struct circular_buffer circular_buffer_t;
 
 int16_t write(circular_buffer_t* buffer, buffer_value_t value);
 int16_t overwrite(circular_buffer_t* buffer, buffer_value_t value);
