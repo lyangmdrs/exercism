@@ -1,7 +1,16 @@
 #include "circular_buffer.h"
 
-static void buffer_memmory_allocation(circular_buffer_t* buffer);
-static bool next_position_reached_oldest_value(circular_buffer_t* buffer);
+struct circular_buffer
+{
+    size_t capacity;
+    size_t usage;
+    size_t read_position;
+    size_t write_position;
+    buffer_value_t values[];
+    
+};
+
+static bool write_position_reached_read_position(circular_buffer_t* buffer);
 
 int16_t write(circular_buffer_t* buffer, buffer_value_t value)
 {
@@ -12,14 +21,11 @@ int16_t write(circular_buffer_t* buffer, buffer_value_t value)
         return EXIT_FAILURE;
     }
 
-    buffer->values[buffer->next_position] = value;
+    buffer->values[buffer->write_position] = value;
     
-    if (buffer->usage < buffer->capacity)
-    {
-        buffer->usage++;
-    }
+    buffer->usage++;
 
-    buffer->next_position = (buffer->next_position + 1) % buffer->capacity;
+    buffer->write_position = (buffer->write_position + 1) % buffer->capacity;
     
     errno = EXIT_SUCCESS;
     return EXIT_SUCCESS;
@@ -27,16 +33,13 @@ int16_t write(circular_buffer_t* buffer, buffer_value_t value)
 
 int16_t overwrite(circular_buffer_t* buffer, buffer_value_t value)
 {
-    if (next_position_reached_oldest_value(buffer))
+    if (write_position_reached_read_position(buffer))
     {
         buffer_value_t garbage;
         read(buffer, &garbage);
     }
     
-    write(buffer, value);
-
-    errno = EXIT_SUCCESS;
-    return EXIT_SUCCESS;
+    return write(buffer, value);
 }
 
 int16_t read(circular_buffer_t* buffer, buffer_value_t* value)
@@ -47,14 +50,11 @@ int16_t read(circular_buffer_t* buffer, buffer_value_t* value)
         return EXIT_FAILURE;
     }
 
-    *value = buffer->values[buffer->oldest_value];
+    *value = buffer->values[buffer->read_position];
 
-    if (buffer->usage > 0)
-    {
-        buffer->usage--;
-    }
+    buffer->usage--;
     
-    buffer->oldest_value = (buffer->oldest_value + 1) % buffer->capacity;
+    buffer->read_position = (buffer->read_position + 1) % buffer->capacity;
 
     errno = EXIT_SUCCESS;
     return EXIT_SUCCESS;
@@ -62,8 +62,7 @@ int16_t read(circular_buffer_t* buffer, buffer_value_t* value)
 
 circular_buffer_t* new_circular_buffer(size_t capacity)
 {
-    circular_buffer_t* buffer = NULL;
-    buffer = malloc(sizeof(circular_buffer_t));
+    circular_buffer_t* buffer = malloc(sizeof(circular_buffer_t) + capacity * sizeof(buffer_value_t));
     
     if (!buffer)
     {
@@ -72,47 +71,28 @@ circular_buffer_t* new_circular_buffer(size_t capacity)
     
     buffer->capacity = capacity;
     buffer->usage = 0;
-    buffer->next_position = 0;
-    buffer->oldest_value = 0;
-
-    buffer_memmory_allocation(buffer);
-
-    if (!buffer->values)
-    {
-        delete_buffer(buffer);
-        return NULL;
-    }
+    buffer->write_position = 0;
+    buffer->read_position = 0;
 
     return buffer;
 }
 
 void delete_buffer(circular_buffer_t* buffer)
 {
-    if (buffer->values != NULL)
-    {
-        free(buffer->values);
-    }
-
     if (buffer != NULL)
     {
         free(buffer);
     }
-    
 }
 
 void clear_buffer(circular_buffer_t* buffer)
 {
-    memset(buffer->values, 0, buffer->capacity * sizeof(*buffer->values));
-
     buffer->usage = 0;
+    buffer->write_position = 0;
+    buffer->read_position = 0;
 }
 
-static void buffer_memmory_allocation(circular_buffer_t* buffer)
+static bool write_position_reached_read_position(circular_buffer_t* buffer)
 {
-    buffer->values = malloc(buffer->capacity * sizeof(buffer_value_t));
-}
-
-static bool next_position_reached_oldest_value(circular_buffer_t* buffer)
-{
-    return buffer->next_position == buffer->oldest_value;
+    return buffer->write_position == buffer->read_position;
 }
