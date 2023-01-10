@@ -34,4 +34,4 @@ clean:
 
 tests.out: ./*.c ./*.h
 	@echo Compiling $@
-	@$(CC) $(CFLAGS) test-framework/unity.c ./*.c -o tests.out $(LIBS)
+	@$(CC) $(CFLAGS) test-framework/unity.c ./*.c -o tests.out $(LIBS) -fmax-errors=5
