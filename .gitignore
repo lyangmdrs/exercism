@@ -56,3 +56,4 @@ dkms.conf
 .vscode/targets.log
 c/circular-buffer/.exercism/metadata.json
 c/circular-buffer/.exercism/config.json
+*.json
