@@ -49,7 +49,6 @@ static void test_triplets_whose_sum_is_12(void)
 
 static void test_triplets_whose_sum_is_108(void)
 {
-   TEST_IGNORE();   // delete this line to run test
    uint16_t sum = 108;
    uint16_t expected_count = 1;
    triplet_t expected_triplets[] = { { 27, 36, 45 } };
