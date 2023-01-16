@@ -61,7 +61,6 @@ static void test_triplets_whose_sum_is_108(void)
 
 static void test_triplets_whose_sum_is_1000(void)
 {
-   TEST_IGNORE();
    uint16_t sum = 1000;
    uint16_t expected_count = 1;
    triplet_t expected_triplets[] = { { 200, 375, 425 } };
@@ -74,7 +73,6 @@ static void test_triplets_whose_sum_is_1000(void)
 
 static void test_no_matching_triplets_for_1001(void)
 {
-   TEST_IGNORE();
    uint16_t sum = 1001;
    uint16_t expected_count = 0;
    triplets_t *triplets = triplets_with_sum(sum);
@@ -84,7 +82,6 @@ static void test_no_matching_triplets_for_1001(void)
 
 static void test_returns_all_matching_triplets(void)
 {
-   TEST_IGNORE();
    uint16_t sum = 90;
    uint16_t expected_count = 2;
    triplet_t expected_triplets[] = { { 9, 40, 41 }, { 15, 36, 39 } };
@@ -97,7 +94,6 @@ static void test_returns_all_matching_triplets(void)
 
 static void test_several_matching_triplets(void)
 {
-   TEST_IGNORE();
    uint16_t sum = 840;
    uint16_t expected_count = 8;
    triplet_t expected_triplets[] = { { 40, 399, 401 },  { 56, 390, 394 },
@@ -113,7 +109,6 @@ static void test_several_matching_triplets(void)
 
 static void test_triplets_for_large_number(void)
 {
-   TEST_IGNORE();
    uint16_t sum = 30000;
    uint16_t expected_count = 5;
    triplet_t expected_triplets[] = { { 1200, 14375, 14425 },
