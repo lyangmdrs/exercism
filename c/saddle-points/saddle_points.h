@@ -8,8 +8,6 @@
 typedef struct s_saddle_point saddle_point_t;
 typedef struct s_saddle_points saddle_points_t;
 
-//TODO: Move this structs to the .c file to make a opaque struct;
-
 struct s_saddle_point
 {
     uint8_t row;
@@ -19,7 +17,7 @@ struct s_saddle_point
 struct s_saddle_points
 {
     size_t count;
-    saddle_point_t* points;
+    saddle_point_t points[];
 };
 
 saddle_points_t* saddle_points(size_t num_rows, size_t num_columns, uint8_t matrix[num_rows][num_columns]);

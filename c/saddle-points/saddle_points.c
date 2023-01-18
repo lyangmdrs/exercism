@@ -1,9 +1,8 @@
 #include "saddle_points.h"
 
-uint8_t** get_transpose(size_t num_rows, size_t num_columns, uint8_t matrix[num_rows][num_columns]);
 void free_transpose(size_t num_rows, uint8_t** transpose);
-bool check_saddle_in_row(uint8_t* row, size_t column, size_t length);
-bool check_saddle_in_column(uint8_t* column, size_t row, size_t length);
+bool check_saddle_in_row(size_t num_rows, size_t num_columns, uint8_t matrix[num_rows][num_columns], size_t row, size_t test_column);
+bool check_saddle_in_column(size_t num_rows, size_t num_columns, uint8_t matrix[num_rows][num_columns], size_t row, size_t test_column);
 
 saddle_points_t* saddle_points(size_t num_rows, size_t num_columns, uint8_t matrix[num_rows][num_columns])
 {
@@ -14,64 +13,39 @@ saddle_points_t* saddle_points(size_t num_rows, size_t num_columns, uint8_t matr
         return NULL;
     }
 
-    uint8_t** transpose = get_transpose(num_rows, num_columns, matrix);
-
     points->count = 0;
 
     for (size_t row = 0; row < num_rows; row++)
     {
         for (size_t column = 0; column < num_columns; column++)
         {
-            bool is_row_saddle = check_saddle_in_row(matrix[row], column, num_columns);
-            bool is_colmun_saddel = check_saddle_in_column(transpose[column], row, num_rows);
-            
+            bool is_row_saddle = check_saddle_in_row(num_rows, num_columns, matrix, row, column);
+            bool is_colmun_saddel = check_saddle_in_column(num_rows, num_columns, matrix, row, column);
+
             if (is_row_saddle && is_colmun_saddel)
             {
                 points->count++;
                 saddle_points_t* _points = realloc(points, sizeof(saddle_points_t) + points->count * sizeof(saddle_point_t));
 
-                if (!points)
+                if (!_points)
                 {
                     free_saddle_points(points);
-                    free_transpose(num_rows, transpose);
                     return NULL;
                 }
 
                 points = _points;
-                points->points[points->count - 1].row = row;
-                points->points[points->count - 1].column = column;
+                points->points[points->count - 1].row = row + 1; // The matix indexes start from 1;
+                points->points[points->count - 1].column = column + 1;
             }
         }
     }
 
-    free_transpose(num_rows, transpose);
     return points;
 }
 
 void free_saddle_points(saddle_points_t* points)
 {
-    free(points->points);
     free(points);
-}
-
-uint8_t** get_transpose(size_t num_rows, size_t num_columns, uint8_t matrix[num_rows][num_columns])
-{
-    uint8_t** transpose = malloc(num_rows * sizeof(uint8_t*));
-    
-    for (size_t row = 0; row < num_rows; row++)
-    {
-        transpose[row] = malloc(num_columns * sizeof(uint8_t));
-    }
-
-    for (size_t row = 0; row < num_rows; row++)
-    {
-        for (size_t column = 0; column < num_columns; column++)
-        {
-            transpose[column][row] = matrix[row][column];
-        }
-    }
-
-    return transpose;
 }
 
 void free_transpose(size_t num_rows, uint8_t** transpose)
@@ -84,11 +58,11 @@ void free_transpose(size_t num_rows, uint8_t** transpose)
     free(transpose);
 }
 
-bool check_saddle_in_row(uint8_t* row, size_t column, size_t length)
-{   
-    for (size_t test_position = 0; test_position < length; test_position++)
+bool check_saddle_in_row(size_t num_rows, size_t num_columns, uint8_t matrix[num_rows][num_columns], size_t row, size_t test_column)
+{
+    for (size_t column = 0; column < num_columns; column++)
     {
-        if (row[column] < row[test_position])
+        if (matrix[row][test_column] < matrix[row][column])
         {
             return false;
         }
@@ -97,11 +71,11 @@ bool check_saddle_in_row(uint8_t* row, size_t column, size_t length)
     return true;
 }
 
-bool check_saddle_in_column(uint8_t* column, size_t row, size_t length)
+bool check_saddle_in_column(size_t num_rows, size_t num_columns, uint8_t matrix[num_rows][num_columns], size_t test_row, size_t column)
 {
-    for (size_t test_position = 0; test_position < length; test_position++)
+    for (size_t row = 0; row < num_rows; row++)
     {
-        if (column[row] > column[test_position])
+        if (matrix[test_row][column] > matrix[row][column])
         {
             return false;
         }
