@@ -10,7 +10,8 @@ saddle_points_t* saddle_points(size_t num_rows, size_t num_columns, uint8_t matr
 
     if (!points)
     {
-        return NULL;
+        errno = ENOMEM;
+        exit(EXIT_FAILURE);
     }
 
     points->count = 0;
@@ -30,12 +31,13 @@ saddle_points_t* saddle_points(size_t num_rows, size_t num_columns, uint8_t matr
                 if (!_points)
                 {
                     free_saddle_points(points);
-                    return NULL;
+                    errno = ENOMEM;
+                    exit(EXIT_FAILURE);
                 }
 
                 points = _points;
-                points->points[points->count - 1].row = row + 1; // The matix indexes start from 1;
-                points->points[points->count - 1].column = column + 1;
+                points->points[points->count - 1].row = ARR_INDEX2MATH_INDEX(row);
+                points->points[points->count - 1].column = ARR_INDEX2MATH_INDEX(column);
             }
         }
     }
