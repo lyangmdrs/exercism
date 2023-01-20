@@ -69,7 +69,10 @@ void free_triplets(triplets_t *triplets)
 
 bool triplet_is_valid(uint16_t a, uint16_t b, uint16_t c)
 {
+    // Checks that the variables obey the Pythagorean relation for the right triangle.
     bool pythagorean_relation = (a * a + b * b) == (c * c);
-    bool right_sequence = (a < b);
+    // Checks if the variables are correctly ordered (a < b < c).
+    bool right_sequence = (a < b) && (b < c);
+    
     return pythagorean_relation && right_sequence;
 }
