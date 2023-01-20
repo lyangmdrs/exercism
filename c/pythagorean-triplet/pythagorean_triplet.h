@@ -4,6 +4,13 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include <errno.h>
+
+// The is no possibility of a number smaller than 12 to have a triplet.
+#define MIN_VALID_INPUT 12
+
+// The smaller number in the triplet of the smaller possible input is 3.
+#define MIN_TRIPLET_COMPONENT 3
 
 typedef struct {
    uint16_t a;

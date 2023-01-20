@@ -2,40 +2,47 @@
 
 bool triplet_is_valid(uint16_t a, uint16_t b, uint16_t c);
 
+/** PROBLEM COMPLEXITY REDUCTION
+ * Two equations are given initially: (Let sum = s, to simplify writing.)
+ * > a^2 + b^2 = c^2;   (I)
+ * > a + b + c = s;     (II)
+ * 
+ * Equation (II) can be rewritten as to isolate the variable "c":
+ * > c = s - a - b;     (III)
+ * 
+ * Replacing equation (III) in equation (I):
+ * > a^2 + b^2 = (s - a - b)^2;
+ * > a^2 + b^2 = s^2 - 2*s*a - 2*s*b + a^2 + 2*a*b + b^2;
+ * > s^2 - 2*s*a - 2*s*b + 2*a*b = 0;   (IV)
+ * 
+ * Solving (IV) to "b":
+ * > b = (s^2 - 2*s*a) / (2*s - 2*a);
+ * > b = (s^2 - 2*s*a) / (2(s - a));
+ * 
+ * With that, only one for loop is necessary, because, by iterating the 
+ * variable "a", we can calculate the others.
+ * 
+*/
+
 triplets_t* triplets_with_sum(uint16_t sum)
 {
-    triplets_t* triplet = malloc(sizeof(triplets_t));
-
-    if (triplet == NULL)
+    if (sum < MIN_VALID_INPUT)
     {
-        return NULL;
+        errno = EIO; // Input/output error
+        exit(EXIT_FAILURE);
+    }
+
+    triplets_t* triplet = malloc(sizeof(triplets_t));
+    
+    if (!triplet)
+    {
+        errno = ENOMEM; // Not enough space
+        exit(EXIT_FAILURE);
     }
 
     triplet->count = 0;
 
-    /** PROBLEM COMPLEXITY REDUCTION
-     * Two equations are given initially: (Let sum = s, to simplify writing.)
-     * > a^2 + b^2 = c^2;   (I)
-     * > a + b + c = s;     (II)
-     * 
-     * Equation (II) can be rewritten as to isolate the variable "c":
-     * > c = s - a - b;     (III)
-     * 
-     * Replacing equation (III) in equation (I):
-     * > a^2 + b^2 = (s - a - b)^2;
-     * > a^2 + b^2 = s^2 - 2*s*a - 2*s*b + a^2 + 2*a*b + b^2;
-     * > s^2 - 2*s*a - 2*s*b + 2*a*b = 0;   (IV)
-     * 
-     * Solving (IV) to "b":
-     * > b = (s^2 - 2*s*a) / (2*s - 2*a);
-     * > b = (s^2 - 2*s*a) / (2(s - a));
-     * 
-     * With that, only one for loop is necessary, because, by iterating the 
-     * variable "a", we can calculate the others.
-     * 
-    */
-
-    for (uint16_t a = 1; a < sum/2; a++)
+    for (uint16_t a = MIN_TRIPLET_COMPONENT; a < sum / 2; a++)
     {
         uint16_t b = (sum * sum - 2 * sum * a) / (2 * (sum - a));
 
@@ -49,7 +56,8 @@ triplets_t* triplets_with_sum(uint16_t sum)
 
             if (!_triplet)
             {
-                return NULL;
+                errno = ENOMEM; // Not enough space
+                exit(EXIT_FAILURE);
             }
             
             triplet = _triplet;
@@ -73,6 +81,6 @@ bool triplet_is_valid(uint16_t a, uint16_t b, uint16_t c)
     bool pythagorean_relation = (a * a + b * b) == (c * c);
     // Checks if the variables are correctly ordered (a < b < c).
     bool right_sequence = (a < b) && (b < c);
-    
+
     return pythagorean_relation && right_sequence;
 }
