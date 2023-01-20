@@ -1,43 +1,69 @@
 #include "pythagorean_triplet.h"
 
-bool is_a_triplet(uint16_t a, uint16_t b, uint16_t c, uint16_t sum);
+bool triplet_is_valid(uint16_t a, uint16_t b, uint16_t c);
 
-triplets_t* triplets_with_sum(uint16_t n)
+/** PROBLEM COMPLEXITY REDUCTION
+ * Two equations are given initially: (Let sum = s, to simplify writing.)
+ * > a^2 + b^2 = c^2;   (I)
+ * > a + b + c = s;     (II)
+ * 
+ * Equation (II) can be rewritten as to isolate the variable "c":
+ * > c = s - a - b;     (III)
+ * 
+ * Replacing equation (III) in equation (I):
+ * > a^2 + b^2 = (s - a - b)^2;
+ * > a^2 + b^2 = s^2 - 2*s*a - 2*s*b + a^2 + 2*a*b + b^2;
+ * > s^2 - 2*s*a - 2*s*b + 2*a*b = 0;   (IV)
+ * 
+ * Solving (IV) to "b":
+ * > b = (s^2 - 2*s*a) / (2*s - 2*a);
+ * > b = (s^2 - 2*s*a) / (2(s - a));
+ * 
+ * With that, only one for loop is necessary, because, by iterating the 
+ * variable "a", we can calculate the others.
+ * 
+*/
+
+triplets_t* triplets_with_sum(uint16_t sum)
 {
-    triplets_t* triplet = malloc(sizeof(triplets_t) + sizeof(triplet_t));
-
-    if (triplet == NULL)
+    if (sum < MIN_VALID_INPUT)
     {
-        return NULL;
+        errno = EIO; // Input/output error
+        exit(EXIT_FAILURE);
     }
 
-    uint16_t start_counting = 3;
-    uint16_t end_counting = n/2;
+    triplets_t* triplet = malloc(sizeof(triplets_t));
+    
+    if (!triplet)
+    {
+        errno = ENOMEM; // Not enough space
+        exit(EXIT_FAILURE);
+    }
 
     triplet->count = 0;
 
-    for (uint16_t a = start_counting; a < end_counting; a++)
+    for (uint16_t a = MIN_TRIPLET_COMPONENT; a < sum / 2; a++)
     {
-        for (uint16_t b = a + 1; b < end_counting; b++)
+        uint16_t b = (sum * sum - 2 * sum * a) / (2 * (sum - a));
+
+        uint16_t c = sum - a - b;
+
+        if (triplet_is_valid(a, b, c))
         {
-            uint16_t c = sqrt(pow(a, 2) + pow(b, 2));
+            triplet->count++;
 
-            if (is_a_triplet(a, b, c, n))
+            triplets_t* _triplet = realloc(triplet, sizeof(triplets_t) + sizeof(triplet_t) * triplet->count);
+
+            if (!_triplet)
             {
-                triplet->count++;
-                triplets_t* _triplet = realloc(triplet, sizeof(triplets_t) + sizeof(triplet_t) * triplet->count);
-
-                if (!_triplet)
-                {
-                    return NULL;
-                }
-
-                triplet = _triplet;
-
-                triplet->triplets[triplet->count - 1].a = a;
-                triplet->triplets[triplet->count - 1].b = b;
-                triplet->triplets[triplet->count - 1].c = c;
+                errno = ENOMEM; // Not enough space
+                exit(EXIT_FAILURE);
             }
+            
+            triplet = _triplet;
+            triplet->triplets[triplet->count - 1].a = a;
+            triplet->triplets[triplet->count - 1].b = b;
+            triplet->triplets[triplet->count - 1].c = c;
         }
     }
 
@@ -49,10 +75,12 @@ void free_triplets(triplets_t *triplets)
     free(triplets);
 }
 
-bool is_a_triplet(uint16_t a, uint16_t b, uint16_t c, uint16_t sum)
+bool triplet_is_valid(uint16_t a, uint16_t b, uint16_t c)
 {
+    // Checks that the variables obey the Pythagorean relation for the right triangle.
+    bool pythagorean_relation = (a * a + b * b) == (c * c);
+    // Checks if the variables are correctly ordered (a < b < c).
     bool right_sequence = (a < b) && (b < c);
-    bool right_sum = (a + b + c) == sum;
-    bool pytagorean_relation = (pow(a, 2) + pow(b, 2)) == pow(c, 2);
-    return right_sequence && right_sum && pytagorean_relation;
+
+    return pythagorean_relation && right_sequence;
 }
