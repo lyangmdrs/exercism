@@ -1,6 +1,6 @@
 #include "pythagorean_triplet.h"
 
-void garant_sequence(uint16_t* a, uint16_t* b, uint16_t* c);
+bool triplet_is_valid(uint16_t a, uint16_t b, uint16_t c);
 
 triplets_t* triplets_with_sum(uint16_t sum)
 {
@@ -13,15 +13,13 @@ triplets_t* triplets_with_sum(uint16_t sum)
 
     triplet->count = 0;
 
-    for (uint16_t m = 2; m < sum; m++)
+    for (uint16_t a = 1; a < sum/2; a++)
     {
-        uint16_t n = (sum/(2 * m)) - m;
-        uint16_t a = (m * m) - (n * n);
-        uint16_t b = 2 * m * n;
-        uint16_t c = (m * m) + (n * n);
+        uint16_t b = (sum * sum - 2 * sum * a) / (2 * sum - 2 * a);
 
+        uint16_t c = sum - a - b;
 
-        if ((a + b + c) == sum)
+        if (triplet_is_valid(a, b, c))
         {
             triplet->count++;
 
@@ -31,9 +29,7 @@ triplets_t* triplets_with_sum(uint16_t sum)
             {
                 return NULL;
             }
-
-            garant_sequence(&a, &b, &c);
-
+            
             triplet = _triplet;
             triplet->triplets[triplet->count - 1].a = a;
             triplet->triplets[triplet->count - 1].b = b;
@@ -49,19 +45,9 @@ void free_triplets(triplets_t *triplets)
     free(triplets);
 }
 
-void garant_sequence(uint16_t* a, uint16_t* b, uint16_t* c)
+bool triplet_is_valid(uint16_t a, uint16_t b, uint16_t c)
 {
-    if (*b > *c)
-    {
-        uint16_t _b = *b;
-        *b = *c;
-        *c = _b;
-    }
-
-    if (*a > *b)
-    {
-        uint16_t _b = *b;
-        *b = *a;
-        *a = _b;
-    }
+    bool pythagorean_relation = (a * a + b * b) == (c * c);
+    bool right_sequence = (a < b);
+    return pythagorean_relation && right_sequence;
 }
