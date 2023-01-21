@@ -24,7 +24,7 @@ test: tests.out
 .PHONY: memcheck
 memcheck: ./*.c ./*.h
 	@echo Compiling $@
-	@$(CC) $(ASANFLAGS) $(CFLAGS) test-framework/unity.c ./*.c -o memcheck.out $(LIBS)
+	@$(CC) $(ASANFLAGS) $(CFLAGS) test-framework/unity.c ./*.c -o memcheck.out $(LIBS) -fmax-errors=5
 	@./memcheck.out
 	@echo "Memory check passed"
 
@@ -34,4 +34,4 @@ clean:
 
 tests.out: ./*.c ./*.h
 	@echo Compiling $@
-	@$(CC) $(CFLAGS) test-framework/unity.c ./*.c -o tests.out $(LIBS)
+	@$(CC) $(CFLAGS) test-framework/unity.c ./*.c -o tests.out $(LIBS) -fmax-errors=5
