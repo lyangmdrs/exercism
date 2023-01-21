@@ -37,246 +37,176 @@ static void test_allergic_to_everything_for_eggs(void)
 
 static void test_not_allergic_to_anything_for_peanuts(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_FALSE(is_allergic_to(ALLERGEN_PEANUTS, 0));
 }
 
 static void test_allergic_only_to_peanuts(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_TRUE(is_allergic_to(ALLERGEN_PEANUTS, 2));
 }
 
 static void test_allergic_to_peanuts_and_something_else(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_TRUE(is_allergic_to(ALLERGEN_EGGS, 7));
 }
 
 static void test_allergic_to_something_but_not_peanuts(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_FALSE(is_allergic_to(ALLERGEN_PEANUTS, 5));
 }
 
 static void test_allergic_to_everything_for_peanuts(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_TRUE(is_allergic_to(ALLERGEN_PEANUTS, 255));
 }
 
 static void test_not_allergic_to_anything_for_shellfish(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_FALSE(is_allergic_to(ALLERGEN_SHELLFISH, 0));
 }
 
 static void test_allergic_only_to_shellfish(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_TRUE(is_allergic_to(ALLERGEN_SHELLFISH, 4));
 }
 
 static void test_allergic_to_shellfish_and_something_else(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_TRUE(is_allergic_to(ALLERGEN_SHELLFISH, 14));
 }
 
 static void test_allergic_to_something_but_not_shellfish(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_FALSE(is_allergic_to(ALLERGEN_SHELLFISH, 10));
 }
 
 static void test_allergic_to_everything_for_shellfish(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_TRUE(is_allergic_to(ALLERGEN_SHELLFISH, 255));
 }
 
 static void test_not_allergic_to_anything_for_strawberries(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_FALSE(is_allergic_to(ALLERGEN_STRAWBERRIES, 0));
 }
 
 static void test_allergic_only_to_strawberries(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_TRUE(is_allergic_to(ALLERGEN_STRAWBERRIES, 8));
 }
 
 static void test_allergic_to_strawberries_and_something_else(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_TRUE(is_allergic_to(ALLERGEN_STRAWBERRIES, 28));
 }
 
 static void test_allergic_to_something_but_not_strawberries(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_FALSE(is_allergic_to(ALLERGEN_STRAWBERRIES, 20));
 }
 
 static void test_allergic_to_everything_for_strawberries(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_TRUE(is_allergic_to(ALLERGEN_STRAWBERRIES, 255));
 }
 
 static void test_not_allergic_to_anything_for_tomatoes(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_FALSE(is_allergic_to(ALLERGEN_TOMATOES, 0));
 }
 
 static void test_allergic_only_to_tomatoes(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_TRUE(is_allergic_to(ALLERGEN_TOMATOES, 16));
 }
 
 static void test_allergic_to_tomatoes_and_something_else(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_TRUE(is_allergic_to(ALLERGEN_TOMATOES, 56));
 }
 
 static void test_allergic_to_something_but_not_tomatoes(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_FALSE(is_allergic_to(ALLERGEN_TOMATOES, 40));
 }
 
 static void test_allergic_to_everything_for_tomatoes(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_TRUE(is_allergic_to(ALLERGEN_TOMATOES, 255));
 }
 
 static void test_not_allergic_to_anything_for_chocolate(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_FALSE(is_allergic_to(ALLERGEN_CHOCOLATE, 0));
 }
 
 static void test_allergic_only_to_chocolate(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_TRUE(is_allergic_to(ALLERGEN_CHOCOLATE, 32));
 }
 
 static void test_allergic_to_chocolate_and_something_else(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_TRUE(is_allergic_to(ALLERGEN_CHOCOLATE, 112));
 }
 
 static void test_allergic_to_something_but_not_chocolate(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_FALSE(is_allergic_to(ALLERGEN_CHOCOLATE, 80));
 }
 
 static void test_allergic_to_everything_for_chocolate(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_TRUE(is_allergic_to(ALLERGEN_CHOCOLATE, 255));
 }
 
 static void test_not_allergic_to_anything_for_pollen(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_FALSE(is_allergic_to(ALLERGEN_POLLEN, 0));
 }
 
 static void test_allergic_only_to_pollen(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_TRUE(is_allergic_to(ALLERGEN_POLLEN, 64));
 }
 
 static void test_allergic_to_pollen_and_something_else(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_TRUE(is_allergic_to(ALLERGEN_POLLEN, 224));
 }
 
 static void test_allergic_to_something_but_not_pollen(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_FALSE(is_allergic_to(ALLERGEN_POLLEN, 160));
 }
 
 static void test_allergic_to_everything_for_pollen(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_TRUE(is_allergic_to(ALLERGEN_POLLEN, 255));
 }
 
 static void test_not_allergic_to_anything_for_cats(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_FALSE(is_allergic_to(ALLERGEN_CATS, 0));
 }
 
 static void test_allergic_only_to_cats(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_TRUE(is_allergic_to(ALLERGEN_CATS, 128));
 }
 
 static void test_allergic_to_cats_and_something_else(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_TRUE(is_allergic_to(ALLERGEN_CATS, 192));
 }
 
 static void test_allergic_to_something_but_not_cats(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_FALSE(is_allergic_to(ALLERGEN_CATS, 64));
 }
 
 static void test_allergic_to_everything_for_cats(void)
 {
-   TEST_IGNORE();
-
    TEST_ASSERT_TRUE(is_allergic_to(ALLERGEN_CATS, 255));
 }
 
