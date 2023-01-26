@@ -26,7 +26,6 @@ static void test_cleans_the_number(void)
 
 static void test_cleans_numbers_with_dots(void)
 {
-   TEST_IGNORE();   // delete this line to run test
    const char input[] = "223.456.7890";
    const char expected[] = "2234567890";
 
@@ -37,7 +36,6 @@ static void test_cleans_numbers_with_dots(void)
 
 static void test_cleans_numbers_with_multiple_spaces(void)
 {
-   TEST_IGNORE();
    const char input[] = "223 456   7890   ";
    const char expected[] = "2234567890";
 
