@@ -46,7 +46,6 @@ static void test_cleans_numbers_with_multiple_spaces(void)
 
 static void test_invalid_when_9_digits(void)
 {
-   TEST_IGNORE();
    const char input[] = "123456789";
    const char expected[] = "0000000000";
 
@@ -57,7 +56,6 @@ static void test_invalid_when_9_digits(void)
 
 static void test_invalid_when_11_digits_does_not_start_with_a_1(void)
 {
-   TEST_IGNORE();
    const char input[] = "22234567890";
    const char expected[] = "0000000000";
 
@@ -68,7 +66,6 @@ static void test_invalid_when_11_digits_does_not_start_with_a_1(void)
 
 static void test_valid_when_11_digits_and_starting_with_1(void)
 {
-   TEST_IGNORE();
    const char input[] = "12234567890";
    const char expected[] = "2234567890";
 
@@ -80,7 +77,6 @@ static void test_valid_when_11_digits_and_starting_with_1(void)
 static void
 test_valid_when_11_digits_and_starting_with_1_even_with_punctuation(void)
 {
-   TEST_IGNORE();
    const char input[] = "+1 (223) 456-7890";
    const char expected[] = "2234567890";
 
