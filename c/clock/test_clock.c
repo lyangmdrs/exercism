@@ -156,7 +156,6 @@ static void test_negative_hour_rolls_over(void)
 
 static void test_negative_hour_rolls_over_continuously(void)
 {
-   TEST_IGNORE();
    int hour = -91, minute = 0;
    clock_t expected = { "05:00" };
 

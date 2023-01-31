@@ -90,5 +90,8 @@ void roll_over_hours(int* hour)
 
 void convert_negative2positive_hour(int* hour)
 {
-    *hour = (*hour * -1) + 22;
+    while (*hour < 0)
+    {
+        *hour += 24;
+    }
 }
