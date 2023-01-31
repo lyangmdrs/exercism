@@ -100,7 +100,6 @@ static void test_sixty_minutes_is_next_hour(void)
 
 static void test_minutes_roll_over(void)
 {
-   TEST_IGNORE();
    int hour = 0, minute = 160;
    clock_t expected = { "02:40" };
 

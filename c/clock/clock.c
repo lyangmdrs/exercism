@@ -3,6 +3,7 @@
 clock_t clock_create(int hour, int minute)
 {
     clock_t new_clock;
+    // printf("hours: %d - minutes %d\n", hour, minute);
 
     if (hour > 38)
     {
@@ -16,7 +17,10 @@ clock_t clock_create(int hour, int minute)
     if (minute >= 60)
     {
         hour += (minute/60);
-        minute -= 60;
+        while (minute >= 60)
+        {
+            minute -= 60;
+        }
     }
 
     int hour_dozens = hour/10;
@@ -24,6 +28,7 @@ clock_t clock_create(int hour, int minute)
 
     sprintf(new_clock.text, "%s", RESETED_CLK);
 
+    // printf("hours: %d - minutes %d\n", hour, minute);
     // printf("CLOCK: %s\n", new_clock.text);
     // printf("H_DOZENS: %d\n", hour_dozens);
     // printf("M_DOZENS: %d\n", min_dozens);
