@@ -340,7 +340,6 @@ static void test_subtract_more_than_two_days(void)
 
 static void test_compare_clocks_with_same_time(void)
 {
-   TEST_IGNORE();
    int a_hour = 15, a_minute = 37;
    int b_hour = 15, b_minute = 37;
    bool expected = true;
@@ -350,7 +349,6 @@ static void test_compare_clocks_with_same_time(void)
 
 static void test_compare_clocks_a_minute_apart(void)
 {
-   TEST_IGNORE();
    int a_hour = 15, a_minute = 36;
    int b_hour = 15, b_minute = 37;
    bool expected = false;
@@ -360,7 +358,6 @@ static void test_compare_clocks_a_minute_apart(void)
 
 static void test_compare_clocks_an_hour_apart(void)
 {
-   TEST_IGNORE();
    int a_hour = 14, a_minute = 37;
    int b_hour = 15, b_minute = 37;
    bool expected = false;
@@ -370,7 +367,6 @@ static void test_compare_clocks_an_hour_apart(void)
 
 static void test_compare_clocks_with_hour_overflow(void)
 {
-   TEST_IGNORE();
    int a_hour = 10, a_minute = 37;
    int b_hour = 34, b_minute = 37;
    bool expected = true;
@@ -380,7 +376,6 @@ static void test_compare_clocks_with_hour_overflow(void)
 
 static void test_compare_clocks_with_hour_overflow_by_several_days(void)
 {
-   TEST_IGNORE();
    int a_hour = 3, a_minute = 11;
    int b_hour = 99, b_minute = 11;
    bool expected = true;
@@ -390,7 +385,6 @@ static void test_compare_clocks_with_hour_overflow_by_several_days(void)
 
 static void test_compare_clocks_with_negative_hour(void)
 {
-   TEST_IGNORE();
    int a_hour = 22, a_minute = 40;
    int b_hour = -2, b_minute = 40;
    bool expected = true;
@@ -400,7 +394,6 @@ static void test_compare_clocks_with_negative_hour(void)
 
 static void test_compare_clocks_with_negative_hour_that_wraps(void)
 {
-   TEST_IGNORE();
    int a_hour = 17, a_minute = 3;
    int b_hour = -31, b_minute = 3;
    bool expected = true;
@@ -411,7 +404,6 @@ static void test_compare_clocks_with_negative_hour_that_wraps(void)
 static void
 test_compare_clocks_with_negative_hour_that_wraps_multiple_times(void)
 {
-   TEST_IGNORE();
    int a_hour = 13, a_minute = 49;
    int b_hour = -83, b_minute = 49;
    bool expected = true;
@@ -421,7 +413,6 @@ test_compare_clocks_with_negative_hour_that_wraps_multiple_times(void)
 
 static void test_compare_clocks_with_minute_overflow(void)
 {
-   TEST_IGNORE();
    int a_hour = 0, a_minute = 1;
    int b_hour = 0, b_minute = 1441;
    bool expected = true;
@@ -431,7 +422,6 @@ static void test_compare_clocks_with_minute_overflow(void)
 
 static void test_compare_clocks_with_minute_overflow_by_several_days(void)
 {
-   TEST_IGNORE();
    int a_hour = 2, a_minute = 2;
    int b_hour = 2, b_minute = 4322;
    bool expected = true;
@@ -441,7 +431,6 @@ static void test_compare_clocks_with_minute_overflow_by_several_days(void)
 
 static void test_compare_clocks_with_negative_minute(void)
 {
-   TEST_IGNORE();
    int a_hour = 2, a_minute = 40;
    int b_hour = 3, b_minute = -20;
    bool expected = true;
@@ -451,7 +440,6 @@ static void test_compare_clocks_with_negative_minute(void)
 
 static void test_compare_clocks_with_negative_minute_that_wraps(void)
 {
-   TEST_IGNORE();
    int a_hour = 4, a_minute = 10;
    int b_hour = 5, b_minute = -1490;
    bool expected = true;
@@ -462,7 +450,6 @@ static void test_compare_clocks_with_negative_minute_that_wraps(void)
 static void
 test_compare_clocks_with_negative_minute_that_wraps_multiple_times(void)
 {
-   TEST_IGNORE();
    int a_hour = 6, a_minute = 15;
    int b_hour = 6, b_minute = -4305;
    bool expected = true;
@@ -472,7 +459,6 @@ test_compare_clocks_with_negative_minute_that_wraps_multiple_times(void)
 
 static void test_compare_clocks_with_negative_hours_and_minute(void)
 {
-   TEST_IGNORE();
    int a_hour = 7, a_minute = 32;
    int b_hour = -12, b_minute = -268;
    bool expected = true;
@@ -482,7 +468,6 @@ static void test_compare_clocks_with_negative_hours_and_minute(void)
 
 static void test_compare_clocks_with_negative_hours_and_minute_that_wrap(void)
 {
-   TEST_IGNORE();
    int a_hour = 18, a_minute = 7;
    int b_hour = -54, b_minute = -11513;
    bool expected = true;
@@ -492,7 +477,6 @@ static void test_compare_clocks_with_negative_hours_and_minute_that_wrap(void)
 
 static void test_compare_full_clock_and_zeroed_clock(void)
 {
-   TEST_IGNORE();
    int a_hour = 24, a_minute = 0;
    int b_hour = 0, b_minute = 0;
    bool expected = true;
