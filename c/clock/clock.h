@@ -2,8 +2,11 @@
 #define CLOCK_H
 
 #include <stdbool.h>
+#include <stdio.h>
+#include <string.h>
 
 #define MAX_STR_LEN (5 + 1)   // "##:##\0"
+#define RESETED_CLK "00:00"
 
 typedef struct {
    char text[MAX_STR_LEN];
