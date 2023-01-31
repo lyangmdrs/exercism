@@ -1,11 +1,11 @@
 #include "phone_number.h"
 
-char* clear_phone_number(const char *phone);
+char* remove_non_digit_characters(const char *phone);
 void set_result_to_invalid_phone(char* result);
 
 char *phone_number_clean(const char *input)
 {
-    char* result = clear_phone_number(input);
+    char* result = remove_non_digit_characters(input);
     
     // A valid phone number must have more than 9 digits
     if (strlen(result) < PHONE_STRING_LEN)
@@ -50,7 +50,7 @@ char *phone_number_clean(const char *input)
     return result;
 }
 
-char* clear_phone_number(const char *phone)
+char* remove_non_digit_characters(const char *phone)
 {
     size_t phone_len = strlen(phone);
     size_t result_len = 1;
