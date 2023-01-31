@@ -4,6 +4,14 @@ clock_t clock_create(int hour, int minute)
 {
     clock_t new_clock;
     // printf("hours: %d - minutes %d\n", hour, minute);
+    if (minute >= 60)
+    {
+        hour += (minute/60);
+        while (minute >= 60)
+        {
+            minute -= 60;
+        }
+    }
 
     if (hour > 38)
     {
@@ -12,15 +20,6 @@ clock_t clock_create(int hour, int minute)
     else if (hour >= 24)
     {
         hour -= 24;
-    }
-
-    if (minute >= 60)
-    {
-        hour += (minute/60);
-        while (minute >= 60)
-        {
-            minute -= 60;
-        }
     }
 
     int hour_dozens = hour/10;
