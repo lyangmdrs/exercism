@@ -1,25 +1,22 @@
 #include "clock.h"
 
+void roll_over_minutes(int* hour, int* minute);
+void roll_over_hours(int* hour);
+void convert_negative2positive_hour(int* hour);
+
 clock_t clock_create(int hour, int minute)
 {
     clock_t new_clock;
-    // printf("hours: %d - minutes %d\n", hour, minute);
-    if (minute >= 60)
+    
+    if (hour < 0)
     {
-        hour += (minute/60);
-        while (minute >= 60)
-        {
-            minute -= 60;
-        }
+        convert_negative2positive_hour(&hour);
     }
 
-    // printf("hours: %d - minutes %d\n", hour, minute);
-    while (hour >= 24)
-    {
-        hour -= 24;
-    }
+    roll_over_minutes(&hour, &minute);
+    roll_over_hours(&hour);
 
-    int hour_dozens = (int)(hour/10.0);
+    int hour_dozens = hour/10;
     int min_dozens = minute/10;
 
     sprintf(new_clock.text, "%s", RESETED_CLK);
@@ -69,4 +66,29 @@ bool clock_is_equal(clock_t a, clock_t b)
     }
 
     return true;
+}
+
+void roll_over_minutes(int* hour, int* minute)
+{
+    if (*minute >= 60)
+    {
+        *hour += (*minute/60);
+        while (*minute >= 60)
+        {
+            *minute -= 60;
+        }
+    }
+}
+
+void roll_over_hours(int* hour)
+{
+    while (*hour >= 24)
+    {
+        *hour -= 24;
+    }
+}
+
+void convert_negative2positive_hour(int* hour)
+{
+    *hour = (*hour * -1) + 22;
 }

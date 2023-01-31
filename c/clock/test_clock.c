@@ -132,7 +132,6 @@ static void test_hour_and_minutes_roll_over_continuously(void)
 
 static void test_hour_and_minutes_roll_over_to_exactly_midnight(void)
 {
-   TEST_IGNORE();
    int hour = 72, minute = 8640;
    clock_t expected = { "00:00" };
 
@@ -141,7 +140,6 @@ static void test_hour_and_minutes_roll_over_to_exactly_midnight(void)
 
 static void test_negative_hour(void)
 {
-   TEST_IGNORE();
    int hour = -1, minute = 15;
    clock_t expected = { "23:15" };
 
@@ -150,7 +148,6 @@ static void test_negative_hour(void)
 
 static void test_negative_hour_rolls_over(void)
 {
-   TEST_IGNORE();
    int hour = -25, minute = 0;
    clock_t expected = { "23:00" };
 
