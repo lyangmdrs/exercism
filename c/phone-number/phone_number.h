@@ -5,7 +5,6 @@
 #include <string.h>
 #include <ctype.h>
 #include <errno.h>
-
 #include <stdio.h>
 
 #define PHONE_STRING_LEN 10
