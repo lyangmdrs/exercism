@@ -68,7 +68,6 @@ static void test_past_the_hour(void)
 
 static void test_midnight_is_zero_hours(void)
 {
-   TEST_IGNORE();
    int hour = 24, minute = 0;
    clock_t expected = { "00:00" };
 

@@ -9,14 +9,16 @@ clock_t clock_create(int hour, int minute)
 
     sprintf(new_clock.text, "%s", RESETED_CLK);
 
+    if ((hour == 24) && (minute) == 0)
+    {
+        return new_clock;
+    }
+
     new_clock.text[0] += hour_dozens;
-    
     new_clock.text[1] += (hour - hour_dozens * 10);
-    
     new_clock.text[3] += min_dozens;
-    
     new_clock.text[4] += (minute - min_dozens * 10);
-    
 
     return new_clock;
 }
+
