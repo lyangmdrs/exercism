@@ -84,7 +84,6 @@ static void test_hour_rolls_over(void)
 
 static void test_hour_rolls_over_continuously(void)
 {
-   TEST_IGNORE();
    int hour = 100, minute = 0;
    clock_t expected = { "04:00" };
 

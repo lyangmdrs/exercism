@@ -4,7 +4,11 @@ clock_t clock_create(int hour, int minute)
 {
     clock_t new_clock;
 
-    if (hour >= 24)
+    if (hour > 38)
+    {
+        hour /= 24;
+    }
+    else if (hour >= 24)
     {
         hour -= 24;
     }
