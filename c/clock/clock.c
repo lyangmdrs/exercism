@@ -4,15 +4,15 @@ clock_t clock_create(int hour, int minute)
 {
     clock_t new_clock;
 
+    if (hour >= 24)
+    {
+        hour -= 24;
+    }
+
     int hour_dozens = hour/10;
     int min_dozens = minute/10;
 
     sprintf(new_clock.text, "%s", RESETED_CLK);
-
-    if ((hour == 24) && (minute) == 0)
-    {
-        return new_clock;
-    }
 
     // printf("CLOCK: %s\n", new_clock.text);
     // printf("H_DOZENS: %d\n", hour_dozens);

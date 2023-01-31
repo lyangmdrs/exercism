@@ -76,7 +76,6 @@ static void test_midnight_is_zero_hours(void)
 
 static void test_hour_rolls_over(void)
 {
-   TEST_IGNORE();
    int hour = 25, minute = 0;
    clock_t expected = { "01:00" };
 
