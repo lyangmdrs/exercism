@@ -1,52 +1,85 @@
 #include "phone_number.h"
 
-void prepend(char* string,  char sufix);
-char* set_result_to_invalid_phone(char* result);
+char* clear_phone_number(const char *phone);
+void set_result_to_invalid_phone(char* result);
 
 char *phone_number_clean(const char *input)
 {
-    char* result = malloc(sizeof(char));
+    char* result = clear_phone_number(input);
     
     // A valid phone number must have more than 9 digits
-    if (strlen(input) < PHONE_STRING_LEN)
+    if (strlen(result) < PHONE_STRING_LEN)
     {
-        result = set_result_to_invalid_phone(result);
+        set_result_to_invalid_phone(result);
         return result;
     }
 
     // A valid phone number with 11 digits must start with 1
-    if ((strlen(input) == PHONE_STRING_LEN + 1) && input[0] != '1')
+    if (strlen(result) == PHONE_STRING_LEN + 1)
     {
-        result = set_result_to_invalid_phone(result);
+        if (result[0] == '1')
+        {
+            memmove(result, result + 1, strlen(result));
+        }
+        else
+        {
+            set_result_to_invalid_phone(result);
+            return result;
+        }
+    }
+    else if (strlen(result) > PHONE_STRING_LEN + 1)
+    {
+        set_result_to_invalid_phone(result);
         return result;
     }
-    
-    sprintf(result, "%c", '\0');
 
-    size_t index = LAST_DIGIT_INDEX(input);
+    // A valid phone cannot have an area code thar starts with 0 or 1
+    if (result[0] == '0' || result[0] == '1')
+    {
+        set_result_to_invalid_phone(result);
+        return result;
+    }
 
-    while (strlen(result) < PHONE_STRING_LEN)
-    {   
-        if (isdigit(input[index]))
-        {
-            prepend(result, input[index]);
-        }
-        
-        index--;
+    // A valid phone cannot have an excange code thar starts with 0 or 1
+    if (result[3] == '0' || result[3] == '1')
+    {
+        set_result_to_invalid_phone(result);
+        return result;
     }
 
     return result;
 }
 
-void prepend(char* string,  char sufix)
+char* clear_phone_number(const char *phone)
 {
-    memmove(string + 1, string, strlen(string) + 1);
-    string[0] = sufix;
+    size_t phone_len = strlen(phone);
+    size_t result_len = 1;
+    char *result = malloc(sizeof(char));
+
+    for (size_t index = 0; index < phone_len; index++)
+    {
+        if (isdigit(phone[index]))
+        {
+            char *_result = realloc(result, (++result_len) * sizeof(char));
+
+            if (!_result)
+            {
+                errno = ENOMEM;
+                exit(EXIT_FAILURE);
+            }
+
+            result = _result;
+
+            result[result_len - 2] = phone[index];
+        }
+    }
+
+    return result;
 }
 
-char* set_result_to_invalid_phone(char* result)
+void set_result_to_invalid_phone(char* result)
 {
-    char* _result = realloc(result, sizeof(char) * PHONE_STRING_LEN + 1);
+    char *_result = realloc(result, sizeof(char) * PHONE_STRING_LEN + 1);
 
     if(!_result)
     {
@@ -56,5 +89,5 @@ char* set_result_to_invalid_phone(char* result)
 
     sprintf(_result, "%s", INVALID_PHONE);
 
-    return _result;
+    result = _result;
 }

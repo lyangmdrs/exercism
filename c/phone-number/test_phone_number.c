@@ -87,7 +87,6 @@ test_valid_when_11_digits_and_starting_with_1_even_with_punctuation(void)
 
 static void test_invalid_when_more_than_11_digits(void)
 {
-   TEST_IGNORE();
    const char input[] = "321234567890";
    const char expected[] = "0000000000";
 
@@ -98,7 +97,6 @@ static void test_invalid_when_more_than_11_digits(void)
 
 static void test_invalid_with_letters(void)
 {
-   TEST_IGNORE();
    const char input[] = "523-abc-7890";
    const char expected[] = "0000000000";
 
@@ -109,7 +107,6 @@ static void test_invalid_with_letters(void)
 
 static void test_invalid_with_punctuations(void)
 {
-   TEST_IGNORE();
    const char input[] = "523-@:!-7890";
    const char expected[] = "0000000000";
 
@@ -120,7 +117,6 @@ static void test_invalid_with_punctuations(void)
 
 static void test_invalid_if_area_code_starts_with_0(void)
 {
-   TEST_IGNORE();
    const char input[] = "(023) 456-7890";
    const char expected[] = "0000000000";
 
@@ -131,7 +127,6 @@ static void test_invalid_if_area_code_starts_with_0(void)
 
 static void test_invalid_if_area_code_starts_with_1(void)
 {
-   TEST_IGNORE();
    const char input[] = "(123) 456-7890";
    const char expected[] = "0000000000";
 
@@ -142,7 +137,6 @@ static void test_invalid_if_area_code_starts_with_1(void)
 
 static void test_invalid_if_exchange_code_starts_with_0(void)
 {
-   TEST_IGNORE();
    const char input[] = "(223) 056-7890";
    const char expected[] = "0000000000";
 
@@ -153,7 +147,6 @@ static void test_invalid_if_exchange_code_starts_with_0(void)
 
 static void test_invalid_if_exchange_code_starts_with_1(void)
 {
-   TEST_IGNORE();
    const char input[] = "(223) 156-7890";
    const char expected[] = "0000000000";
 
@@ -165,7 +158,6 @@ static void test_invalid_if_exchange_code_starts_with_1(void)
 static void
 test_invalid_if_area_code_starts_with_0_on_valid_11_digit_number(void)
 {
-   TEST_IGNORE();
    const char input[] = "1 (023) 456-7890";
    const char expected[] = "0000000000";
 
@@ -177,7 +169,6 @@ test_invalid_if_area_code_starts_with_0_on_valid_11_digit_number(void)
 static void
 test_invalid_if_area_code_starts_with_1_on_valid_11_digit_number(void)
 {
-   TEST_IGNORE();
    const char input[] = "1 (123) 456-7890";
    const char expected[] = "0000000000";
 
@@ -189,7 +180,6 @@ test_invalid_if_area_code_starts_with_1_on_valid_11_digit_number(void)
 static void
 test_invalid_if_exchange_code_starts_with_0_on_valid_11_digit_number(void)
 {
-   TEST_IGNORE();
    const char input[] = "1 (223) 056-7890";
    const char expected[] = "0000000000";
 
@@ -201,7 +191,6 @@ test_invalid_if_exchange_code_starts_with_0_on_valid_11_digit_number(void)
 static void
 test_invalid_if_exchange_code_starts_with_1_on_valid_11_digit_number(void)
 {
-   TEST_IGNORE();
    const char input[] = "1 (123) 156-7890";
    const char expected[] = "0000000000";
 
