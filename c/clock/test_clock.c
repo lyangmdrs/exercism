@@ -92,7 +92,6 @@ static void test_hour_rolls_over_continuously(void)
 
 static void test_sixty_minutes_is_next_hour(void)
 {
-   TEST_IGNORE();
    int hour = 1, minute = 60;
    clock_t expected = { "02:00" };
 

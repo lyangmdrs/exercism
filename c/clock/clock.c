@@ -13,6 +13,12 @@ clock_t clock_create(int hour, int minute)
         hour -= 24;
     }
 
+    if (minute >= 60)
+    {
+        hour += (minute/60);
+        minute -= 60;
+    }
+
     int hour_dozens = hour/10;
     int min_dozens = minute/10;
 
