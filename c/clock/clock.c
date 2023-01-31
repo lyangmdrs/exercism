@@ -3,6 +3,7 @@
 void roll_over_minutes(int* hour, int* minute);
 void roll_over_hours(int* hour);
 void convert_negative2positive_hour(int* hour);
+void convert_negative2positive_minute(int* hour, int* minute);
 
 clock_t clock_create(int hour, int minute)
 {
@@ -11,6 +12,11 @@ clock_t clock_create(int hour, int minute)
     if (hour < 0)
     {
         convert_negative2positive_hour(&hour);
+    }
+
+    if (minute < 0)
+    {
+        convert_negative2positive_minute(&hour, &minute);
     }
 
     roll_over_minutes(&hour, &minute);
@@ -94,4 +100,18 @@ void convert_negative2positive_hour(int* hour)
     {
         *hour += 24;
     }
+}
+
+void convert_negative2positive_minute(int* hour, int* minute)
+{
+    int roll_hour = 0;
+
+    while (*minute < 0)
+    {
+        roll_hour--;
+        *minute += 60;
+    }
+
+    convert_negative2positive_hour(&roll_hour);
+    *hour += roll_hour;
 }

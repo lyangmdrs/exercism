@@ -164,7 +164,6 @@ static void test_negative_hour_rolls_over_continuously(void)
 
 static void test_negative_minutes(void)
 {
-   TEST_IGNORE();
    int hour = 1, minute = -40;
    clock_t expected = { "00:20" };
 
@@ -173,7 +172,6 @@ static void test_negative_minutes(void)
 
 static void test_negative_minutes_roll_over(void)
 {
-   TEST_IGNORE();
    int hour = 1, minute = -160;
    clock_t expected = { "22:20" };
 
@@ -182,7 +180,6 @@ static void test_negative_minutes_roll_over(void)
 
 static void test_negative_minutes_roll_over_continuously(void)
 {
-   TEST_IGNORE();
    int hour = 1, minute = -4820;
    clock_t expected = { "16:40" };
 
@@ -191,7 +188,6 @@ static void test_negative_minutes_roll_over_continuously(void)
 
 static void test_negative_sixty_minutes_is_previous_hour(void)
 {
-   TEST_IGNORE();
    int hour = 2, minute = -60;
    clock_t expected = { "01:00" };
 
@@ -200,7 +196,6 @@ static void test_negative_sixty_minutes_is_previous_hour(void)
 
 static void test_negative_hour_and_minutes_both_roll_over(void)
 {
-   TEST_IGNORE();
    int hour = -25, minute = -160;
    clock_t expected = { "20:20" };
 
@@ -209,7 +204,6 @@ static void test_negative_hour_and_minutes_both_roll_over(void)
 
 static void test_negative_hour_and_minutes_both_roll_over_continuously(void)
 {
-   TEST_IGNORE();
    int hour = -121, minute = -5810;
    clock_t expected = { "22:10" };
 
