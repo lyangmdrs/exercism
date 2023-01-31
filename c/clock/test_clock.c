@@ -212,7 +212,6 @@ static void test_negative_hour_and_minutes_both_roll_over_continuously(void)
 
 static void test_add_minutes(void)
 {
-   TEST_IGNORE();
    int hour = 10, minute = 0, minute_add = 3;
    clock_t expected = { "10:03" };
 
@@ -221,7 +220,6 @@ static void test_add_minutes(void)
 
 static void test_add_no_minutes(void)
 {
-   TEST_IGNORE();
    int hour = 6, minute = 41, minute_add = 0;
    clock_t expected = { "06:41" };
 
@@ -230,7 +228,6 @@ static void test_add_no_minutes(void)
 
 static void test_add_to_next_hour(void)
 {
-   TEST_IGNORE();
    int hour = 0, minute = 45, minute_add = 40;
    clock_t expected = { "01:25" };
 
@@ -239,7 +236,6 @@ static void test_add_to_next_hour(void)
 
 static void test_add_more_than_one_hour(void)
 {
-   TEST_IGNORE();
    int hour = 10, minute = 0, minute_add = 61;
    clock_t expected = { "11:01" };
 
@@ -248,7 +244,6 @@ static void test_add_more_than_one_hour(void)
 
 static void test_add_more_than_two_hours_with_carry(void)
 {
-   TEST_IGNORE();
    int hour = 0, minute = 45, minute_add = 160;
    clock_t expected = { "03:25" };
 
@@ -257,7 +252,6 @@ static void test_add_more_than_two_hours_with_carry(void)
 
 static void test_add_across_midnight(void)
 {
-   TEST_IGNORE();
    int hour = 23, minute = 59, minute_add = 2;
    clock_t expected = { "00:01" };
 
@@ -266,7 +260,6 @@ static void test_add_across_midnight(void)
 
 static void test_add_more_than_one_day(void)
 {
-   TEST_IGNORE();
    int hour = 5, minute = 32, minute_add = 1500;
    clock_t expected = { "06:32" };
 
@@ -275,7 +268,6 @@ static void test_add_more_than_one_day(void)
 
 static void test_add_more_than_two_days(void)
 {
-   TEST_IGNORE();
    int hour = 1, minute = 1, minute_add = 3500;
    clock_t expected = { "11:21" };
 
