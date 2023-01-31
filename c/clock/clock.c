@@ -47,19 +47,13 @@ clock_t clock_add(clock_t clock, int minute_add)
     minute += minute_add;
 
     clock_t new_clock = clock_create(hour, minute);
-    
+
     return new_clock;
 }
 
-/** from this line functions were written without any functionality
- *  just to declare the functions and let the compiler happy. **/
 clock_t clock_subtract(clock_t clock, int minute_subtract)
 {
-    if (minute_subtract)
-    {
-        return clock;
-    }
-    return clock;
+    return clock_add(clock, minute_subtract * -1);
 }
 
 bool clock_is_equal(clock_t a, clock_t b)

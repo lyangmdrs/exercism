@@ -276,7 +276,6 @@ static void test_add_more_than_two_days(void)
 
 static void test_subtract_minutes(void)
 {
-   TEST_IGNORE();
    int hour = 10, minute = 3, minute_subtract = 3;
    clock_t expected = { "10:00" };
 
@@ -285,7 +284,6 @@ static void test_subtract_minutes(void)
 
 static void test_subtract_to_previous_hour(void)
 {
-   TEST_IGNORE();
    int hour = 10, minute = 3, minute_subtract = 30;
    clock_t expected = { "09:33" };
 
@@ -294,7 +292,6 @@ static void test_subtract_to_previous_hour(void)
 
 static void test_subtract_more_than_an_hour(void)
 {
-   TEST_IGNORE();
    int hour = 10, minute = 3, minute_subtract = 70;
    clock_t expected = { "08:53" };
 
@@ -303,7 +300,6 @@ static void test_subtract_more_than_an_hour(void)
 
 static void test_subtract_across_midnight(void)
 {
-   TEST_IGNORE();
    int hour = 0, minute = 3, minute_subtract = 4;
    clock_t expected = { "23:59" };
 
@@ -312,7 +308,6 @@ static void test_subtract_across_midnight(void)
 
 static void test_subtract_more_than_two_hours(void)
 {
-   TEST_IGNORE();
    int hour = 0, minute = 0, minute_subtract = 160;
    clock_t expected = { "21:20" };
 
@@ -321,7 +316,6 @@ static void test_subtract_more_than_two_hours(void)
 
 static void test_subtract_more_than_two_hours_with_borrow(void)
 {
-   TEST_IGNORE();
    int hour = 6, minute = 15, minute_subtract = 160;
    clock_t expected = { "03:35" };
 
@@ -330,7 +324,6 @@ static void test_subtract_more_than_two_hours_with_borrow(void)
 
 static void test_subtract_more_than_one_day(void)
 {
-   TEST_IGNORE();
    int hour = 5, minute = 32, minute_subtract = 1500;
    clock_t expected = { "04:32" };
 
@@ -339,7 +332,6 @@ static void test_subtract_more_than_one_day(void)
 
 static void test_subtract_more_than_two_days(void)
 {
-   TEST_IGNORE();
    int hour = 2, minute = 20, minute_subtract = 3000;
    clock_t expected = { "00:20" };
 
