@@ -13,16 +13,13 @@ clock_t clock_create(int hour, int minute)
         }
     }
 
-    if (hour > 38)
-    {
-        hour /= 24;
-    }
-    else if (hour >= 24)
+    // printf("hours: %d - minutes %d\n", hour, minute);
+    while (hour >= 24)
     {
         hour -= 24;
     }
 
-    int hour_dozens = hour/10;
+    int hour_dozens = (int)(hour/10.0);
     int min_dozens = minute/10;
 
     sprintf(new_clock.text, "%s", RESETED_CLK);

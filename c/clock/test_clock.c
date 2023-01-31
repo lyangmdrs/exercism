@@ -116,7 +116,6 @@ static void test_minutes_roll_over_continuously(void)
 
 static void test_hour_and_minutes_roll_over(void)
 {
-   TEST_IGNORE();
    int hour = 25, minute = 160;
    clock_t expected = { "03:40" };
 
@@ -125,7 +124,6 @@ static void test_hour_and_minutes_roll_over(void)
 
 static void test_hour_and_minutes_roll_over_continuously(void)
 {
-   TEST_IGNORE();
    int hour = 201, minute = 3001;
    clock_t expected = { "11:01" };
 
