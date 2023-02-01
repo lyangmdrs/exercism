@@ -4,8 +4,8 @@
 #define LAST_DIGIT_INDEX(A) strlen(A) - 1;
 #define INVALID_PHONE "0000000000"
 
-char* remove_non_digit_characters(const char *phone);
-char* set_result_to_invalid_phone();
+static char* remove_non_digit_characters(const char *phone);
+static char* set_result_to_invalid_phone();
 
 char *phone_number_clean(const char *input)
 {
@@ -49,7 +49,7 @@ char *phone_number_clean(const char *input)
     return result;
 }
 
-char* remove_non_digit_characters(const char *phone)
+static char* remove_non_digit_characters(const char *phone)
 {
     size_t phone_len = strlen(phone);
     size_t result_len = 1;
@@ -79,7 +79,7 @@ char* remove_non_digit_characters(const char *phone)
     return result;
 }
 
-char* set_result_to_invalid_phone()
+static char* set_result_to_invalid_phone()
 {
     char* result = malloc(sizeof(char) * PHONE_STRING_LEN + 1);
 
