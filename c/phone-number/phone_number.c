@@ -1,7 +1,7 @@
 #include "phone_number.h"
 
 char* remove_non_digit_characters(const char *phone);
-void set_result_to_invalid_phone(char* result);
+char* set_result_to_invalid_phone();
 
 char *phone_number_clean(const char *input)
 {
@@ -10,8 +10,7 @@ char *phone_number_clean(const char *input)
     // A valid phone number must have more than 9 digits
     if (strlen(result) < PHONE_STRING_LEN)
     {
-        set_result_to_invalid_phone(result);
-        return result;
+        return set_result_to_invalid_phone(result);
     }
 
     // A valid phone number with 11 digits must start with 1
@@ -23,28 +22,24 @@ char *phone_number_clean(const char *input)
         }
         else
         {
-            set_result_to_invalid_phone(result);
-            return result;
+            return set_result_to_invalid_phone(result);
         }
     }
     else if (strlen(result) > PHONE_STRING_LEN + 1)
     {
-        set_result_to_invalid_phone(result);
-        return result;
+        return set_result_to_invalid_phone(result);
     }
 
     // A valid phone cannot have an area code thar starts with 0 or 1
     if (result[0] == '0' || result[0] == '1')
     {
-        set_result_to_invalid_phone(result);
-        return result;
+        return set_result_to_invalid_phone(result);
     }
 
     // A valid phone cannot have an excange code thar starts with 0 or 1
     if (result[3] == '0' || result[3] == '1')
     {
-        set_result_to_invalid_phone(result);
-        return result;
+        return set_result_to_invalid_phone(result);
     }
 
     return result;
@@ -80,17 +75,17 @@ char* remove_non_digit_characters(const char *phone)
     return result;
 }
 
-void set_result_to_invalid_phone(char* result)
+char* set_result_to_invalid_phone()
 {
-    char *_result = realloc(result, sizeof(char) * PHONE_STRING_LEN + 1);
+    char* result = malloc(sizeof(char) * PHONE_STRING_LEN + 1);
 
-    if(!_result)
+    if (!result)
     {
         errno = ENOMEM;
         exit(EXIT_FAILURE);
     }
 
-    sprintf(_result, "%s", INVALID_PHONE);
+    sprintf(result, "%s", INVALID_PHONE);
 
-    result = _result;
+    return result;
 }
