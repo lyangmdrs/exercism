@@ -74,6 +74,9 @@ char* remove_non_digit_characters(const char *phone)
         }
     }
 
+    // guarantees a null-terminated string
+    result[result_len] = '\0';
+
     return result;
 }
 
