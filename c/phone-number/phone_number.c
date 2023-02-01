@@ -53,7 +53,7 @@ char* remove_non_digit_characters(const char *phone)
 
     for (size_t index = 0; index < phone_len; index++)
     {
-        if (isdigit(phone[index]))
+        if (isdigit((unsigned char)(phone[index])))
         {
             char *_result = realloc(result, (++result_len) * sizeof(char));
 
