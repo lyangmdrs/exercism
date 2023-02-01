@@ -1,5 +1,9 @@
 #include "phone_number.h"
 
+#define PHONE_STRING_LEN 10
+#define LAST_DIGIT_INDEX(A) strlen(A) - 1;
+#define INVALID_PHONE "0000000000"
+
 char* remove_non_digit_characters(const char *phone);
 char* set_result_to_invalid_phone();
 
