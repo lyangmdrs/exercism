@@ -18,20 +18,21 @@ char *phone_number_clean(const char *input)
     }
 
     remove_non_digit_characters(input, result);
+    size_t result_length = strlen(result);
     
     // A valid phone number must have more than 9 digits
-    if (strlen(result) < CLEANED_PHONE_STRING_LEN)
+    if (result_length < CLEANED_PHONE_STRING_LEN)
     {
         set_result_to_invalid_phone(result);
         return result;
     }
 
     // A valid phone number with 11 digits must start with 1
-    if (strlen(result) == CLEANED_PHONE_STRING_LEN + 1)
+    if (result_length == CLEANED_PHONE_STRING_LEN + 1)
     {
         if (result[0] == '1')
         {
-            memmove(result, result + 1, strlen(result));
+            memmove(result, result + 1, result_length);
         }
         else
         {
@@ -39,7 +40,7 @@ char *phone_number_clean(const char *input)
             return result;
         }
     }
-    else if (strlen(result) > CLEANED_PHONE_STRING_LEN + 1)
+    else if (result_length > CLEANED_PHONE_STRING_LEN + 1)
     {
         set_result_to_invalid_phone(result);
         return result;
