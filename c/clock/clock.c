@@ -1,5 +1,7 @@
 #include "clock.h"
 
+#define RESET_CLK "00:00"
+
 void roll_over_minutes(int* hour, int* minute);
 void roll_over_hours(int* hour);
 void convert_negative2positive_hour(int* hour);
