@@ -26,7 +26,7 @@ clock_t clock_create(int hour, int minute)
     int hour_dozens = hour/10;
     int min_dozens = minute/10;
 
-    sprintf(new_clock.text, "%s", RESETED_CLK);
+    sprintf(new_clock.text, "%s", RESET_CLK);
 
     new_clock.text[0] += hour_dozens;
     new_clock.text[1] += (hour - hour_dozens * 10);
