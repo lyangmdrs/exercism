@@ -1,15 +1,17 @@
 #include "phone_number.h"
 
-#define PHONE_STRING_LEN 13
+#define MAX_PHONE_STRING_LEN 13
 #define CLEANED_PHONE_STRING_LEN 10
 #define INVALID_PHONE "0000000000"
 
+static bool phone_validation(const char* phone);
 static void remove_non_digit_characters(const char *phone, char* result);
+static void remove_area_code(char* phone);
 static void set_result_to_invalid_phone(char* result);
 
 char *phone_number_clean(const char *input)
 {
-    char* result = malloc(sizeof(char) * PHONE_STRING_LEN);
+    char* result = malloc(sizeof(char) * MAX_PHONE_STRING_LEN);
 
     if (!result)
     {
@@ -18,43 +20,9 @@ char *phone_number_clean(const char *input)
     }
 
     remove_non_digit_characters(input, result);
-    size_t result_length = strlen(result);
+    remove_area_code(result);
     
-    // A valid phone number must have more than 9 digits
-    if (result_length < CLEANED_PHONE_STRING_LEN)
-    {
-        set_result_to_invalid_phone(result);
-        return result;
-    }
-
-    // A valid phone number with 11 digits must start with 1
-    if (result_length == CLEANED_PHONE_STRING_LEN + 1)
-    {
-        if (result[0] == '1')
-        {
-            memmove(result, result + 1, result_length);
-        }
-        else
-        {
-            set_result_to_invalid_phone(result);
-            return result;
-        }
-    }
-    else if (result_length > CLEANED_PHONE_STRING_LEN + 1)
-    {
-        set_result_to_invalid_phone(result);
-        return result;
-    }
-
-    // A valid phone cannot have an area code thar starts with 0 or 1
-    if (result[0] == '0' || result[0] == '1')
-    {
-        set_result_to_invalid_phone(result);
-        return result;
-    }
-
-    // A valid phone cannot have an excange code thar starts with 0 or 1
-    if (result[3] == '0' || result[3] == '1')
+    if (!phone_validation(result))
     {
         set_result_to_invalid_phone(result);
         return result;
@@ -77,11 +45,57 @@ static void remove_non_digit_characters(const char *phone, char* result)
         }
     }
 
-    // guarantees a null-terminated string
     result[result_len] = '\0';
+}
+
+static void remove_area_code(char* phone)
+{
+    size_t phone_len = strlen(phone);
+    
+    if ((phone_len == CLEANED_PHONE_STRING_LEN + 1) && (phone[0] == '1'))
+    {
+        memmove(phone, phone + 1, phone_len);
+    }
 }
 
 static void set_result_to_invalid_phone(char* result)
 {
-    sprintf(result, "%s", INVALID_PHONE);
+    strcpy(result, INVALID_PHONE);
+}
+
+static bool phone_validation(const char* phone)
+{
+    int area_code_index = 0;
+    int exchange_code_index = 3;
+    size_t phone_len = strlen(phone);
+
+    // A valid phone number must have more than 9 digits
+    if (phone_len < CLEANED_PHONE_STRING_LEN)
+    {
+        return false;
+    }
+    // A valid phone number with 11 digits must start with 1
+    else if ((phone_len == CLEANED_PHONE_STRING_LEN + 1) && (phone[0] != '1'))
+    {
+        return false;
+    }
+    // A valid phone number must have less than 11 digits
+    else if (phone_len > CLEANED_PHONE_STRING_LEN + 1)
+    {
+        return false;
+    }
+    
+    // A valid phone cannot have 0 or 1 as area code
+    if (phone[area_code_index] <= '1')
+    {
+        return false;
+    }
+
+    // A valid phone cannot have 0 or 1 as exchange code
+    if (phone[exchange_code_index] <= '1')
+    {
+        return false;
+    }
+
+    return true;
 }

@@ -6,6 +6,7 @@
 #include <ctype.h>
 #include <errno.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 char *phone_number_clean(const char *input);
 
