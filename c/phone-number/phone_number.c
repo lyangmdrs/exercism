@@ -17,7 +17,6 @@ char *phone_number_clean(const char *input)
     if (!phone_validation(result))
     {
         set_result_to_invalid_phone(result);
-        return result;
     }
 
     return result;
