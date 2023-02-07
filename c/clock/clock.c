@@ -1,7 +1,9 @@
 #include "clock.h"
 
+// Internal macros
 #define RESET_CLK "00:00"
 
+// Helper functions
 static void roll_over_minutes(int* hour, int* minute);
 static void roll_over_hours(int* hour);
 static void convert_negative2positive_hour(int* hour);
@@ -37,7 +39,6 @@ clock_t clock_create(int hour, int minute)
 
     return new_clock;
 }
-
 
 clock_t clock_add(clock_t clock, int minute_add)
 {
