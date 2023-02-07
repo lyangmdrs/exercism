@@ -2,6 +2,7 @@
 
 #define CLEANED_PHONE_STRING_LEN 10
 #define INVALID_PHONE "0000000000"
+#define RESULT_ALLOCATION_PAD 2
 
 static bool phone_validation(const char* phone);
 static char *remove_non_digit_characters(const char *phone);
@@ -32,7 +33,7 @@ static char *remove_non_digit_characters(const char *phone)
     size_t phone_len = strlen(phone);
     size_t result_len = 0;
 
-    char *result = malloc(sizeof(char) * phone_len);
+    char *result = malloc(sizeof(char) * (phone_len + RESULT_ALLOCATION_PAD));
 
     if (!result)
     {
@@ -43,11 +44,14 @@ static char *remove_non_digit_characters(const char *phone)
     {
         if (isdigit((unsigned char)(phone[index])))
         {
-            result[result_len] = phone[index];
-            result_len++;
+            result[result_len++] = phone[index];
+        }
+        
+        if ((result_len > 0) && (result_len < phone_len))
+        {
+            result[result_len] = '\0';
         }
     }
-
     result[result_len] = '\0';
 
     return result;
