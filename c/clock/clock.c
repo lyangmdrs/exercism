@@ -2,11 +2,11 @@
 
 #define RESET_CLK "00:00"
 
-void roll_over_minutes(int* hour, int* minute);
-void roll_over_hours(int* hour);
-void convert_negative2positive_hour(int* hour);
-void convert_negative2positive_minute(int* hour, int* minute);
-void convert_text2int(clock_t clock, int* hour, int* minute);
+static void roll_over_minutes(int* hour, int* minute);
+static void roll_over_hours(int* hour);
+static void convert_negative2positive_hour(int* hour);
+static void convert_negative2positive_minute(int* hour, int* minute);
+static void convert_text2int(clock_t clock, int* hour, int* minute);
 
 clock_t clock_create(int hour, int minute)
 {
@@ -68,7 +68,7 @@ bool clock_is_equal(clock_t a, clock_t b)
     return true;
 }
 
-void roll_over_minutes(int* hour, int* minute)
+static void roll_over_minutes(int* hour, int* minute)
 {
     if (*minute >= 60)
     {
@@ -80,7 +80,7 @@ void roll_over_minutes(int* hour, int* minute)
     }
 }
 
-void roll_over_hours(int* hour)
+static void roll_over_hours(int* hour)
 {
     while (*hour >= 24)
     {
@@ -88,7 +88,7 @@ void roll_over_hours(int* hour)
     }
 }
 
-void convert_negative2positive_hour(int* hour)
+static void convert_negative2positive_hour(int* hour)
 {
     while (*hour < 0)
     {
@@ -96,7 +96,7 @@ void convert_negative2positive_hour(int* hour)
     }
 }
 
-void convert_negative2positive_minute(int* hour, int* minute)
+static void convert_negative2positive_minute(int* hour, int* minute)
 {
     int roll_hour = 0;
 
@@ -110,7 +110,7 @@ void convert_negative2positive_minute(int* hour, int* minute)
     *hour += roll_hour;
 }
 
-void convert_text2int(clock_t clock, int* hour, int* minute)
+static void convert_text2int(clock_t clock, int* hour, int* minute)
 {
     *hour = (clock.text[0] - '0') * 10 + (clock.text[1] - '0');
     *minute = (clock.text[3] - '0') * 10 + (clock.text[4] - '0');
