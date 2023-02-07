@@ -12,6 +12,11 @@ char *phone_number_clean(const char *input)
 {
     char* result = remove_non_digit_characters(input);
 
+    if (!result)
+    {
+        return NULL;
+    }
+
     remove_area_code(result);
     
     if (!phone_validation(result))
