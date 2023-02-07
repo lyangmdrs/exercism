@@ -2,7 +2,7 @@
 
 // Internal macros
 #define RESET_CLK "00:00"
-#define MASK_CLK "%d%d:%d%d"
+#define MASK_CLK "%.2d:%.2d"
 #define GET_INT_DOZEN(A) (A / 10)
 #define INT_TO_DOZEN(A) (A * 10)
 #define INT_POS_TO_NEG(A) (A * (-1))
@@ -37,11 +37,7 @@ clock_t clock_create(int hour, int minute)
     roll_over_minutes(&hour, &minute);
     roll_over_hours(&hour);
 
-    int hour_dozens = GET_INT_DOZEN(hour);
-    int min_dozens = GET_INT_DOZEN(minute);
-
-    sprintf(new_clock.text, MASK_CLK, hour_dozens, (hour - INT_TO_DOZEN(hour_dozens)),
-            min_dozens, (minute - INT_TO_DOZEN(min_dozens)));
+    sprintf(new_clock.text, MASK_CLK, hour, minute);
 
     return new_clock;
 }
