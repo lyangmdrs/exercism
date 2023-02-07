@@ -15,8 +15,7 @@ char *phone_number_clean(const char *input)
 
     if (!result)
     {
-        errno = ENOMEM;
-        exit(EXIT_FAILURE);
+        return NULL;
     }
 
     remove_non_digit_characters(input, result);
