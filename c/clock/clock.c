@@ -119,9 +119,5 @@ static void convert_negative2positive_minute(int* hour, int* minute)
 
 static void convert_text2int(clock_t clock, int* hour, int* minute)
 {
-    *hour = INT_TO_DOZEN((clock.text[HOUR_DOZEN_INDEX] - '0')) + \
-            (clock.text[HOUR_UNITY_INDEX] - '0');
-
-    *minute = INT_TO_DOZEN((clock.text[MINUTE_DOZEN_INDEX] - '0')) + \
-              (clock.text[MINUTE_UNITY_INDEX] - '0');
+    sscanf(clock.text, "%d:%d", hour, minute);
 }
