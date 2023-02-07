@@ -1,24 +1,17 @@
 #include "phone_number.h"
 
-#define MAX_PHONE_STRING_LEN 13
 #define CLEANED_PHONE_STRING_LEN 10
 #define INVALID_PHONE "0000000000"
 
 static bool phone_validation(const char* phone);
-static void remove_non_digit_characters(const char *phone, char* result);
+static char *remove_non_digit_characters(const char *phone);
 static void remove_area_code(char* phone);
 static void set_result_to_invalid_phone(char* result);
 
 char *phone_number_clean(const char *input)
 {
-    char* result = malloc(sizeof(char) * MAX_PHONE_STRING_LEN);
+    char* result = remove_non_digit_characters(input);
 
-    if (!result)
-    {
-        return NULL;
-    }
-
-    remove_non_digit_characters(input, result);
     remove_area_code(result);
     
     if (!phone_validation(result))
@@ -30,10 +23,17 @@ char *phone_number_clean(const char *input)
     return result;
 }
 
-static void remove_non_digit_characters(const char *phone, char* result)
+static char *remove_non_digit_characters(const char *phone)
 {
     size_t phone_len = strlen(phone);
     size_t result_len = 0;
+
+    char *result = malloc(sizeof(char) * phone_len);
+
+    if (!result)
+    {
+        return NULL;
+    }
 
     for (size_t index = 0; index < phone_len; index++)
     {
@@ -45,6 +45,8 @@ static void remove_non_digit_characters(const char *phone, char* result)
     }
 
     result[result_len] = '\0';
+
+    return result;
 }
 
 static void remove_area_code(char* phone)
