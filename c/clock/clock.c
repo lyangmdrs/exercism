@@ -1,17 +1,10 @@
 #include "clock.h"
 
 // Internal macros
-#define RESET_CLK "00:00"
 #define MASK_CLK "%.2d:%.2d"
-#define GET_INT_DOZEN(A) (A / 10)
-#define INT_TO_DOZEN(A) (A * 10)
 #define INT_POS_TO_NEG(A) (A * (-1))
 #define HOUR_IN_MINUTES 60
 #define DAY_IN_HOURS 24
-#define HOUR_DOZEN_INDEX 0
-#define HOUR_UNITY_INDEX 1
-#define MINUTE_DOZEN_INDEX 3
-#define MINUTE_UNITY_INDEX 4
 
 // Helper functions
 static void roll_over_minutes(int* hour, int* minute);
