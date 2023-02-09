@@ -6,7 +6,7 @@
 #include <math.h>
 
 // Filter to not listed allergens. Allergens that score above 255 should be ignored.
-#define ALLERGENS_FILTER 0xFF
+#define ALLERGENS_FILTER 255
 typedef enum {
    ALLERGEN_EGGS = 1,
    ALLERGEN_PEANUTS = 2,
