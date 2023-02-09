@@ -31,7 +31,6 @@ char *phone_number_clean(const char *input)
 
 static char *remove_non_digit_characters(const char *phone)
 {
-    size_t phone_len = strlen(phone);
     size_t result_len = 0;
 
     char *result = malloc(sizeof(char) * MAX_PHONE_DIGITS);
@@ -41,11 +40,11 @@ static char *remove_non_digit_characters(const char *phone)
         return NULL;
     }
 
-    for (size_t index = 0; index < phone_len; index++)
+    for (; *phone; ++phone)
     {
-        if (isdigit((unsigned char)(phone[index])))
+        if (isdigit((unsigned char)(*phone)))
         {
-            result[result_len++] = phone[index];
+            result[result_len++] = *phone;
         }
         
         if (result_len == MAX_PHONE_DIGITS - 1)
