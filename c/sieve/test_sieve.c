@@ -24,7 +24,6 @@ static void test_no_primes_under_two(void)
 
 static void test_find_first_prime(void)
 {
-   TEST_IGNORE();
    const uint32_t limit = 2;
    const uint32_t expected_prime_array[] = { 2 };
    const uint32_t expected_prime_count = 1;

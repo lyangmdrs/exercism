@@ -3,6 +3,9 @@
 
 #include <stdint.h>
 #include <stddef.h>
+#include <string.h>
+
+#include <stdio.h>
 
 /// Calculate at most `max_primes` prime numbers in the interval [2,limit]
 /// using the Sieve of Eratosthenes and store the prime numbers in `primes`
