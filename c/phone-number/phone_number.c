@@ -85,13 +85,15 @@ static bool phone_validation(const char* phone)
     {
         return false;
     }
+    
     // A valid phone number with 11 digits must start with 1
-    else if ((phone_len == CLEANED_PHONE_STRING_LEN + 1) && (phone[0] != '1'))
+    if ((phone_len == CLEANED_PHONE_STRING_LEN + 1) && (phone[0] != '1'))
     {
         return false;
     }
+    
     // A valid phone number must have less than 11 digits
-    else if (phone_len > CLEANED_PHONE_STRING_LEN + 1)
+    if (phone_len > CLEANED_PHONE_STRING_LEN + 1)
     {
         return false;
     }
