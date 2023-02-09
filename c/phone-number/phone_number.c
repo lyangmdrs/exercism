@@ -1,5 +1,6 @@
 #include "phone_number.h"
 
+#define MAX_PHONE_DIGITS 13
 #define CLEANED_PHONE_STRING_LEN 10
 #define INVALID_PHONE "0000000000"
 #define RESULT_ALLOCATION_PAD 2
@@ -33,7 +34,7 @@ static char *remove_non_digit_characters(const char *phone)
     size_t phone_len = strlen(phone);
     size_t result_len = 0;
 
-    char *result = malloc(sizeof(char) * (phone_len + RESULT_ALLOCATION_PAD));
+    char *result = malloc(sizeof(char) * MAX_PHONE_DIGITS);
 
     if (!result)
     {
@@ -47,13 +48,14 @@ static char *remove_non_digit_characters(const char *phone)
             result[result_len++] = phone[index];
         }
         
-        if ((result_len > 0) && (result_len < phone_len))
+        if (result_len == MAX_PHONE_DIGITS - 1)
         {
-            result[result_len] = '\0';
+            break;
         }
     }
-    result[result_len] = '\0';
 
+    result[result_len] = '\0';
+    
     return result;
 }
 
