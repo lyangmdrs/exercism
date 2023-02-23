@@ -38,7 +38,6 @@ static void test_find_first_prime(void)
 
 static void test_find_primes_up_to_10(void)
 {
-   TEST_IGNORE();
    const uint32_t limit = 10;
    const uint32_t expected_prime_array[] = { 2, 3, 5, 7 };
    const uint32_t expected_prime_count = 4;

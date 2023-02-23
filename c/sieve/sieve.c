@@ -5,14 +5,6 @@ void remove_zero_items(uint32_t arr[], int n);
 uint32_t sieve(uint32_t limit, uint32_t *primes, size_t max_primes)
 {   
     uint32_t count = 0;
-    // memset(primes, 0, limit + 2);
-
-    printf("Start: \n");
-    
-    for (uint32_t i = 0; i < limit + 2; i++)
-    {
-        printf("primes[%d] = %d\n", i, primes[i]);
-    }
 
     if (limit < 2)
     {
@@ -23,47 +15,80 @@ uint32_t sieve(uint32_t limit, uint32_t *primes, size_t max_primes)
     {
         return count;
     }
+
+    uint32_t non_primes[200] = { 0 };
+    uint32_t index = 2;
     
-    primes[0] = 0;
-    primes[1] = 0;
-
-    for (size_t i = 2; i <= limit; ++i)
+    for (uint32_t multiplier_1 = 2; multiplier_1 <= limit; multiplier_1++)
     {
-        primes[i] = i;
-    }
-
-    remove_zero_items(primes, limit +  2);
-
-    printf("End: \n");
-    
-    for (uint32_t i = 0; i < limit + 2; i++)
-    {
-        printf("primes[%d] = %d\n", i, primes[i]);
-    }
-
-    printf("\n");
-
-    for (size_t i = 0; i < limit; ++i)
-    {
-        
-        if (primes[i] > 0)
+        for (uint32_t multiplier_2 = 2; multiplier_2 <= limit; multiplier_2++)
         {
-            count++;
+            // printf("index=%d, multipliers(%d, %d), result=%d\n", index, multiplier_1, multiplier_2, multiplier_1*multiplier_2);
+            non_primes[index++] = multiplier_1 * multiplier_2;
         }
     }
-    printf("count: %d\n", count);
+
+    // printf("\nView non-primes\n");
+    for (index = 2; non_primes[index]; index++)
+    {
+        // printf("non_primes[%d] = %d\n", index, non_primes[index]);
+        
+        if (non_primes[index] == 0)
+        {
+            break;
+        }
+    }
+
+    bool found_prime = true;
+    for (uint32_t number = 2; number <= limit; number++)
+    {
+        found_prime = true;
+        for (index = 2; index < 200; index++)
+        {
+            if (non_primes[index] == number)
+            {
+                found_prime = false;
+                break;
+            }
+
+            if (non_primes[index] == 0)
+            {
+                break;
+            }
+        }
+        
+        // printf("test %d\n", found_prime);
+        if (found_prime)
+        {
+            // printf("Found prime %d \n", number);
+            primes[count++] = number;
+        }
+    }
+
+    // printf("\nView primes\n");
+    for (uint32_t number = 0; number <= limit * 2; number++)
+    {
+        // printf("primes[%d] = %d\n", number, primes[number]);
+    }
+
+    remove_zero_items(primes, limit * 2);
+
     return count; 
 }
 
 void remove_zero_items(uint32_t arr[], int n)
 { 
-    int i, j; 
+    int i, j;
+
     for (i=0; i<n; i++) 
     { 
         if (arr[i] == 0) 
         { 
-            for (j=i; j<n-1; j++) 
+            for (j=i; j<n-1; j++)
+            {
                 arr[j] = arr[j+1]; 
+            }
+
             n--; 
             i--; 
         } 
