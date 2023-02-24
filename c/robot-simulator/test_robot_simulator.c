@@ -96,7 +96,6 @@ static void test_rotating_counter_clockwise_changes_west_to_south(void)
 
 static void test_rotating_counter_clockwise_changes_south_to_east(void)
 {
-   TEST_IGNORE();
    robot_status_t expected = { DIRECTION_EAST, { 0, 0 } };
 
    robot_status_t actual = { DIRECTION_SOUTH, { 0, 0 } };
@@ -107,7 +106,6 @@ static void test_rotating_counter_clockwise_changes_south_to_east(void)
 
 static void test_rotating_counter_clockwise_changes_east_to_north(void)
 {
-   TEST_IGNORE();
    robot_status_t expected = { DIRECTION_NORTH, { 0, 0 } };
 
    robot_status_t actual = { DIRECTION_EAST, { 0, 0 } };
@@ -118,7 +116,6 @@ static void test_rotating_counter_clockwise_changes_east_to_north(void)
 
 static void test_moving_forward_one_facing_north_increments_Y(void)
 {
-   TEST_IGNORE();
    robot_status_t expected = { DIRECTION_NORTH, { 0, 1 } };
 
    robot_status_t actual = { DIRECTION_NORTH, { 0, 0 } };

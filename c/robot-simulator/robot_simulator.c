@@ -16,13 +16,13 @@ void robot_move(robot_status_t *robot, const char *commands)
 
     for (size_t i = 0; i < cmd_len; i++)
     {
-        if(commands[i] == 'R')
+        if (commands[i] == 'R')
         {
             robot->direction = (robot->direction + 1) % DIRECTION_MAX;
             continue;
         }
 
-        if(commands[i] == 'L')
+        if (commands[i] == 'L')
         {
             if (robot->direction == 0)
             {
@@ -32,6 +32,33 @@ void robot_move(robot_status_t *robot, const char *commands)
                 robot->direction--;
             }
             continue;
+        }
+
+        if (commands[i] == 'A')
+        {
+            if (robot->direction == DIRECTION_NORTH)
+            {
+                robot->position.y++;
+                continue;
+            }
+
+            if (robot->direction == DIRECTION_SOUTH)
+            {
+                robot->position.y--;
+                continue;
+            }
+
+            if (robot->direction == DIRECTION_EAST)
+            {
+                robot->position.x++;
+                continue;
+            }
+
+            if (robot->direction == DIRECTION_WEST)
+            {
+                robot->position.x--;
+                continue;
+            }
         }
     }
 }
