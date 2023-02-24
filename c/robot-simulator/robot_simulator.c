@@ -21,5 +21,11 @@ void robot_move(robot_status_t *robot, const char *commands)
             robot->direction = (robot->direction + 1) % DIRECTION_MAX;
             continue;
         }
+
+        if(commands[i] == 'L')
+        {
+            robot->direction = DIRECTION_MAX - (robot->direction + 1);
+            continue;
+        }
     }
 }

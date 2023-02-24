@@ -76,7 +76,6 @@ static void test_rotating_clockwise_changes_west_to_north(void)
 
 static void test_rotating_counter_clockwise_changes_north_to_west(void)
 {
-   TEST_IGNORE();
    robot_status_t expected = { DIRECTION_WEST, { 0, 0 } };
 
    robot_status_t actual = { DIRECTION_NORTH, { 0, 0 } };
