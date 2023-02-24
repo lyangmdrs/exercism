@@ -11,11 +11,6 @@ uint32_t sieve(uint32_t limit, uint32_t *primes, size_t max_primes)
        return count;
     }
 
-    if (limit > max_primes)
-    {
-        return count;
-    }
-
     uint32_t non_primes[200] = { 0 };
     uint32_t index = 2;
     
@@ -71,26 +66,11 @@ uint32_t sieve(uint32_t limit, uint32_t *primes, size_t max_primes)
         // printf("primes[%d] = %d\n", number, primes[number]);
     }
 
-    remove_zero_items(primes, limit * 2);
+    if (count > max_primes)
+    {
+        return max_primes;
+    }
+
 
     return count; 
-}
-
-void remove_zero_items(uint32_t arr[], int n)
-{ 
-    int i, j;
-
-    for (i=0; i<n; i++) 
-    { 
-        if (arr[i] == 0) 
-        { 
-            for (j=i; j<n-1; j++)
-            {
-                arr[j] = arr[j+1]; 
-            }
-
-            n--; 
-            i--; 
-        } 
-    } 
 }
