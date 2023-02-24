@@ -27,7 +27,6 @@ static void test_create_at_origin_facing_north(void)
 
 static void test_create_at_negative_position_facing_south(void)
 {
-   TEST_IGNORE();   // delete this line to run test
    robot_status_t expected = { DIRECTION_SOUTH, { -1, -1 } };
 
    robot_status_t actual = robot_create(DIRECTION_SOUTH, -1, -1);
@@ -37,7 +36,6 @@ static void test_create_at_negative_position_facing_south(void)
 
 static void test_rotating_clockwise_changes_north_to_east(void)
 {
-   TEST_IGNORE();
    robot_status_t expected = { DIRECTION_EAST, { 0, 0 } };
 
    robot_status_t actual = { DIRECTION_NORTH, { 0, 0 } };
