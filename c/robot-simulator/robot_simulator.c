@@ -24,7 +24,13 @@ void robot_move(robot_status_t *robot, const char *commands)
 
         if(commands[i] == 'L')
         {
-            robot->direction = DIRECTION_MAX - (robot->direction + 1);
+            if (robot->direction == 0)
+            {
+                robot->direction = DIRECTION_WEST;
+            } else 
+            {
+                robot->direction--;
+            }
             continue;
         }
     }
