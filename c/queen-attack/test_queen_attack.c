@@ -76,7 +76,6 @@ static void test_black_queen_must_have_column_on_board(void)
 
 static void test_can_not_attack(void)
 {
-   TEST_IGNORE();
    position_t white_queen;
    position_t black_queen;
 

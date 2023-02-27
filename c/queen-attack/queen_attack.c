@@ -15,9 +15,11 @@ attack_status_t can_attack(position_t queen_1, position_t queen_2)
     {
         return INVALID_POSITION;
     }
+
+
     
 
-    return CAN_ATTACK;
+    return CAN_NOT_ATTACK;
 }
 
 bool position_is_valid(position_t queen)
