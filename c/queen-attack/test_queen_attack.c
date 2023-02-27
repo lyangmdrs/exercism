@@ -102,7 +102,6 @@ static void test_can_attack_on_same_row(void)
 
 static void test_can_attack_on_same_column(void)
 {
-   TEST_IGNORE();
    position_t white_queen;
    position_t black_queen;
 
