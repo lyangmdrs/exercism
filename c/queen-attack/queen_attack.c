@@ -1,7 +1,7 @@
 #include "queen_attack.h"
 
 #include <stdbool.h>
-#include <stdio.h>
+#include <stdlib.h>
 
 bool position_is_valid(position_t queen);
 
@@ -22,48 +22,17 @@ attack_status_t can_attack(position_t queen_1, position_t queen_2)
         return CAN_ATTACK;
     }
 
-    // Look for queens on 1st diagonal
-    for (int i = queen_1.column, j = queen_1.row; (i < 8) && (j >= 0); i++, j--)
+    if (abs(queen_1.column - queen_2.column) == abs(queen_1.row - queen_2.row))
     {
-        if ((queen_2.column == i) && (queen_2.row == j))
-        {
-            return CAN_ATTACK;
-        }
+        return CAN_ATTACK;
     }
-
-    for (int i = queen_1.column, j = queen_1.row; (i >= 0) && (j < 8); i--, j++)
-    {   
-        if ((queen_2.column == i) && (queen_2.row == j))
-        {
-            return CAN_ATTACK;
-        }
-    }
-
-    // Look for queens on 2nd diagonal
-    for (int i = queen_1.column, j = queen_1.row; (i < 8) && (j < 8); i++, j++)
-    {
-        if ((queen_2.column == i) && (queen_2.row == j))
-        {
-            return CAN_ATTACK;
-        }
-    }
-
-    for (int i = queen_1.column, j = queen_1.row; (i >= 0) && (j >= 0); i--, j--)
-    {   
-        if ((queen_2.column == i) && (queen_2.row == j))
-        {
-            return CAN_ATTACK;
-        }
-    }
-
-    
 
     return CAN_NOT_ATTACK;
 }
 
 bool position_is_valid(position_t queen)
 {
-    if ((queen.column >= 8) || (queen.row >= 8))
+    if ((queen.column > 7) || (queen.row > 7))
     {
         return false;
     }
