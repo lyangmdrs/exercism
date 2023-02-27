@@ -51,7 +51,6 @@ static void test_no_rows(void)
 
 static void test_single_row(void)
 {
-   TEST_IGNORE();   // delete this line to run test
    uint8_t expected[1][1] = { { 1 } };
    actual = create_triangle(1);
    TEST_ASSERT_TRUE(check_triangle((count = 1), expected, actual));
@@ -61,7 +60,6 @@ static void test_single_row(void)
 
 static void test_two_rows(void)
 {
-   TEST_IGNORE();
    uint8_t expected[2][2] = {
       // clang-format off
       {1, 0},
@@ -76,7 +74,6 @@ static void test_two_rows(void)
 
 static void test_three_rows(void)
 {
-   TEST_IGNORE();
    uint8_t expected[3][3] = {
       // clang-format off
       {1, 0, 0},
@@ -92,7 +89,6 @@ static void test_three_rows(void)
 
 static void test_four_rows(void)
 {
-   TEST_IGNORE();
    uint8_t expected[4][4] = {
       // clang-format off
       {1, 0, 0, 0},
@@ -109,7 +105,6 @@ static void test_four_rows(void)
 
 static void test_five_rows(void)
 {
-   TEST_IGNORE();
    uint8_t expected[5][5] = {
       // clang-format off
       {1, 0, 0, 0, 0},
@@ -127,7 +122,6 @@ static void test_five_rows(void)
 
 static void test_six_rows(void)
 {
-   TEST_IGNORE();
    uint8_t expected[6][6] = {
       // clang-format off
       {1, 0, 0, 0, 0, 0},
@@ -146,7 +140,6 @@ static void test_six_rows(void)
 
 static void test_ten_rows(void)
 {
-   TEST_IGNORE();
    uint8_t expected[10][10] = {
       // clang-format off
       {1, 0, 0, 0, 0, 0, 0, 0, 0, 0},
