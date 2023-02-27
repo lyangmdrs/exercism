@@ -141,7 +141,6 @@ static void test_can_attack_on_second_diagonal(void)
 
 static void test_can_attack_on_third_diagonal(void)
 {
-   TEST_IGNORE();
    position_t white_queen;
    position_t black_queen;
 
