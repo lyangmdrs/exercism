@@ -31,8 +31,24 @@ attack_status_t can_attack(position_t queen_1, position_t queen_2)
         }
     }
 
-    printf("decrescent!\n");
     for (int i = queen_1.column, j = queen_1.row; (i >= 0) && (j < 8); i--, j++)
+    {   
+        if ((queen_2.column == i) && (queen_2.row == j))
+        {
+            return CAN_ATTACK;
+        }
+    }
+
+    // Look for queens on 2nd diagonal
+    for (int i = queen_1.column, j = queen_1.row; (i < 8) && (j < 8); i++, j++)
+    {
+        if ((queen_2.column == i) && (queen_2.row == j))
+        {
+            return CAN_ATTACK;
+        }
+    }
+
+    for (int i = queen_1.column, j = queen_1.row; (i >= 0) && (j >= 0); i--, j--)
     {   
         if ((queen_2.column == i) && (queen_2.row == j))
         {
