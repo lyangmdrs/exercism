@@ -89,7 +89,6 @@ static void test_can_not_attack(void)
 
 static void test_can_attack_on_same_row(void)
 {
-   TEST_IGNORE();
    position_t white_queen;
    position_t black_queen;
 
