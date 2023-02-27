@@ -3,8 +3,6 @@
 #include <string.h>
 #include <math.h>
 
-#include <stdio.h>
-
 int convert(const char *input)
 {
     size_t input_len = strlen(input);
