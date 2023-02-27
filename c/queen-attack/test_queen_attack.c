@@ -169,7 +169,6 @@ static void
 test_cannot_attack_if_falling_diagonals_only_same_when_reflected_across_longest_falling_diagonal(
     void)
 {
-   TEST_IGNORE();
    position_t white_queen;
    position_t black_queen;
 
