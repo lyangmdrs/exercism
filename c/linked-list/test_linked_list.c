@@ -39,7 +39,6 @@ static void test_shift_gets_an_element_from_the_list(void)
 
 static void test_shift_gets_first_element_from_the_list(void)
 {
-   TEST_IGNORE();
    list_push(list, 23);
    list_push(list, 5);
    TEST_ASSERT_EQUAL(23, list_shift(list));
