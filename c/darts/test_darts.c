@@ -43,7 +43,6 @@ static void test_on_the_inner_circle(void)
 
 static void test_exactly_on_center(void)
 {
-   TEST_IGNORE();
    coordinate_t landing_position = { 0.0F, 0.0F };
    uint8_t expected = 10;
    uint8_t actual = score(landing_position);
@@ -52,7 +51,6 @@ static void test_exactly_on_center(void)
 
 static void test_near_the_center(void)
 {
-   TEST_IGNORE();
    coordinate_t landing_position = { -0.1F, -0.1F };
    uint8_t expected = 10;
    uint8_t actual = score(landing_position);
@@ -61,7 +59,6 @@ static void test_near_the_center(void)
 
 static void test_just_within_the_inner_circle(void)
 {
-   TEST_IGNORE();
    coordinate_t landing_position = { 0.7F, 0.7F };
    uint8_t expected = 10;
    uint8_t actual = score(landing_position);
@@ -70,7 +67,6 @@ static void test_just_within_the_inner_circle(void)
 
 static void test_just_outside_the_inner_circle(void)
 {
-   TEST_IGNORE();
    coordinate_t landing_position = { 0.8F, -0.8F };
    uint8_t expected = 5;
    uint8_t actual = score(landing_position);

@@ -16,19 +16,19 @@ enum {MISS, OUTER_CIRCLE, MIDDLE_CIRCLE = 5, INNER_CIRCLE = 10};
 
 uint8_t score(coordinate_t coordinate)
 {
-    if (fabs(coordinate.x) > 8 && fabs(coordinate.y) >= 8)
+    float radius = hypotf(coordinate.x, coordinate.y);
+    
+    if (radius > OUTER_CIRCLE_RADIUS)
     {
         return MISS;
     }
 
-    if ((fabs(coordinate.x) > MIDDLE_CIRCLE_RADIUS) ^
-        (fabs(coordinate.y) > MIDDLE_CIRCLE_RADIUS))
+    if (radius > MIDDLE_CIRCLE_RADIUS)
     {
         return OUTER_CIRCLE;
     }
 
-    if ((fabs(coordinate.x) > INNER_CIRCLE_RADIUS) ^
-        (fabs(coordinate.y) > INNER_CIRCLE_RADIUS))
+    if (radius > INNER_CIRCLE_RADIUS)
     {
         return MIDDLE_CIRCLE;
     }
