@@ -55,7 +55,6 @@ static void test_unshift_adds_element_at_start_of_the_list(void)
 
 static void test_pop_push_shift_and_unshift_can_be_used_in_any_order(void)
 {
-   TEST_IGNORE();
    list_push(list, 1);
    list_push(list, 2);
    TEST_ASSERT_EQUAL(2, list_pop(list));
