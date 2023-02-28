@@ -12,7 +12,7 @@
 #define MIDDLE_CIRCLE_RADIUS (5.0F)
 #define INNER_CIRCLE_RADIUS (1.0F)
 
-enum {MISS, OUTER_CIRCLE, MIDDLE_CIRCLE, INNER_CIRCLE};
+enum {MISS, OUTER_CIRCLE, MIDDLE_CIRCLE = 5, INNER_CIRCLE = 10};
 
 uint8_t score(coordinate_t coordinate)
 {
@@ -25,6 +25,12 @@ uint8_t score(coordinate_t coordinate)
         (fabs(coordinate.y) > MIDDLE_CIRCLE_RADIUS))
     {
         return OUTER_CIRCLE;
+    }
+
+    if ((fabs(coordinate.x) > INNER_CIRCLE_RADIUS) ^
+        (fabs(coordinate.y) > INNER_CIRCLE_RADIUS))
+    {
+        return MIDDLE_CIRCLE;
     }
 
     return MISS;
