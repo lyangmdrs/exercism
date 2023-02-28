@@ -5,6 +5,8 @@
 
 typedef int ll_data_t;
 struct list;
+typedef struct list_node list_node_t;
+typedef struct list list_t;
 
 // constructs a new (empty) list
 struct list *list_create(void);
