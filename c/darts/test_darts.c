@@ -35,7 +35,6 @@ static void test_on_the_middle_circle(void)
 
 static void test_on_the_inner_circle(void)
 {
-   TEST_IGNORE();
    coordinate_t landing_position = { 0.0F, -1.0F };
    uint8_t expected = 10;
    uint8_t actual = score(landing_position);

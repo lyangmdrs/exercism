@@ -33,5 +33,5 @@ uint8_t score(coordinate_t coordinate)
         return MIDDLE_CIRCLE;
     }
 
-    return MISS;
+    return INNER_CIRCLE;
 }
