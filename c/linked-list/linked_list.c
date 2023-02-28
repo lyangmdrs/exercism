@@ -136,9 +136,19 @@ ll_data_t list_shift(struct list *list)
 
 void list_delete(struct list *list, ll_data_t data)
 {
-   if (list) {}
+   list_node_t *node = list->last->prev;
+  
+   while (node->prev)
+   {     
+      if (node->data == data)
+      {
+         unlink_node(node);
+         list->count--;
+         break;
+      }
 
-   if (data) {}
+      node = node->prev;
+   }
 }
 
 void list_destroy(struct list *list)

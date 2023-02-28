@@ -115,7 +115,6 @@ static void test_shifting_to_empty_does_not_break_the_list(void)
 
 static void test_deletes_the_only_element(void)
 {
-   TEST_IGNORE();
    list_push(list, 61);
    list_delete(list, 61);
    TEST_ASSERT_EQUAL(0, list_count(list));
