@@ -107,13 +107,14 @@ void list_unshift(struct list *list, ll_data_t item_data)
 
 ll_data_t list_shift(struct list *list)
 {
-   ll_data_t a;
-
-   a = 2;
-
-   if (list) {}
-
-   return a;
+   list_node_t *node = list->first->next;
+   ll_data_t data = node->data;
+   node->next->prev = node->prev;
+   node->prev->next = node->next;
+   
+   free(node);
+   
+   return data;
 }
 
 void list_delete(struct list *list, ll_data_t data)
