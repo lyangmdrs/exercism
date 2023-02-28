@@ -110,7 +110,14 @@ ll_data_t list_pop(struct list *list)
 
 void list_unshift(struct list *list, ll_data_t item_data)
 {
-   if ((list != NULL) && (item_data)) {}
+   list_node_t *new_node = malloc(sizeof(list_node_t));
+   
+   list->first->next->prev = new_node;
+   new_node->next = list->first->next;
+   list->first->next = new_node;
+   new_node->prev = list->first;
+
+   new_node->data = item_data;
 }
 
 ll_data_t list_shift(struct list *list)

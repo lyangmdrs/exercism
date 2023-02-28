@@ -47,7 +47,6 @@ static void test_shift_gets_first_element_from_the_list(void)
 
 static void test_unshift_adds_element_at_start_of_the_list(void)
 {
-   TEST_IGNORE();
    list_unshift(list, 23);
    list_unshift(list, 5);
    TEST_ASSERT_EQUAL(5, list_shift(list));
