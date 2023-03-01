@@ -3,13 +3,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static void unlink_node(list_node_t *node);
-
-struct list_node
+typedef struct list_node
 {
    struct list_node *prev, *next;
    ll_data_t data;
-};
+} list_node_t;
 
 struct list
 {

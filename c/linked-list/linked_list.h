@@ -4,7 +4,6 @@
 #include <stddef.h>
 
 typedef int ll_data_t;
-typedef struct list_node list_node_t;
 typedef struct list list_t;
 
 // constructs a new (empty) list
