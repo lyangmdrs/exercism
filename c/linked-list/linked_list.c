@@ -86,9 +86,9 @@ ll_data_t list_shift(list_t *list)
 
 void list_delete(list_t *list, ll_data_t data)
 {
-   list_node_t *node = list->last->prev;
+   list_node_t *node = list->first->next;
   
-   while (node->prev)
+   while (node->next)
    {     
       if (node->data == data)
       {
