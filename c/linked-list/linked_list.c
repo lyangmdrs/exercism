@@ -67,8 +67,7 @@ void list_push(list_t *list, ll_data_t item_data)
 
 ll_data_t list_pop(list_t *list)
 {
-   list_node_t *node = list->last->prev;   
-   ll_data_t data = unlink_node(node, list);
+   ll_data_t data = unlink_node(list->last->prev, list);
 
    return data;
 }
@@ -80,8 +79,7 @@ void list_unshift(list_t *list, ll_data_t item_data)
 
 ll_data_t list_shift(list_t *list)
 {
-   list_node_t *node = list->first->next;
-   ll_data_t data = unlink_node(node, list);
+   ll_data_t data = unlink_node(list->first->next, list);
    
    return data;
 }
