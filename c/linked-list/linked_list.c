@@ -27,6 +27,19 @@ static ll_data_t unlink_node(list_node_t *node, list_t *list)
    return data;
 }
 
+static void insert_node(list_node_t *preceding, list_t *list, ll_data_t item_data)
+{
+   list_node_t *new_node = malloc(sizeof(list_node_t));
+   
+   new_node->prev = preceding->prev;
+   preceding->prev = new_node;
+   new_node->prev->next = new_node;
+   new_node->next = preceding;
+   new_node->data = item_data;
+
+   list->count++;
+}
+
 list_t *list_create(void)
 {
    list_t *new_list = malloc(sizeof(list_t));
@@ -49,15 +62,7 @@ size_t list_count(const list_t *list)
 
 void list_push(list_t *list, ll_data_t item_data)
 {
-   list_node_t *new_node = malloc(sizeof(list_node_t));
-
-   list->last->prev->next = new_node;
-   new_node->prev = list->last->prev;
-   list->last->prev = new_node;
-   new_node->next = list->last;
-
-   new_node->data = item_data;
-   list->count++;
+   insert_node(list->last, list, item_data);
 }
 
 ll_data_t list_pop(list_t *list)
@@ -70,15 +75,7 @@ ll_data_t list_pop(list_t *list)
 
 void list_unshift(list_t *list, ll_data_t item_data)
 {
-   list_node_t *new_node = malloc(sizeof(list_node_t));
-   
-   list->first->next->prev = new_node;
-   new_node->next = list->first->next;
-   list->first->next = new_node;
-   new_node->prev = list->first;
-
-   new_node->data = item_data;
-   list->count++;
+   insert_node(list->first->next, list, item_data);
 }
 
 ll_data_t list_shift(list_t *list)
