@@ -25,7 +25,7 @@ static void unlink_node(list_node_t *node)
    free(node);
 }
 
-struct list *list_create(void)
+list_t *list_create(void)
 {
    list_t *new_list = malloc(sizeof(list_t));
    new_list->first = malloc(sizeof(list_node_t));
@@ -40,12 +40,12 @@ struct list *list_create(void)
    return new_list;
 }
 
-size_t list_count(const struct list *list)
+size_t list_count(const list_t *list)
 {
    return list->count;
 }
 
-void list_push(struct list *list, ll_data_t item_data)
+void list_push(list_t *list, ll_data_t item_data)
 {
    list_node_t *new_node = malloc(sizeof(list_node_t));
 
@@ -58,7 +58,7 @@ void list_push(struct list *list, ll_data_t item_data)
    list->count++;
 }
 
-ll_data_t list_pop(struct list *list)
+ll_data_t list_pop(list_t *list)
 {
    list_node_t *node = list->last->prev;   
    ll_data_t data = node->data;
@@ -69,7 +69,7 @@ ll_data_t list_pop(struct list *list)
    return data;
 }
 
-void list_unshift(struct list *list, ll_data_t item_data)
+void list_unshift(list_t *list, ll_data_t item_data)
 {
    list_node_t *new_node = malloc(sizeof(list_node_t));
    
@@ -82,7 +82,7 @@ void list_unshift(struct list *list, ll_data_t item_data)
    list->count++;
 }
 
-ll_data_t list_shift(struct list *list)
+ll_data_t list_shift(list_t *list)
 {
    list_node_t *node = list->first->next;
    ll_data_t data = node->data;
@@ -93,7 +93,7 @@ ll_data_t list_shift(struct list *list)
    return data;
 }
 
-void list_delete(struct list *list, ll_data_t data)
+void list_delete(list_t *list, ll_data_t data)
 {
    list_node_t *node = list->last->prev;
   
@@ -110,7 +110,7 @@ void list_delete(struct list *list, ll_data_t data)
    }
 }
 
-void list_destroy(struct list *list)
+void list_destroy(list_t *list)
 {
    struct list_node *node;
    node = list->first->next;
