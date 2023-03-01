@@ -15,12 +15,16 @@ struct list
    size_t count;
 };
 
-static void unlink_node(list_node_t *node)
+static ll_data_t unlink_node(list_node_t *node, list_t *list)
 {
+   ll_data_t data = node->data;
    node->next->prev = node->prev;
    node->prev->next = node->next;
+   list->count--;
 
    free(node);
+
+   return data;
 }
 
 list_t *list_create(void)
@@ -59,10 +63,7 @@ void list_push(list_t *list, ll_data_t item_data)
 ll_data_t list_pop(list_t *list)
 {
    list_node_t *node = list->last->prev;   
-   ll_data_t data = node->data;
-
-   unlink_node(node);
-   list->count--;
+   ll_data_t data = unlink_node(node, list);
 
    return data;
 }
@@ -83,10 +84,7 @@ void list_unshift(list_t *list, ll_data_t item_data)
 ll_data_t list_shift(list_t *list)
 {
    list_node_t *node = list->first->next;
-   ll_data_t data = node->data;
-   
-   unlink_node(node);
-   list->count--;
+   ll_data_t data = unlink_node(node, list);
    
    return data;
 }
@@ -99,8 +97,7 @@ void list_delete(list_t *list, ll_data_t data)
    {     
       if (node->data == data)
       {
-         unlink_node(node);
-         list->count--;
+         unlink_node(node, list);
          break;
       }
 
