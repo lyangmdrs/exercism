@@ -53,11 +53,11 @@ list_t *list_create(void)
    list_t *new_list = malloc(sizeof(list_t));
    if (!new_list) return NULL;
 
-   new_list->first = malloc(sizeof(list_node_t));
-   if (!new_list->first) return NULL;
+   static list_node_t dummy_head;
+   new_list->first = &dummy_head;
    
-   new_list->last = malloc(sizeof(list_node_t));
-   if (!new_list->last) return NULL;
+   static list_node_t dummy_tail;
+   new_list->last = &dummy_tail;
 
    new_list->first->prev = NULL;
    new_list->first->next = new_list->last;   
@@ -132,7 +132,5 @@ void list_destroy(list_t *list)
       list_pop(list);
    }
 
-   free(list->first);
-   free(list->last);
    free(list);
 }
