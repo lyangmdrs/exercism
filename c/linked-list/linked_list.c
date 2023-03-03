@@ -96,20 +96,15 @@ void list_delete(list_t *list, ll_data_t data)
          break;
       }
 
-      node = node->prev;
+      node = node->next;
    }
 }
 
 void list_destroy(list_t *list)
 {
-   struct list_node *node;
-   node = list->first->next;
-
-   while (node->next)
+   while (list->first->next != list->last)
    {
-      struct list_node *free_node = node;
-      node = free_node->next;
-      free(free_node);
+      list_pop(list);
    }
 
    free(list->first);
