@@ -2,14 +2,16 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
 
-static void unlink_node(list_node_t *node);
+#define INSERT_NODE_FAIL 0
+#define INSERT_NODE_SUCCESS 1
 
-struct list_node
+typedef struct list_node
 {
    struct list_node *prev, *next;
    ll_data_t data;
-};
+} list_node_t;
 
 struct list
 {
@@ -17,19 +19,45 @@ struct list
    size_t count;
 };
 
-static void unlink_node(list_node_t *node)
+static ll_data_t unlink_node(list_node_t *node, list_t *list)
 {
+   ll_data_t data = node->data;
    node->next->prev = node->prev;
    node->prev->next = node->next;
+   list->count--;
 
    free(node);
+
+   return data;
 }
 
-struct list *list_create(void)
+static bool insert_node(list_node_t *preceding, list_t *list, ll_data_t item_data)
+{
+   list_node_t *new_node = malloc(sizeof(list_node_t));
+
+   if (!new_node) return INSERT_NODE_FAIL;
+   
+   new_node->prev = preceding->prev;
+   preceding->prev = new_node;
+   new_node->prev->next = new_node;
+   new_node->next = preceding;
+   new_node->data = item_data;
+
+   list->count++;
+
+   return INSERT_NODE_SUCCESS;
+}
+
+list_t *list_create(void)
 {
    list_t *new_list = malloc(sizeof(list_t));
-   new_list->first = malloc(sizeof(list_node_t));
-   new_list->last = malloc(sizeof(list_node_t));
+   if (!new_list) return NULL;
+
+   static list_node_t dummy_head;
+   new_list->first = &dummy_head;
+   
+   static list_node_t dummy_tail;
+   new_list->last = &dummy_tail;
 
    new_list->first->prev = NULL;
    new_list->first->next = new_list->last;   
@@ -40,89 +68,69 @@ struct list *list_create(void)
    return new_list;
 }
 
-size_t list_count(const struct list *list)
+size_t list_count(const list_t *list)
 {
    return list->count;
 }
 
-void list_push(struct list *list, ll_data_t item_data)
+void list_push(list_t *list, ll_data_t item_data)
 {
-   list_node_t *new_node = malloc(sizeof(list_node_t));
+   bool success = insert_node(list->last, list, item_data);
 
-   list->last->prev->next = new_node;
-   new_node->prev = list->last->prev;
-   list->last->prev = new_node;
-   new_node->next = list->last;
-
-   new_node->data = item_data;
-   list->count++;
+   if (!success)
+   {
+      list_destroy(list);
+      list = NULL;
+   }
 }
 
-ll_data_t list_pop(struct list *list)
+ll_data_t list_pop(list_t *list)
 {
-   list_node_t *node = list->last->prev;   
-   ll_data_t data = node->data;
-
-   unlink_node(node);
-   list->count--;
+   ll_data_t data = unlink_node(list->last->prev, list);
 
    return data;
 }
 
-void list_unshift(struct list *list, ll_data_t item_data)
+void list_unshift(list_t *list, ll_data_t item_data)
 {
-   list_node_t *new_node = malloc(sizeof(list_node_t));
-   
-   list->first->next->prev = new_node;
-   new_node->next = list->first->next;
-   list->first->next = new_node;
-   new_node->prev = list->first;
+   bool success = insert_node(list->first->next, list, item_data);
 
-   new_node->data = item_data;
-   list->count++;
+   if (!success)
+   {
+      list_destroy(list);
+      list = NULL;
+   }
 }
 
-ll_data_t list_shift(struct list *list)
+ll_data_t list_shift(list_t *list)
+{
+   ll_data_t data = unlink_node(list->first->next, list);
+   
+   return data;
+}
+
+void list_delete(list_t *list, ll_data_t data)
 {
    list_node_t *node = list->first->next;
-   ll_data_t data = node->data;
-   
-   unlink_node(node);
-   list->count--;
-   
-   return data;
-}
-
-void list_delete(struct list *list, ll_data_t data)
-{
-   list_node_t *node = list->last->prev;
   
-   while (node->prev)
+   while (node->next)
    {     
       if (node->data == data)
       {
-         unlink_node(node);
-         list->count--;
+         unlink_node(node, list);
          break;
       }
 
-      node = node->prev;
+      node = node->next;
    }
 }
 
-void list_destroy(struct list *list)
+void list_destroy(list_t *list)
 {
-   struct list_node *node;
-   node = list->first->next;
-
-   while (node->next)
+   while (list->first->next != list->last)
    {
-      struct list_node *free_node = node;
-      node = free_node->next;
-      free(free_node);
+      list_pop(list);
    }
 
-   free(list->first);
-   free(list->last);
    free(list);
 }
