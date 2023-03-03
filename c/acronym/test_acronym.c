@@ -30,7 +30,6 @@ static void test_null_string(void)
 
 static void test_empty_string(void)
 {
-   TEST_IGNORE();
    char *phrase = "";
    char *expected = NULL;
    check_abbreviation(phrase, expected);
