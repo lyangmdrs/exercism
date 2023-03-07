@@ -3,6 +3,6 @@
 
 #include <time.h>
 
-time_t gigasecond_after(time_t);
+time_t gigasecond_after(time_t input);
 
 #endif
