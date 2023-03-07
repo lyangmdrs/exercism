@@ -37,7 +37,6 @@ static void test_empty_string(void)
 
 static void test_basic_abbreviation(void)
 {
-   TEST_IGNORE();
    char *phrase = "Portable Network Graphics";
    char *expected = "PNG";
    check_abbreviation(phrase, expected);
