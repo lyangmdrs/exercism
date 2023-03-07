@@ -2,6 +2,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #define ABBR_LEN 10
 
@@ -22,9 +23,11 @@ char *abbreviate(const char *phrase)
             result[res_len++] = phrase[i];
         } else if (phrase[i - 1] == ' ')
         {
-            result[res_len++] = phrase[i];
+            result[res_len++] = toupper(phrase[i]);
         }
     }
+
+    result[res_len] = '\0';
     
 
     return result;

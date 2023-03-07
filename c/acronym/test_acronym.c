@@ -44,7 +44,6 @@ static void test_basic_abbreviation(void)
 
 static void test_lowercase_words(void)
 {
-   TEST_IGNORE();
    char *phrase = "Ruby on Rails";
    char *expected = "ROR";
    check_abbreviation(phrase, expected);
