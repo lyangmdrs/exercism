@@ -51,7 +51,6 @@ static void test_lowercase_words(void)
 
 static void test_punctuation(void)
 {
-   TEST_IGNORE();
    char *phrase = "First In, First Out";
    char *expected = "FIFO";
    check_abbreviation(phrase, expected);
@@ -59,7 +58,6 @@ static void test_punctuation(void)
 
 static void test_all_caps_words(void)
 {
-   TEST_IGNORE();
    char *phrase = "GNU Image Manipulation Program";
    char *expected = "GIMP";
    check_abbreviation(phrase, expected);
@@ -67,7 +65,6 @@ static void test_all_caps_words(void)
 
 static void test_punctuation_without_whitespace(void)
 {
-   TEST_IGNORE();
    char *phrase = "Complementary metal-oxide semiconductor";
    char *expected = "CMOS";
    check_abbreviation(phrase, expected);

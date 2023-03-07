@@ -21,7 +21,7 @@ char *abbreviate(const char *phrase)
         if(i == 0)
         {
             result[res_len++] = phrase[i];
-        } else if (phrase[i - 1] == ' ')
+        } else if (strrchr("- ", phrase[i - 1]))
         {
             result[res_len++] = toupper(phrase[i]);
         }
