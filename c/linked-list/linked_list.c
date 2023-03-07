@@ -2,10 +2,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <stdbool.h>
-
-#define INSERT_NODE_FAIL 0
-#define INSERT_NODE_SUCCESS 1
+#include <assert.h>
 
 typedef struct list_node
 {
@@ -38,11 +35,11 @@ static ll_data_t unlink_node(list_node_t *node, list_t *list)
    return data;
 }
 
-static bool insert_node(list_node_t *preceding, list_t *list, ll_data_t item_data)
+static void insert_node(list_node_t *preceding, list_t *list, ll_data_t item_data)
 {
    list_node_t *new_node = malloc(sizeof(list_node_t));
 
-   if (!new_node) return INSERT_NODE_FAIL;
+   assert(new_node);
    
    new_node->data = item_data;
    new_node->next = preceding;
@@ -50,8 +47,6 @@ static bool insert_node(list_node_t *preceding, list_t *list, ll_data_t item_dat
    preceding->prev->next = new_node;
    preceding->prev = new_node;
    list->count++;
-
-   return INSERT_NODE_SUCCESS;
 }
 
 list_t *list_create(void)
@@ -73,13 +68,7 @@ size_t list_count(const list_t *list)
 
 void list_push(list_t *list, ll_data_t item_data)
 {
-   bool success = insert_node(&list->dummy, list, item_data);
-
-   if (!success)
-   {
-      list_destroy(list);
-      list = NULL;
-   }
+   insert_node(&list->dummy, list, item_data);
 }
 
 ll_data_t list_pop(list_t *list)
@@ -91,13 +80,7 @@ ll_data_t list_pop(list_t *list)
 
 void list_unshift(list_t *list, ll_data_t item_data)
 {
-   bool success = insert_node(list->dummy.next, list, item_data);
-
-   if (!success)
-   {
-      list_destroy(list);
-      list = NULL;
-   }
+   insert_node(list->dummy.next, list, item_data);
 }
 
 ll_data_t list_shift(list_t *list)
