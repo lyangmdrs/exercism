@@ -80,7 +80,6 @@ static void test_long_abbreviation(void)
 
 static void test_consecutive_delimiters_abbreviation(void)
 {
-   TEST_IGNORE();
    char *phrase = "Something - I made up from thin air";
    char *expected = "SIMUFTA";
    check_abbreviation(phrase, expected);

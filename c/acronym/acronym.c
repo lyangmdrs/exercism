@@ -8,7 +8,6 @@
 
 static void expand_string(char *str, size_t len)
 {
-    printf("Expand %ld\n", len);
     str = realloc(str, (len + ABBR_LEN) * sizeof(char));
 }
 
@@ -28,7 +27,7 @@ char *abbreviate(const char *phrase)
         if(i == 0)
         {
             result[res_len++] = phrase[i];
-        } else if (strrchr("- ", phrase[i - 1]))
+        } else if ((strrchr("- ", phrase[i - 1])) && isalpha(phrase[i]))
         {
             result[res_len++] = toupper(phrase[i]);
         }
