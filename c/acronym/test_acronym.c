@@ -72,7 +72,6 @@ static void test_punctuation_without_whitespace(void)
 
 static void test_long_abbreviation(void)
 {
-   TEST_IGNORE();
    char *phrase = "Rolling On The Floor Laughing So Hard "
                   "That My Dogs Came Over And Licked Me";
    char *expected = "ROTFLSHTMDCOALM";
