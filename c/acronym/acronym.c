@@ -5,6 +5,7 @@
 #include <ctype.h>
 
 #define ABBR_LEN 10
+#define STR_TOKENS ("- _")
 
 static void expand_string(char *str, size_t len)
 {
@@ -27,7 +28,7 @@ char *abbreviate(const char *phrase)
         if(i == 0)
         {
             result[res_len++] = phrase[i];
-        } else if ((strrchr("- _", phrase[i - 1])) && isalpha(phrase[i]))
+        } else if ((strrchr(STR_TOKENS, phrase[i - 1])) && isalpha(phrase[i]))
         {
             result[res_len++] = toupper(phrase[i]);
         }
