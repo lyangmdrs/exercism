@@ -87,7 +87,6 @@ static void test_consecutive_delimiters_abbreviation(void)
 
 static void test_apostrophes(void)
 {
-   TEST_IGNORE();
    char *phrase = "Halley's Comet";
    char *expected = "HC";
    check_abbreviation(phrase, expected);
@@ -95,7 +94,6 @@ static void test_apostrophes(void)
 
 static void test_underscore_emphasis(void)
 {
-   TEST_IGNORE();
    char *phrase = "The Road _Not_ Taken";
    char *expected = "TRNT";
    check_abbreviation(phrase, expected);
