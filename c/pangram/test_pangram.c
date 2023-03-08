@@ -37,7 +37,6 @@ static void test_only_lower_case(void)
 
 static void test_missing_letter_x(void)
 {
-   TEST_IGNORE();
    const char sentence[] =
        "a quick movement of the enemy will jeopardize five gunboats";
 
