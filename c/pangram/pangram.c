@@ -34,7 +34,7 @@ bool is_pangram(const char *sentence)
         return false;
     }
 
-    if (calculate_sentence_score(sentence) == REQUIRED_SCORE)
+    if (calculate_sentence_score(sentence) >= REQUIRED_SCORE)
     {
         return true;
     }
