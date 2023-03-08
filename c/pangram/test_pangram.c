@@ -23,7 +23,6 @@ static void test_empty_sentence(void)
 
 static void test_perfect_lower_case(void)
 {
-   TEST_IGNORE();
    const char sentence[] = "abcdefghijklmnopqrstuvwxyz";
 
    TEST_ASSERT_TRUE(is_pangram(sentence));
