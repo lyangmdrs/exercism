@@ -259,7 +259,6 @@ static void test_normalize_case(void)
 
 static void test_with_apostrophes(void)
 {
-   TEST_IGNORE();
    int index = 0;
    int actual_word_count;
    char *input_text = "First: don't laugh. Then: don't cry. You're getting it.";
