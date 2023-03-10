@@ -8,9 +8,22 @@
 
 #define WORD_NOT_PRESENT (MAX_WORDS + 1)
 
+static void normalize_case(const char *word, char *output)
+{
+    for (size_t i = 0; i < MAX_WORD_LENGTH; i++)
+    {
+        if (isupper(word[i]))
+        {
+            output[i] = tolower(word[i]);
+            continue;
+        }
+
+        output[i] = word[i];
+    }
+}
+
 static size_t its_repeated_word(const char *word, word_count_word_t *words, size_t num_words)
 {
-    
     if (num_words == 0) 
     {
         return WORD_NOT_PRESENT;
@@ -18,13 +31,13 @@ static size_t its_repeated_word(const char *word, word_count_word_t *words, size
     
     for (size_t i = 0; i < num_words; i++)
     {
-        // printf("Compare: %s = %s\n", word, words[i].text);
+        // printf("Compare: %s == %s? ", word, words[i].text);
+        // printf("%s\n", strcmp(word, words[i].text)==0?"yes":"no");
         
         if (strcmp(word, words[i].text) == 0)
         {
             return i;
         }
-
     }
 
     return WORD_NOT_PRESENT;
@@ -43,18 +56,21 @@ int count_words(const char *sentence, word_count_word_t *words)
 
     while (token != NULL)
     {
-        // printf("%s\n", token);
-        size_t position = its_repeated_word(token, words, num_words);
+        char normalized_word[MAX_WORD_LENGTH];
+        size_t position;
         
+        normalize_case(token, normalized_word);
+
+        position = its_repeated_word(normalized_word, words, num_words);
+
         if (position < WORD_NOT_PRESENT) 
         {
-            // printf("Word already saved on %ld.\n", position);
             words[position].count++;
         }
         else
         {
             words[num_words].count = 1;
-            strcpy(words[num_words++].text, token);
+            strcpy(words[num_words++].text, normalized_word);
         }
         
         token = strtok(NULL, delimiters);

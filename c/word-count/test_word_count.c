@@ -208,7 +208,6 @@ static void test_ignore_punctuation(void)
 
 static void test_include_numbers(void)
 {
-   TEST_IGNORE();
    int index = 0;
    int actual_word_count;
    char *input_text = "testing, 1, 2 testing";
@@ -236,7 +235,6 @@ static void test_include_numbers(void)
 
 static void test_normalize_case(void)
 {
-   TEST_IGNORE();
    int index = 0;
    int actual_word_count;
    char *input_text = "go Go GO Stop stop";
