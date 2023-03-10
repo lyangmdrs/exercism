@@ -148,7 +148,6 @@ static void test_handles_cramped_lists(void)
 
 static void test_handles_expanded_lists(void)
 {
-   TEST_IGNORE();
    int index = 0;
    int actual_word_count;
    char *input_text = "one,\ntwo,\nthree";
