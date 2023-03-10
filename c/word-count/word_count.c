@@ -32,7 +32,7 @@ static size_t its_repeated_word(const char *word, word_count_word_t *words, size
 
 int count_words(const char *sentence, word_count_word_t *words)
 {
-    const char delimiters[2] = " ";
+    const char delimiters[3] = " ,";
     char buffer[123];
     char *token;
     int num_words = 0;
