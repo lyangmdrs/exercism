@@ -337,7 +337,6 @@ static void test_with_quotations(void)
 
 static void test_substrings_from_the_beginning(void)
 {
-   TEST_IGNORE();
    int index = 0;
    int actual_word_count;
    char *input_text = "Joe can't tell between app, apple and a.";
@@ -380,7 +379,6 @@ static void test_substrings_from_the_beginning(void)
 
 static void test_multiple_spaces_not_detected_as_a_word(void)
 {
-   TEST_IGNORE();
    int actual_word_count;
    int index = 0;
    char *input_text = " multiple   whitespaces";
@@ -406,7 +404,6 @@ static void test_multiple_spaces_not_detected_as_a_word(void)
 
 static void test_alternating_word_separators_not_detected_as_a_word(void)
 {
-   TEST_IGNORE();
    int actual_word_count;
    int index = 0;
    char *input_text = ",\n,one,\n ,two \n 'three'";
@@ -435,7 +432,6 @@ static void test_alternating_word_separators_not_detected_as_a_word(void)
 
 static void test_quotation_for_word_with_apostrophe(void)
 {
-   TEST_IGNORE();
    int actual_word_count;
    int index = 0;
    char *input_text = "can, can't, 'can't'";
