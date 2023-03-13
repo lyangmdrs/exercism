@@ -93,11 +93,5 @@ int count_words(const char *sentence, word_count_word_t *words)
         token = strtok(NULL, delimiters);
     }
 
-    // printf("\nCHECK WORD COUNT\n\n");
-    // for (int i = 0; i < num_words; i++)
-    // {
-    //     printf("Word %s with %d occurrences\n", words[i].text, words[i].count);
-    // }
-
     return num_words;
 }
