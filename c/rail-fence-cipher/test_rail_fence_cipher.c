@@ -33,7 +33,6 @@ static void test_encode_with_ending_in_the_middle(void)
 
 static void test_decode_with_three_rails(void)
 {
-   TEST_IGNORE();
    char *actual = decode("TEITELHDVLSNHDTISEIIEA", 3);
    TEST_ASSERT_EQUAL_STRING("THEDEVILISINTHEDETAILS", actual);
    free(actual);
