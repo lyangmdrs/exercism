@@ -26,7 +26,6 @@ static void test_encode_with_three_rails(void)
 
 static void test_encode_with_ending_in_the_middle(void)
 {
-   TEST_IGNORE();
    char *actual = encode("EXERCISES", 4);
    TEST_ASSERT_EQUAL_STRING("ESXIEECSR", actual);
    free(actual);
