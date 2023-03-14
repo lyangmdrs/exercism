@@ -19,7 +19,6 @@ static void test_encode_with_two_rails(void)
 
 static void test_encode_with_three_rails(void)
 {
-   TEST_IGNORE();
    char *actual = encode("WEAREDISCOVEREDFLEEATONCE", 3);
    TEST_ASSERT_EQUAL_STRING("WECRLTEERDSOEEFEAOCAIVDEN", actual);
    free(actual);

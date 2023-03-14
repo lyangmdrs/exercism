@@ -7,18 +7,23 @@
 
 char *encode(char *text, size_t rails)
 {
-    char *cipher1 = malloc(sizeof(char) * MAX_STRING_LENGTH);
+    char **ciphers = malloc(sizeof(char*) * rails);
 
-    if (!cipher1)
+    if (!ciphers)
     {
         return NULL;
     }
 
-    char *cipher2 = malloc(sizeof(char) * MAX_STRING_LENGTH);
-
-    if (!cipher2)
+    for (size_t i = 0; i < rails; i++)
     {
-        return NULL;
+        ciphers[i] = malloc(sizeof(char) * MAX_STRING_LENGTH);
+
+        if (!ciphers[i])
+        {
+            return NULL;
+        }
+
+        memset(ciphers[i], '\0', MAX_STRING_LENGTH);
     }
     
     char * result = malloc(sizeof(char) * MAX_STRING_LENGTH);
@@ -28,26 +33,31 @@ char *encode(char *text, size_t rails)
         return NULL;
     }
 
-    memset(cipher1, '\0', MAX_STRING_LENGTH);
-    memset(cipher2, '\0', MAX_STRING_LENGTH);
+    memset(result, '\0', MAX_STRING_LENGTH);
     
+    int signal = 1;
+    size_t cipher_index = 0;
     for (size_t i = 0; text[i]; i++)
     {
-        if (i%rails)
+        // printf("Signal %2d || Index: %ld || i: %ld\n", signal, cipher_index, i);
+        strncat(ciphers[cipher_index], &text[i], 1);
+        if ((cipher_index == (rails - 1)) || ((!cipher_index) && (signal < 0)))
         {
-            strncat(cipher2, &text[i], 1);
+            signal *= -1;
         }
-        else 
-        {
-            strncat(cipher1, &text[i], 1);
-        }
+
+        cipher_index += signal;
     }
 
-    strcpy(result, cipher1);
-    strcat(result, cipher2);
+    
+    for (int i = 0; i < (int)rails; i++)
+    {
+        // printf("C(%d): %s\n", i, ciphers[i]);
+        strcat(result, ciphers[i]);
+        free(ciphers[i]);
+    }
 
-    free(cipher1);
-    free(cipher2);
+    free(ciphers);
 
     return result;
 }
