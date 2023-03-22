@@ -40,7 +40,6 @@ static void test_decode_with_three_rails(void)
 
 static void test_decode_with_five_rails(void)
 {
-   TEST_IGNORE();
    char *actual = decode("EIEXMSMESAORIWSCE", 5);
    TEST_ASSERT_EQUAL_STRING("EXERCISMISAWESOME", actual);
    free(actual);
@@ -48,7 +47,6 @@ static void test_decode_with_five_rails(void)
 
 static void test_decode_with_six_rails(void)
 {
-   TEST_IGNORE();
    char *actual = decode(
        "133714114238148966225439541018335470986172518171757571896261", 6);
    TEST_ASSERT_EQUAL_STRING(

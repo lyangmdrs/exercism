@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <math.h>
+
 #define MAX_STRING_LENGTH 50
 
 char *encode(char *text, size_t rails)
@@ -40,7 +41,6 @@ char *encode(char *text, size_t rails)
     
     for (size_t i = 0; text[i]; i++)
     {
-        // printf("Signal %2d || Index: %ld || i: %ld\n", signal, cipher_index, i);
         strncat(ciphers[cipher_index], &text[i], 1);
         if ((cipher_index == (rails - 1)) || ((!cipher_index) && (signal < 0)))
         {
@@ -53,7 +53,6 @@ char *encode(char *text, size_t rails)
     
     for (int i = 0; i < (int)rails; i++)
     {
-        printf("C(%d): %s || Length: %ld\n", i, ciphers[i], strlen(ciphers[i]));
         strcat(result, ciphers[i]);
         free(ciphers[i]);
     }
@@ -65,26 +64,79 @@ char *encode(char *text, size_t rails)
 
 char *decode(char *ciphertext, size_t rails)
 {
-    if (rails) {}
-    // size_t cipher_len = strlen(ciphertext);
-    size_t cipher_len = 25;
-    size_t top_rail_len = (size_t)ceil(((float)cipher_len)/4);
-    size_t middle_rail_len = cipher_len/2;
-    size_t bottom_rail_len = cipher_len/4;
-    printf("DIVISIONS\n");
-    printf("\tTop rail length: %ld\n", top_rail_len);
-    printf("\tMiddle rail length: %ld\n", middle_rail_len);
-    printf("\tBottom rail length: %ld\n", bottom_rail_len);
-    printf("==========\n");
-    size_t length1 = 6;
-    size_t top = (size_t)ceil(((float)length1)/4);
-    size_t middle1 = length1/2;
-    size_t middle2 = length1/2;
-    size_t bottom = length1/4;
-    printf("\tTop rail length: %ld\n", top);
-    printf("\tMiddle rail 1 length: %ld\n", middle1);
-    printf("\tMiddle rail 2 length: %ld\n", middle2);
-    printf("\tBottom rail length: %ld\n", bottom);
+    if (!ciphertext)
+    {
+        return NULL;
+    }
+	
+    if (rails == 0)
+    {
+        return NULL;
+    }
 
-    return ciphertext;
+	const size_t ciphertext_len = strlen(ciphertext);
+	char *text = calloc(ciphertext_len + 1, sizeof(char));
+	
+    if (ciphertext_len == 0 || rails == 1)
+    {
+		strncpy(text, ciphertext, ciphertext_len);
+		return text;
+	}
+
+	
+	size_t rail_len[rails];
+	
+    for (size_t current_rail = 0; current_rail < rails; current_rail++)
+    {
+		rail_len[current_rail] = 0;
+	}
+
+	for (size_t i = 0; i < ciphertext_len;)
+    {
+		for (size_t current_rail = 0; current_rail < rails && i < ciphertext_len; current_rail++, i++) 
+        {
+			rail_len[current_rail]++;
+		}
+		
+        for (size_t current_rail = rails - 2; current_rail > 0 && i < ciphertext_len; current_rail--, i++)
+        {
+			rail_len[current_rail]++;
+		}
+	}
+	
+
+	size_t rail_start[rails];
+	rail_start[0] = 0;
+
+	for (size_t i = 1; i < rails; i++)
+    {
+		rail_start[i] = rail_start[i - 1] + rail_len[i - 1];
+	}
+
+	size_t rail_idx[rails];
+
+	for (size_t i = 0; i < rails; i++)
+    {
+		rail_idx[i] = 0;
+	}
+
+	size_t i = 0;
+	
+    while (i < ciphertext_len)
+    {
+		for (size_t current_rail = 0; current_rail < rails && i < ciphertext_len; current_rail++, i++)
+        {
+			size_t src_idx = rail_start[current_rail] + rail_idx[current_rail]++;
+			text[i] = ciphertext[src_idx];
+		}
+
+		for (size_t current_rail = rails - 2; current_rail > 0 && i < ciphertext_len; current_rail--, i++)
+        {
+			size_t src_idx = rail_start[current_rail] + rail_idx[current_rail]++;
+			text[i] = ciphertext[src_idx];
+		}
+	}
+    
+	text[i++] = '\0';
+	return text;
 }
