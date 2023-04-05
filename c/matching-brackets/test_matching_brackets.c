@@ -24,7 +24,6 @@ static void test_empty_string(void)
 
 static void test_unpaired_brackets(void)
 {
-   TEST_IGNORE();
    const char *input = "[[";
    TEST_ASSERT_FALSE(is_paired(input));
 }
