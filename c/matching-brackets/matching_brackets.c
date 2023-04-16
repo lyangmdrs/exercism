@@ -32,8 +32,9 @@ static void look_for_closing_brackets(const char *input, size_t input_len, char 
 
         if (strchr(matching_indexes, index_char)) continue;
 
-        printf("found a closing bracket (%c) on position %ld\n", input[i], i);
+        printf("found a closing bracket '%c' on position %ld\n", input[i], i);
         strncat(matching_indexes, &index_char, 1);
+        break;
     }
 }
 
@@ -57,14 +58,26 @@ static void look_for_matching_brackets(const char *input, size_t input_len, char
 
 }
 
+static size_t count_brackets(const char *input, size_t input_len)
+{
+    size_t num_brackets = 0;
+    char *brackets = "([{}])";
+    
+    for (size_t i = 0; i < input_len; i++)
+        if (strchr(brackets, input[i])) num_brackets++;
+
+    return num_brackets;
+}
+
 bool is_paired(const char *input)
 {
+    printf("Input: '%s'\n", input);
+    
     if (input[0] == '\0')
     {
         return true;
     }
 
-    bool result = true;
     size_t input_len = strlen(input);
     char *opening_indexes = malloc(sizeof(char) * 50);
 
@@ -86,13 +99,19 @@ bool is_paired(const char *input)
 
     look_for_matching_brackets(input, input_len, opening_indexes, matching_indexes);
 
-    printf("Input: '%s'\n", input);
     printf("Opening Indexes: '%s'\n", opening_indexes);
     printf("Matching Indexes: '%s'\n", matching_indexes);    
     
     size_t opening_indexes_len = strlen(opening_indexes);
     size_t matching_indexes_len = strlen(matching_indexes);
     
+    if (count_brackets(input, input_len) != (opening_indexes_len + matching_indexes_len))
+    {
+        free(opening_indexes);
+        free(matching_indexes);
+        return false;
+    }
+
     if (opening_indexes_len != matching_indexes_len)
     {
         free(opening_indexes);
@@ -113,5 +132,5 @@ bool is_paired(const char *input)
     free(opening_indexes);
     free(matching_indexes);
 
-    return result;
+    return true;
 }

@@ -66,14 +66,12 @@ static void test_several_paired_brackets(void)
 
 static void test_paired_and_nested_brackets(void)
 {
-   TEST_IGNORE();
    const char *input = "([{}({}[])])";
    TEST_ASSERT_TRUE(is_paired(input));
 }
 
 static void test_unopened_closing_brackets(void)
 {
-   TEST_IGNORE();
    const char *input = "{[)][]}";
    TEST_ASSERT_FALSE(is_paired(input));
 }
