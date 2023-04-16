@@ -30,42 +30,36 @@ static void test_unpaired_brackets(void)
 
 static void test_wrong_ordered_brackets(void)
 {
-   TEST_IGNORE();
    const char *input = "}{";
    TEST_ASSERT_FALSE(is_paired(input));
 }
 
 static void test_wrong_closing_bracket(void)
 {
-   TEST_IGNORE();
    const char *input = "{]";
    TEST_ASSERT_FALSE(is_paired(input));
 }
 
 static void test_paired_with_whitespace(void)
 {
-   TEST_IGNORE();
    const char *input = "{ }";
    TEST_ASSERT_TRUE(is_paired(input));
 }
 
 static void test_partially_paired_brackets(void)
 {
-   TEST_IGNORE();
    const char *input = "{[])";
    TEST_ASSERT_FALSE(is_paired(input));
 }
 
 static void test_simple_nested_brackets(void)
 {
-   TEST_IGNORE();
    const char *input = "{[]}";
    TEST_ASSERT_TRUE(is_paired(input));
 }
 
 static void test_several_paired_brackets(void)
 {
-   TEST_IGNORE();
    const char *input = "{}[]";
    TEST_ASSERT_TRUE(is_paired(input));
 }

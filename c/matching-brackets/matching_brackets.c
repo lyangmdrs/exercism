@@ -1,35 +1,60 @@
 #include "matching_brackets.h"
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #include <stdio.h>
 
-static void extract_characters(char *output, const char *input, const char *characters)
+
+static char get_bracket_pair(char bracket)
 {
-    size_t input_len = strlen(input); //TODO: Optimize this approach;
-    size_t output_len = 0;
+    switch (bracket)
+    {
+    case '(':
+        return ')';
+    case '[':
+        return ']';
+    case '{':
+        return '}';
+    default:
+        return '\0';
+    }
+}
+
+static void look_for_closing_brackets(const char *input, size_t input_len, char required_bracket, char *matching_indexes)
+{
+    printf("received: input_len: %ld - required_bracket: %c\n", input_len, required_bracket);
+    for (size_t i = 0; i < input_len; i++)
+    {
+        if (input[i] != required_bracket) continue;
+
+        char index_char = '0' + i;
+
+        if (strchr(matching_indexes, index_char)) continue;
+
+        printf("found a closing bracket (%c) on position %ld\n", input[i], i);
+        strncat(matching_indexes, &index_char, 1);
+    }
+}
+
+static void look_for_matching_brackets(const char *input, size_t input_len, char *opening_indexes, char *matching_indexes)
+{
+    char *opening_brackets = "([{";
     
     for (size_t i = 0; i < input_len; i++)
     {
-        if(strchr(characters, input[i]))
+        if (strchr(opening_brackets, input[i]))
         {
-            output[output_len++] = input[i];
+            char index_char = '0' + i;
+            printf("found! %c in %ld\n", input[i], i);
+            strncat(opening_indexes, &index_char, 1);
+
+            // Look for bracket match
+            look_for_closing_brackets(input, input_len, get_bracket_pair(input[i]), matching_indexes);
         }
     }
 
-    output[output_len] = '\0';
 
-    if (output && input && characters) {}
-}
-
-static void get_opening_brackets(char *output, const char *input)
-{
-    extract_characters(output, input, "{[(");
-}
-
-static void get_closing_brackets(char *output, const char *input)
-{
-    extract_characters(output, input, ")]}");   
 }
 
 bool is_paired(const char *input)
@@ -39,37 +64,54 @@ bool is_paired(const char *input)
         return true;
     }
 
-    size_t input_length = strlen(input) + 1;
-    char *opening_brackets = malloc(sizeof(char) * input_length);
+    bool result = true;
+    size_t input_len = strlen(input);
+    char *opening_indexes = malloc(sizeof(char) * 50);
 
-    if (!opening_brackets)
+    if (!opening_indexes)
     {
         return false;
     }
+
+    char *matching_indexes = malloc(sizeof(char) * 50);
     
-    char *closing_brackets = malloc(sizeof(char) * input_length);
-
-    if (!closing_brackets)
+    if (!matching_indexes)
     {
-        free(opening_brackets);
+        free(opening_indexes);
         return false;
     }
 
-    get_opening_brackets(opening_brackets, input);
-    get_closing_brackets(closing_brackets, input);
+    opening_indexes[0] = '\0';
+    matching_indexes[0] = '\0';
 
-    printf("opening_brackets string content: '%s'\n", opening_brackets);
-    printf("closing_brackets string content: '%s'\n", closing_brackets);
+    look_for_matching_brackets(input, input_len, opening_indexes, matching_indexes);
 
-    if (strlen(opening_brackets) != strlen(closing_brackets))
+    printf("Input: '%s'\n", input);
+    printf("Opening Indexes: '%s'\n", opening_indexes);
+    printf("Matching Indexes: '%s'\n", matching_indexes);    
+    
+    size_t opening_indexes_len = strlen(opening_indexes);
+    size_t matching_indexes_len = strlen(matching_indexes);
+    
+    if (opening_indexes_len != matching_indexes_len)
     {
-        free(opening_brackets);
-        free(closing_brackets);
+        free(opening_indexes);
+        free(matching_indexes);
         return false;
     }
 
-    free(opening_brackets);
-    free(closing_brackets);
+    for (size_t i = 0; i < opening_indexes_len; i++)
+    {
+        if (opening_indexes[i] > matching_indexes[i])
+        {
+            free(opening_indexes);
+            free(matching_indexes);
+            return false;
+        }
+    }
 
-    return true;
+    free(opening_indexes);
+    free(matching_indexes);
+
+    return result;
 }
