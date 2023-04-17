@@ -91,49 +91,42 @@ static void test_paired_and_wrong_nested_brackets(void)
 static void
 test_paired_and_wrong_nested_brackets_but_innermost_are_correct(void)
 {
-   TEST_IGNORE();
    const char *input = "[({}])";
    TEST_ASSERT_FALSE(is_paired(input));
 }
 
 static void test_paired_and_incomplete_brackets(void)
 {
-   TEST_IGNORE();
    const char *input = "{}[";
    TEST_ASSERT_FALSE(is_paired(input));
 }
 
 static void test_too_many_closing_brackets(void)
 {
-   TEST_IGNORE();
    const char *input = "[]]";
    TEST_ASSERT_FALSE(is_paired(input));
 }
 
 static void test_early_unexpected_brackets(void)
 {
-   TEST_IGNORE();
    const char *input = ")()";
    TEST_ASSERT_FALSE(is_paired(input));
 }
 
 static void test_early_mismatched_brackets(void)
 {
-   TEST_IGNORE();
    const char *input = "{)()";
    TEST_ASSERT_FALSE(is_paired(input));
 }
 
 static void test_math_expression(void)
 {
-   TEST_IGNORE();
    const char *input = "(((185 + 223.85) * 15) - 543)/2";
    TEST_ASSERT_TRUE(is_paired(input));
 }
 
 static void test_complex_latex_expression(void)
 {
-   TEST_IGNORE();
    const char *input =
        "\\left(\\begin{array}{cc} \\frac{1}{3} & x\\\\ \\mathrm{e}^{x} &... x^2 \\end{array}\\right)";
    TEST_ASSERT_TRUE(is_paired(input));
