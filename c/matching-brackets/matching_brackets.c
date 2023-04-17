@@ -3,9 +3,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#include <stdio.h>
-
-
 static char get_bracket_pair(char bracket)
 {
     switch (bracket)
@@ -23,7 +20,6 @@ static char get_bracket_pair(char bracket)
 
 static void look_for_closing_brackets(const char *input, size_t input_len, char required_bracket, char *matching_indexes)
 {
-    printf("received: input_len: %ld - required_bracket: %c\n", input_len, required_bracket);
     for (size_t i = 0; i < input_len; i++)
     {
         if (input[i] != required_bracket) continue;
@@ -32,7 +28,6 @@ static void look_for_closing_brackets(const char *input, size_t input_len, char 
 
         if (strchr(matching_indexes, index_char)) continue;
 
-        printf("found a closing bracket '%c' on position %ld\n", input[i], i);
         strncat(matching_indexes, &index_char, 1);
         break;
     }
@@ -47,10 +42,7 @@ static void look_for_matching_brackets(const char *input, size_t input_len, char
         if (strchr(opening_brackets, input[i]))
         {
             char index_char = '0' + i;
-            printf("found! %c in %ld\n", input[i], i);
             strncat(opening_indexes, &index_char, 1);
-
-            // Look for bracket match
             look_for_closing_brackets(input, input_len, get_bracket_pair(input[i]), matching_indexes);
         }
     }
@@ -88,8 +80,6 @@ static void remove_non_brackets_chars(const char *input, char *output, size_t *o
 
 bool is_paired(const char *input)
 {
-    printf("Input: '%s'\n", input);
-    
     if (input[0] == '\0')
     {
         return true;
@@ -126,9 +116,6 @@ bool is_paired(const char *input)
     remove_non_brackets_chars(input, only_brackets_str, &brackets_str_len);
     look_for_matching_brackets(only_brackets_str, brackets_str_len, opening_indexes, matching_indexes);
 
-    printf("Opening Indexes: '%s'\n", opening_indexes);
-    printf("Matching Indexes: '%s'\n", matching_indexes);    
-    
     size_t opening_indexes_len = strlen(opening_indexes);
     size_t matching_indexes_len = strlen(matching_indexes);
     
