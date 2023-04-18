@@ -8,11 +8,10 @@ of a module and its functions and/or classes.
 """
 
 
-#TODO: define the 'EXPECTED_BAKE_TIME' constant.
+EXPECTED_BAKE_TIME = 40
+MINUTES_NEEDED_TO_PREPARE_A_LAYER = 2
 
-
-#TODO: Remove 'pass' and complete the 'bake_time_remaining()' function below.
-def bake_time_remaining():
+def bake_time_remaining(elapsed_bake_time):
     """Calculate the bake time remaining.
 
     :param elapsed_bake_time: int - baking time already elapsed.
@@ -23,13 +22,31 @@ def bake_time_remaining():
     based on the `EXPECTED_BAKE_TIME`.
     """
 
-    pass
+    return EXPECTED_BAKE_TIME - elapsed_bake_time
 
 
-#TODO: Define the 'preparation_time_in_minutes()' function below.
-# You might also consider using 'PREPARATION_TIME' here, if you have it defined.
+def preparation_time_in_minutes(number_of_layers):
+    """Calculates the preparation time of a lasagna in minutes
+    
+    :param number_of_layers: int - number of layers of the lasagna.
+    :return: int - time in minutes needed to prepare all layers.
 
+    Function that takes the number of layers of the lasagna as an argument and returns
+    how many minutes will take to prepare all the layers based on `MINUTES_NEEDED_TO_COOK_A_LAYER`.
+    """
+    return MINUTES_NEEDED_TO_PREPARE_A_LAYER * number_of_layers
 
 
 #TODO: define the 'elapsed_time_in_minutes()' function below.
 # Remember to add a docstring (you can copy and then alter the one from bake_time_remaining.)
+def elapsed_time_in_minutes(number_of_layers, elapsed_bake_time):
+    """Calculates the time spent with preparation and baking of a lasagna in minutes
+    
+    :param number_of_layers: int - number of layers of the lasagna.
+    :param elapsed_bake_time: int - baking time already elapsed.
+    :return: int - time in minutes spent in preparation and baking.
+
+    Function that takes the number of layers of the lasagna and the actual minutes the lasagna has been
+    in the oven as arguments and returns how many minutes already have elapsed since the preparation started.
+    """
+    return preparation_time_in_minutes(number_of_layers) + elapsed_bake_time
