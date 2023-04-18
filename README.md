@@ -7,3 +7,4 @@
 ## Learning tracks in progress
 
 - [C](/c/)
+- [Python](/python/)
