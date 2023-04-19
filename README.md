@@ -8,3 +8,4 @@
 
 - [C](/c/)
 - [Python](/python/)
+- [Julia](/julia/)
