@@ -1,0 +1,2 @@
+test:
+	julia runtests.jl
