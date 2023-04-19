@@ -20,13 +20,13 @@ def is_criticality_balanced(temperature, neutrons_emitted):
 
     if temperature >= TEMPERATURE_THRESHOLD:
         return False
-    
+
     if neutrons_emitted <= NEUTRONS_THRESHOLD:
         return False
-    
+
     if (temperature * neutrons_emitted) >= PRODUCT_THRESHOLD:
         return False
-    
+
     return True
 
 
