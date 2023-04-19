@@ -75,7 +75,7 @@ def fail_safe(temperature, neutrons_produced_per_second, threshold):
     2. 'NORMAL' -> `temperature * neutrons per second` +/- 10% of `threshold`
     3. 'DANGER' -> `temperature * neutrons per second` is not in the above-stated ranges
     """
-    product = (temperature * neutrons_produced_per_second)
+    product = temperature * neutrons_produced_per_second
 
     if product < (0.9 * threshold):
         return 'LOW'
