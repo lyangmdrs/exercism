@@ -24,13 +24,11 @@ static void test_empty_rna_sequence(void)
 
 static void test_rna_complement_of_cytosine_is_guanine(void)
 {
-   TEST_IGNORE();   // delete this line to run test
    check_transcription("C", "G");
 }
 
 static void test_rna_complement_of_guanine_is_cytosine(void)
 {
-   TEST_IGNORE();
    check_transcription("G", "C");
 }
 

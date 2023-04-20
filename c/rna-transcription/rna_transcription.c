@@ -33,6 +33,7 @@ char *to_rna(const char *dna)
             strcat(result, "G");
             break;
         case 'G':
+            strcat(result, "C");
             break;
         case 'T':
             break;
