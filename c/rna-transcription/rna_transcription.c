@@ -28,6 +28,7 @@ char *to_rna(const char *dna)
         switch (dna[i])
         {
         case 'A':
+            strcat(result, "U");
             break;
         case 'C':
             strcat(result, "G");
@@ -36,6 +37,7 @@ char *to_rna(const char *dna)
             strcat(result, "C");
             break;
         case 'T':
+            strcat(result, "A");
             break;
         default:
             result[0] = '\0';

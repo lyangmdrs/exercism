@@ -34,19 +34,16 @@ static void test_rna_complement_of_guanine_is_cytosine(void)
 
 static void test_rna_complement_of_thymine_is_adenine(void)
 {
-   TEST_IGNORE();
    check_transcription("T", "A");
 }
 
 static void test_rna_complement_of_adenine_is_uracil(void)
 {
-   TEST_IGNORE();
    check_transcription("A", "U");
 }
 
 static void test_rna_complement(void)
 {
-   TEST_IGNORE();
    check_transcription("ACGTGGTCTTAA", "UGCACCAGAAUU");
 }
 
