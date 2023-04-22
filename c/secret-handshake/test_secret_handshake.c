@@ -22,7 +22,6 @@ static void test_commands_wink_for_1(void)
 
 static void test_commands_double_blink_for_10(void)
 {
-   TEST_IGNORE();   // delete this line to run test
    const char *expected[] = { "double blink" };
    const char **actual = commands(2);
    TEST_ASSERT_EQUAL_STRING_ARRAY(expected, actual, ARRAY_SIZE(expected));
@@ -31,7 +30,6 @@ static void test_commands_double_blink_for_10(void)
 
 static void test_commands_close_your_eyes_for_100(void)
 {
-   TEST_IGNORE();
    const char *expected[] = { "close your eyes" };
    const char **actual = commands(4);
    TEST_ASSERT_EQUAL_STRING_ARRAY(expected, actual, ARRAY_SIZE(expected));
@@ -40,7 +38,6 @@ static void test_commands_close_your_eyes_for_100(void)
 
 static void test_commands_jump_for_1000(void)
 {
-   TEST_IGNORE();
    const char *expected[] = { "jump" };
    const char **actual = commands(8);
    TEST_ASSERT_EQUAL_STRING_ARRAY(expected, actual, ARRAY_SIZE(expected));
