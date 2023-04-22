@@ -26,24 +26,15 @@ const char **commands(size_t number)
     }
 
     size_t result_index = 0;
-    if (number & 16)
+    size_t reverse = number & 16;
+    int start = (reverse ? (NUM_SIGNALS - 1) : 0);
+    int end = (reverse ? 0 : NUM_SIGNALS);
+
+    for (int i = start; reverse ? (i >= end) : (i < end); reverse ? (i--) : (i++))
     {
-        for (int i = NUM_SIGNALS - 1; i >= 0; i--)
+        if (number & (int)pow(2, i))
         {
-            if (number & (int)pow(2, i))
-            {
-                result[result_index++] = signals[i];
-            }
-        }
-    }
-    else 
-    {
-        for (int i = 0; i < NUM_SIGNALS; i++)
-        {
-            if (number & (int)pow(2, i))
-            {
-                result[result_index++] = signals[i];
-            }
+            result[result_index++] = signals[i];
         }
     }
     
