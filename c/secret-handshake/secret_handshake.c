@@ -1,6 +1,7 @@
 #include "secret_handshake.h"
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 #define NUM_SIGNALS 4
 
@@ -17,7 +18,7 @@ static const char *signals[] = {"wink", "double blink", "close your eyes", "jump
 
 const char **commands(size_t number)
 {
-    const char **result = malloc(NUM_SIGNALS * sizeof(char*));
+    const char **result = calloc(NUM_SIGNALS, sizeof(char*));
 
     if (!result)
     {
@@ -25,27 +26,24 @@ const char **commands(size_t number)
     }
 
     size_t result_index = 0;
-    for (size_t i = 0; i < NUM_SIGNALS; i++)
+    if (number & 16)
     {
-        if (number & 1)
+        for (int i = NUM_SIGNALS - 1; i >= 0; i--)
         {
-            result[result_index++] = signals[0];
-            continue;
+            if (number & (int)pow(2, i))
+            {
+                result[result_index++] = signals[i];
+            }
         }
-        if (number & 2)
+    }
+    else 
+    {
+        for (int i = 0; i < NUM_SIGNALS; i++)
         {
-            result[result_index++] = signals[1];
-            continue;
-        }
-        if (number & 4)
-        {
-            result[result_index++] = signals[2];
-            continue;
-        }
-        if (number & 8)
-        {
-            result[result_index++] = signals[3];
-            continue;
+            if (number & (int)pow(2, i))
+            {
+                result[result_index++] = signals[i];
+            }
         }
     }
     

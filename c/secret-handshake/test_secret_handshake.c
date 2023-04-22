@@ -46,7 +46,6 @@ static void test_commands_jump_for_1000(void)
 
 static void test_commands_combine_two_actions(void)
 {
-   TEST_IGNORE();
    const char *expected[] = { "wink", "double blink" };
    const char **actual = commands(3);
    TEST_ASSERT_EQUAL_STRING_ARRAY(expected, actual, ARRAY_SIZE(expected));
@@ -55,7 +54,6 @@ static void test_commands_combine_two_actions(void)
 
 static void test_commands_reverse_two_actions(void)
 {
-   TEST_IGNORE();
    const char *expected[] = { "double blink", "wink" };
    const char **actual = commands(19);
    TEST_ASSERT_EQUAL_STRING_ARRAY(expected, actual, ARRAY_SIZE(expected));
@@ -64,7 +62,6 @@ static void test_commands_reverse_two_actions(void)
 
 static void test_commands_reversing_one_action_gives_the_same_action(void)
 {
-   TEST_IGNORE();
    const char *expected[] = { "jump" };
    const char **actual = commands(24);
    TEST_ASSERT_EQUAL_STRING_ARRAY(expected, actual, ARRAY_SIZE(expected));
@@ -73,7 +70,6 @@ static void test_commands_reversing_one_action_gives_the_same_action(void)
 
 static void test_commands_reversing_no_actions_still_gives_no_actions(void)
 {
-   TEST_IGNORE();
    const char *expected[] = { NULL };
    const char **actual = commands(16);
    TEST_ASSERT_EQUAL_STRING_ARRAY(expected, actual, ARRAY_SIZE(expected));
@@ -82,7 +78,6 @@ static void test_commands_reversing_no_actions_still_gives_no_actions(void)
 
 static void test_commands_all_possible_actions(void)
 {
-   TEST_IGNORE();
    const char *expected[] = { "wink", "double blink", "close your eyes",
                               "jump" };
    const char **actual = commands(15);
@@ -92,7 +87,6 @@ static void test_commands_all_possible_actions(void)
 
 static void test_commands_reverse_all_possible_actions(void)
 {
-   TEST_IGNORE();
    const char *expected[] = { "jump", "close your eyes", "double blink",
                               "wink" };
    const char **actual = commands(31);
@@ -102,7 +96,6 @@ static void test_commands_reverse_all_possible_actions(void)
 
 static void test_commands_do_nothing_for_zero(void)
 {
-   TEST_IGNORE();
    const char *expected[] = { NULL };
    const char **actual = commands(0);
    TEST_ASSERT_EQUAL_STRING_ARRAY(expected, actual, ARRAY_SIZE(expected));
