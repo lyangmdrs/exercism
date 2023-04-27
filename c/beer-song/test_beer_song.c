@@ -61,7 +61,6 @@ static void test_first_generic_verse(void)
 
 static void test_last_generic_verse(void)
 {
-   TEST_IGNORE();   // delete this line to run test
    uint16_t expected_line_count = 2;
    const char expected_song[][MAX_LINE_LENGTH] = {
       "3 bottles of beer on the wall, 3 bottles of beer.",
@@ -75,7 +74,6 @@ static void test_last_generic_verse(void)
 
 static void test_verse_with_2_bottles(void)
 {
-   TEST_IGNORE();
    uint16_t expected_line_count = 2;
    const char expected_song[][MAX_LINE_LENGTH] = {
       "2 bottles of beer on the wall, 2 bottles of beer.",
@@ -89,7 +87,6 @@ static void test_verse_with_2_bottles(void)
 
 static void test_verse_with_1_bottle(void)
 {
-   TEST_IGNORE();
    uint16_t expected_line_count = 2;
    const char expected_song[][MAX_LINE_LENGTH] = {
       "1 bottle of beer on the wall, 1 bottle of beer.",
@@ -103,7 +100,6 @@ static void test_verse_with_1_bottle(void)
 
 static void test_verse_with_0_bottles(void)
 {
-   TEST_IGNORE();
    uint16_t expected_line_count = 2;
    const char expected_song[][MAX_LINE_LENGTH] = {
       "No more bottles of beer on the wall, no more bottles of beer.",
