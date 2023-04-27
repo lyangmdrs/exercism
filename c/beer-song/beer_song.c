@@ -9,14 +9,14 @@
 
 void recite(uint8_t start_bottles, uint8_t take_down, char **song)
 {
-    if (start_bottles) {}
-    if (take_down) {}
-
     const char lines[][MAX_LINE_LENGTH] = {
         "%d bottles of beer on the wall, %d bottles of beer.",
         "Take one down and pass it around, %d bottles of beer on the wall."
     };
 
-    sprintf(song[0], lines[0], 99, 99);
-    sprintf(song[1], lines[1], 98);
+    for (int i = 0; i < take_down; i++)
+    {
+        sprintf(song[i], lines[0], start_bottles, start_bottles);
+        sprintf(song[i + 1], lines[1], --start_bottles);
+    }
 }
